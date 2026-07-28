@@ -125,13 +125,47 @@ class AllGridConvLSTM(nn.Module):
                               kernel_size=3, padding=1)
         self.fc   = nn.Linear(hidden_dim, 1)
 
+    def _resolve_grid_shape(self, num_grids: int) -> tuple[int, int]:
+        if self.H is None and self.W is None:
+            side = int(math.sqrt(num_grids))
+            if side * side != num_grids:
+                raise ValueError(
+                    f"AllGridConvLSTM requires a full spatial grid, but got "
+                    f"{num_grids} grids. Provide grid_h/grid_w or use a "
+                    f"non-spatial baseline like AllGridLSTM."
+                )
+            return side, side
+
+        if self.H is None:
+            if num_grids % self.W != 0:
+                raise ValueError(
+                    f"Cannot infer grid_h from {num_grids} grids and grid_w={self.W}."
+                )
+            return num_grids // self.W, self.W
+
+        if self.W is None:
+            if num_grids % self.H != 0:
+                raise ValueError(
+                    f"Cannot infer grid_w from {num_grids} grids and grid_h={self.H}."
+                )
+            return self.H, num_grids // self.H
+
+        if self.H * self.W != num_grids:
+            raise ValueError(
+                f"Grid count mismatch: AllGridConvLSTM was configured for "
+                f"{self.H}x{self.W}={self.H * self.W} grids, but input has "
+                f"{num_grids}."
+            )
+        return self.H, self.W
+
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
         if self.use_revin:
             x = self.revin.norm(x)
         B, N, L = x.shape
-        xg = x.view(B, self.H, self.W, L)
-        h  = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
-        c  = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
+        H, W = self._resolve_grid_shape(N)
+        xg = x.view(B, H, W, L)
+        h  = torch.zeros(B, self.hidden_dim, H, W, device=x.device)
+        c  = torch.zeros(B, self.hidden_dim, H, W, device=x.device)
         for t in range(L):
             gates  = self.conv(torch.cat([xg[:, :, :, t].unsqueeze(1), h], dim=1))
             i_g, f_g, g_g, o_g = torch.chunk(gates, 4, dim=1)
