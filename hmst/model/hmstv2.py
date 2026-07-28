@@ -27,7 +27,25 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from .baselines import RevIN   # shared RevIN
+
+class RevIN(nn.Module):
+    """Per-instance, per-grid reversible normalization."""
+
+    def __init__(self, eps: float = 1e-5):
+        super().__init__()
+        self.eps = eps
+        self._mu    = None
+        self._sigma = None
+
+    def norm(self, x: torch.Tensor) -> torch.Tensor:
+        """x: (B, N, L) → normalised"""
+        self._mu    = x.mean(dim=-1, keepdim=True).detach()
+        self._sigma = x.std(dim=-1,  keepdim=True).clamp(min=self.eps).detach()
+        return (x - self._mu) / self._sigma
+
+    def denorm(self, y: torch.Tensor) -> torch.Tensor:
+        """y: (B, N, *) → raw scale"""
+        return y * self._sigma + self._mu
 
 
 # ---------------------------------------------------------------------------

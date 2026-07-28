@@ -19,9 +19,8 @@ Baselines
     AllGridPatchTST — PatchTST (ICLR 2023, channel-independent Transformer)
 """
 
-from .hmstv2    import TimeEmbedding, HierarchicalBlock, HMSTv2
+from .hmstv2    import TimeEmbedding, HierarchicalBlock, HMSTv2, RevIN
 from .baselines import (
-    RevIN,
     EachGridLSTM,
     AllGridLSTM,
     AllGridConvLSTM,
