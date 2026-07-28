@@ -7,7 +7,7 @@ Top-level package exposing all public APIs.
 
 Quick start::
 
-    from hmst.model   import HMSTv2, AllGridLSTM
+    from hmst.model   import HMSTv2, AllGridLSTM, AllGridInformer
     from hmst.train   import make_loaders, run_training
     from hmst.utils   import calculate_metrics, build_forest_masks
     from hmst.utils   import MODEL_SIZES, TRAIN_CFG
@@ -15,12 +15,12 @@ Quick start::
 
 from .model   import HMSTv2, TimeEmbedding, HierarchicalBlock
 from .model   import RevIN, EachGridLSTM, AllGridLSTM, AllGridConvLSTM
-from .model   import AllGridDLinear, AllGridPatchTST
+from .model   import AllGridDLinear, AllGridPatchTST, AllGridInformer
 from .train   import CHTDataset, make_loaders, run_training
 from .utils   import MODEL_SIZES, TRAIN_CFG, SMALL, BASE, LARGE
 from .utils   import calculate_metrics, build_forest_masks
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __author__  = "HMST Research Team"
 
 __all__ = [
@@ -28,7 +28,7 @@ __all__ = [
     "HMSTv2", "TimeEmbedding", "HierarchicalBlock",
     # models — baselines
     "RevIN", "EachGridLSTM", "AllGridLSTM", "AllGridConvLSTM",
-    "AllGridDLinear", "AllGridPatchTST",
+    "AllGridDLinear", "AllGridPatchTST", "AllGridInformer",
     # training
     "CHTDataset", "make_loaders", "run_training",
     # utilities

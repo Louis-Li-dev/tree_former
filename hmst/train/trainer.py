@@ -6,15 +6,27 @@ Training loop and evaluation utilities for HMST-v2 and baseline models.
 The ``run_training`` function is a self-contained train/validate/test cycle
 with early stopping, gradient clipping, and automatic best-weight restoration.
 
+Normalization & Output Rules
+----------------------------
+1. HMST-v2 (proposed model, ``use_revin=True``):
+   Applies per-instance RevIN internally. Input dataloaders yield raw data.
+2. Baselines (``use_revin=False``):
+   Trained with dataset-level Z-score standardization (per-grid mean and std
+   computed from training split). Inputs are normalized before forward pass, and
+   outputs are inverse-transformed back to raw population scale during evaluation.
+3. Integer Output Alignment:
+   All final predictions (and test outputs) are rounded to non-negative integers
+   to represent actual headcount values.
+
 Usage::
 
     from hmst.train.trainer import run_training
     from hmst.utils.config  import TRAIN_CFG
 
-    model, preds, trues, metrics = run_training(
-        name       = "HMST-v2 (Large)",
-        model      = my_model,
-        cfg        = TRAIN_CFG,
+    model, preds, trues, preds_eval, trues_eval, train_time_s, n_params = run_training(
+        name         = "All-Grid LSTM (Large)",
+        model        = my_model,
+        cfg          = TRAIN_CFG,
         train_loader = train_l,
         val_loader   = val_l,
         test_loader  = test_l,
@@ -25,7 +37,7 @@ Usage::
 from __future__ import annotations
 import copy
 import time
-from typing import Optional
+from typing import Optional, Union, Tuple
 
 import numpy as np
 import torch
@@ -42,7 +54,9 @@ def run_training(
     val_loader: DataLoader,
     test_loader: DataLoader,
     device: torch.device,
+    scaler: Optional[Tuple[np.ndarray, np.ndarray]] = None,
     eval_grid_mask: Optional[np.ndarray] = None,
+    integer_outputs: bool = True,
     verbose: bool = True,
 ) -> tuple:
     """
@@ -57,7 +71,11 @@ def run_training(
     val_loader     : validation DataLoader
     test_loader    : test DataLoader
     device         : torch.device
+    scaler         : optional tuple (mean, std) for dataset Z-score normalization;
+                     if None and model does NOT use internal RevIN, scaler is
+                     automatically computed from train_loader.dataset.data
     eval_grid_mask : optional (M,) index array — restrict test metrics to these grids
+    integer_outputs: if True (default), round final predictions to non-negative ints
     verbose        : print per-epoch progress
 
     Returns
@@ -70,7 +88,27 @@ def run_training(
         train_time_s: wall-clock seconds for the entire training run
         n_params    : trainable parameter count
     """
-    model   = model.to(device)
+    model = model.to(device)
+    use_internal_revin = getattr(model, "use_revin", False)
+
+    # Prepare Z-score normalization tensors for baselines if RevIN is not used internally
+    mean_t, std_t = None, None
+    if not use_internal_revin:
+        if scaler is not None:
+            mean_np, std_np = scaler
+        else:
+            # Extract raw training array from train_loader dataset if available
+            raw_train = getattr(train_loader.dataset, "data", None)
+            if raw_train is not None:
+                mean_np = raw_train.mean(axis=1, keepdims=True)
+                std_np = raw_train.std(axis=1, keepdims=True) + 1e-5
+            else:
+                mean_np, std_np = None, None
+
+        if mean_np is not None and std_np is not None:
+            mean_t = torch.tensor(mean_np, dtype=torch.float32, device=device).view(1, -1, 1)
+            std_t = torch.tensor(std_np, dtype=torch.float32, device=device).view(1, -1, 1)
+
     opt     = torch.optim.Adam(model.parameters(), lr=cfg["lr"])
     crit    = nn.MSELoss()
     best_val, best_weights, no_improve = float("inf"), None, 0
@@ -83,9 +121,16 @@ def run_training(
         for xb, yb, hb, db in train_loader:
             xb, yb = xb.to(device), yb.to(device)
             hb, db = hb.to(device), db.to(device)
+
+            if mean_t is not None:
+                xb_in = (xb - mean_t) / std_t
+                yb_in = (yb - mean_t) / std_t
+            else:
+                xb_in, yb_in = xb, yb
+
             opt.zero_grad()
-            pred  = model(xb, hb, db)
-            loss  = crit(pred, yb)
+            pred  = model(xb_in, hb, db)
+            loss  = crit(pred, yb_in)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), cfg["clip"])
             opt.step()
@@ -99,7 +144,14 @@ def run_training(
             for xb, yb, hb, db in val_loader:
                 xb, yb = xb.to(device), yb.to(device)
                 hb, db = hb.to(device), db.to(device)
-                v_loss += crit(model(xb, hb, db), yb).item() * xb.size(0)
+
+                if mean_t is not None:
+                    xb_in = (xb - mean_t) / std_t
+                    yb_in = (yb - mean_t) / std_t
+                else:
+                    xb_in, yb_in = xb, yb
+
+                v_loss += crit(model(xb_in, hb, db), yb_in).item() * xb.size(0)
         v_loss /= len(val_loader.dataset)
 
         # ── Early stopping ──────────────────────────────────────────────────
@@ -134,13 +186,27 @@ def run_training(
     preds_list, trues_list = [], []
     with torch.no_grad():
         for xb, yb, hb, db in test_loader:
-            preds_list.append(
-                model(xb.to(device), hb.to(device), db.to(device)).cpu().numpy()
-            )
-            trues_list.append(yb.numpy())
+            xb, yb = xb.to(device), yb.to(device)
+            hb, db = hb.to(device), db.to(device)
+
+            if mean_t is not None:
+                xb_in = (xb - mean_t) / std_t
+                pred_out = model(xb_in, hb, db)
+                pred_raw = pred_out * std_t + mean_t
+            else:
+                pred_raw = model(xb, hb, db)
+
+            if integer_outputs:
+                pred_raw = torch.clamp(torch.round(pred_raw), min=0)
+
+            preds_list.append(pred_raw.cpu().numpy())
+            trues_list.append(yb.cpu().numpy())
 
     preds = np.concatenate(preds_list, axis=0)[:, :, 0]   # (T_test, N)
-    trues = np.concatenate(trues_list, axis=0)[:, :, 0]
+    trues = np.concatenate(trues_list, axis=0)[:, :, 0]   # (T_test, N)
+
+    if integer_outputs:
+        preds = np.clip(np.round(preds), 0, None)
 
     if eval_grid_mask is not None:
         preds_eval = preds[:, eval_grid_mask]

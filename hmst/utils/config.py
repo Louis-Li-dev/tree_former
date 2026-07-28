@@ -13,6 +13,12 @@ Usage::
     size   = MODEL_SIZES["large"]
     d_model = size["d_model"]          # 64
     cfg     = TRAIN_CFG               # lr, max_epochs, patience, clip
+
+Note on sizes
+-------------
+    small / base / large map to the same hidden_dim / d_model regardless of
+    model type.  For data adjustment, result tables, and all comparison plots
+    use the **large** configuration as the canonical representative.
 """
 
 # ---------------------------------------------------------------------------
@@ -27,7 +33,7 @@ BATCH_SIZE: int = 32
 # ---------------------------------------------------------------------------
 TRAIN_CFG: dict = {
     "lr":         1e-3,
-    "max_epochs": 100,
+    "max_epochs": 10,
     "patience":   10,
     "clip":       1.0,
 }
@@ -41,10 +47,21 @@ TRAIN_CFG: dict = {
 #   Keys shared across architectures
 #   ---------------------------------
 #   hidden_dim  : LSTM / ConvLSTM hidden state width
-#   d_model     : Transformer token width (PatchTST, HMST)
+#   d_model     : Transformer token width (PatchTST, Informer, HMST)
 #   d_k         : Attention key/query dim  (HMST only)
-#   num_layers  : Transformer depth (PatchTST, HMST)
-#   nhead       : Transformer attention heads (PatchTST) — d_model / 8
+#   num_layers  : Transformer encoder depth (PatchTST, Informer, HMST)
+#   nhead       : Transformer attention heads — d_model / 8
+#   d_ff        : FFN inner dim (Informer) — 4 × d_model
+#
+#   ConvLSTM note
+#   -------------
+#   ConvLSTM does NOT apply internal RevIN; the caller must normalise the
+#   data before passing it in (external normalisation).
+#
+#   Canonical size for plots / data adjustment
+#   ------------------------------------------
+#   Always use MODEL_SIZES["large"] (LARGE alias) when generating result
+#   tables, ablation plots, or any single-representative comparison.
 # ---------------------------------------------------------------------------
 MODEL_SIZES: dict = {
     "small": {
@@ -53,6 +70,7 @@ MODEL_SIZES: dict = {
         "d_k":         8,
         "num_layers":  1,
         "nhead":       2,
+        "d_ff":       64,
     },
     "base": {
         "hidden_dim": 32,
@@ -60,6 +78,7 @@ MODEL_SIZES: dict = {
         "d_k":        16,
         "num_layers":  2,
         "nhead":       4,
+        "d_ff":      128,
     },
     "large": {
         "hidden_dim": 64,
@@ -67,6 +86,7 @@ MODEL_SIZES: dict = {
         "d_k":        32,
         "num_layers":  4,
         "nhead":       8,
+        "d_ff":      256,
     },
 }
 

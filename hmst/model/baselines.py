@@ -1,44 +1,61 @@
 """
-Baseline models for urban population flow forecasting.
+hmst.model.baselines
+====================
+Baseline models for the HMST-v2 paper.
 
-Models:
-  RevIN             - Reversible Instance Normalization (shared utility)
-  EachGridLSTM      - Per-grid independent LSTM
-  AllGridLSTM       - Shared LSTM across all grids (channel-independent)
-  AllGridConvLSTM   - Spatial ConvLSTM on 20x25 grid
-  AllGridDLinear    - DLinear (AAAI 2023, LTSF-Linear)
-  AllGridPatchTST   - PatchTST (ICLR 2023, channel-independent)
+None of the baseline models apply internal RevIN — they accept standardized or
+raw inputs as provided by the caller/trainer, and output predictions on the same
+scale. Dataset-level Z-score standardization (train set mean/std) and inverse
+transformation are handled by the trainer/runner.
 
-All models:
-  - Input:  (B, N, L)  raw population flow
-  - Output: (B, N, 1)  next-step prediction
-  - Accept (hour, dow) kwargs but ignore them (no time embedding = our contribution)
+Only the proposed HMST-v2 model retains internal RevIN normalization.
+
+Architecture overview
+---------------------
+EachGridLSTM    : N independent LSTMs, vectorised via einsum
+AllGridLSTM     : shared LSTM treating all grids as batch elements
+AllGridConvLSTM : spatial ConvLSTM with auto coordinate-detection
+AllGridDLinear  : DLinear (AAAI 2023) with TSL series_decomp
+AllGridPatchTST : PatchTST (ICLR 2023) with TSL PatchEmbedding
+AllGridInformer : Informer (AAAI 2021) encoder-decoder architecture
 """
+
+from __future__ import annotations
 
 import numpy as np
 import torch
 import torch.nn as nn
-import math
+import torch.nn.functional as F
 
-from hmst.utils.coords import infer_grid_shape_and_order
+# TSL layers (vendored into hmst/layers/)
+from hmst.layers.Autoformer_EncDec import series_decomp
+from hmst.layers.Embed import DataEmbedding, PatchEmbedding
+from hmst.layers.SelfAttention_Family import (
+    AttentionLayer,
+    FullAttention,
+)
+from hmst.layers.Transformer_EncDec import (
+    ConvLayer,
+    Decoder,
+    DecoderLayer,
+    Encoder,
+    EncoderLayer,
+)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 class EachGridLSTM(nn.Module):
     """
-    500 independent per-grid LSTMs sharing the same weight structure.
-    (Vectorised via einsum — equivalent to N separate nn.LSTM(1, H).)
+    N 個獨立的 LSTM 共用權重 (透過 einsum 向量化加速)。
     """
 
-    def __init__(self, num_grids: int, lookback: int = 12,
-                 hidden_dim: int = 16):
+    def __init__(self, num_grids: int, lookback: int = 12, hidden_dim: int = 16):
         super().__init__()
         self.hidden_dim = hidden_dim
-
-        self.W_ih     = nn.Parameter(torch.Tensor(num_grids, 4 * hidden_dim, 1))
-        self.W_hh     = nn.Parameter(torch.Tensor(num_grids, 4 * hidden_dim, hidden_dim))
-        self.b_ih     = nn.Parameter(torch.zeros(num_grids, 4 * hidden_dim))
-        self.b_hh     = nn.Parameter(torch.zeros(num_grids, 4 * hidden_dim))
+        self.W_ih = nn.Parameter(torch.Tensor(num_grids, 4 * hidden_dim, 1))
+        self.W_hh = nn.Parameter(torch.Tensor(num_grids, 4 * hidden_dim, hidden_dim))
+        self.b_ih = nn.Parameter(torch.zeros(num_grids, 4 * hidden_dim))
+        self.b_hh = nn.Parameter(torch.zeros(num_grids, 4 * hidden_dim))
         self.out_proj = nn.Parameter(torch.Tensor(num_grids, 1, hidden_dim))
         self.out_bias = nn.Parameter(torch.zeros(num_grids, 1))
 
@@ -51,28 +68,31 @@ class EachGridLSTM(nn.Module):
         h = torch.zeros(B, N, self.hidden_dim, device=x.device)
         c = torch.zeros(B, N, self.hidden_dim, device=x.device)
         for t in range(L):
-            xt    = x[:, :, t].unsqueeze(-1)
-            gates = (torch.einsum("bni,noi->bno", xt, self.W_ih) + self.b_ih
-                   + torch.einsum("bnh,noh->bno",  h, self.W_hh) + self.b_hh)
+            xt = x[:, :, t].unsqueeze(-1)
+            gates = (
+                torch.einsum("bni,noi->bno", xt, self.W_ih)
+                + self.b_ih
+                + torch.einsum("bnh,noh->bno", h, self.W_hh)
+                + self.b_hh
+            )
             i_g, f_g, g_g, o_g = torch.chunk(gates, 4, dim=-1)
             c = torch.sigmoid(f_g) * c + torch.sigmoid(i_g) * torch.tanh(g_g)
             h = torch.sigmoid(o_g) * torch.tanh(c)
-        out = (torch.einsum("bnh,noh->bno", h, self.out_proj)
-               + self.out_bias.unsqueeze(0))
+        out = torch.einsum("bnh,noh->bno", h, self.out_proj) + self.out_bias.unsqueeze(0)
         return out
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 class AllGridLSTM(nn.Module):
-    """Single shared LSTM applied independently to every grid."""
+    """單一 LSTM 權重，將所有網格視為獨立 Batch 進行預測。"""
 
-    def __init__(self, hidden_dim: int = 32):
+    def __init__(self, hidden_dim: int = 32, **kwargs):
         super().__init__()
-        self.lstm  = nn.LSTM(1, hidden_dim, batch_first=True)
-        self.fc    = nn.Linear(hidden_dim, 1)
+        self.lstm = nn.LSTM(1, hidden_dim, batch_first=True)
+        self.fc = nn.Linear(hidden_dim, 1)
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
-        B, N, L  = x.shape
+        B, N, L = x.shape
         out_flat, _ = self.lstm(x.view(B * N, L, 1))
         out = self.fc(out_flat[:, -1, :]).view(B, N, 1)
         return out
@@ -80,85 +100,88 @@ class AllGridLSTM(nn.Module):
 
 # ─────────────────────────────────────────────────────────────────────────────
 class AllGridConvLSTM(nn.Module):
-    """ConvLSTM treating the N grids as a H×W spatial map.
+    """
+    空間 ConvLSTM：自動偵測座標範圍，並將 N 個序列映射為 H × W 空間網格。
 
-    If grid coordinates are provided, the model infers the spatial grid shape
-    and applies a consistent row-major ordering to the input channels.
+    座標自動歸零：
+        x_norm = x - x.min()   (range 0 … x.max()-x.min())
+        y_norm = y - y.min()   (range 0 … y.max()-y.min())
+        W = x.max() - x.min() + 1
+        H = y.max() - y.min() + 1
     """
 
     def __init__(
         self,
         hidden_dim: int = 16,
-        grid_h: int = 20,
-        grid_w: int = 25,
         coords: np.ndarray | None = None,
+        grid_h: int | None = None,
+        grid_w: int | None = None,
+        **kwargs,
     ):
         super().__init__()
         self.hidden_dim = hidden_dim
-        self.H, self.W  = grid_h, grid_w
-        self.grid_order = None
-        self.inv_grid_order = None
 
         if coords is not None:
-            (self.H, self.W), order = infer_grid_shape_and_order(coords)
-            inv_order = np.empty_like(order)
-            inv_order[order] = np.arange(order.shape[0], dtype=np.int64)
-            self.register_buffer("grid_order", torch.from_numpy(order), persistent=False)
-            self.register_buffer("inv_grid_order", torch.from_numpy(inv_order), persistent=False)
+            # coords: (N, 2) — [x_coord, y_coord]
+            x = coords[:, 0]
+            y = coords[:, 1]
 
-        self.conv = nn.Conv2d(1 + hidden_dim, 4 * hidden_dim,
-                              kernel_size=3, padding=1)
-        self.fc   = nn.Linear(hidden_dim, 1)
+            # 自動平移：最小值歸零，整數化
+            x_norm = np.round(x - x.min()).astype(int)
+            y_norm = np.round(y - y.min()).astype(int)
 
-    def _resolve_grid_shape(self, num_grids: int) -> tuple[int, int]:
-        if self.H is None and self.W is None:
-            side = int(math.sqrt(num_grids))
-            if side * side != num_grids:
-                raise ValueError(
-                    f"AllGridConvLSTM requires a full spatial grid, but got "
-                    f"{num_grids} grids. Provide coords or grid_h/grid_w."
-                )
-            return side, side
+            self.W = int(x_norm.max() + 1)   # width  = x range + 1
+            self.H = int(y_norm.max() + 1)   # height = y range + 1
 
-        if self.H is None:
-            if num_grids % self.W != 0:
-                raise ValueError(
-                    f"Cannot infer grid_h from {num_grids} grids and grid_w={self.W}."
-                )
-            return num_grids // self.W, self.W
-
-        if self.W is None:
-            if num_grids % self.H != 0:
-                raise ValueError(
-                    f"Cannot infer grid_w from {num_grids} grids and grid_h={self.H}."
-                )
-            return self.H, num_grids // self.H
-
-        if self.H * self.W != num_grids:
-            raise ValueError(
-                f"Grid count mismatch: AllGridConvLSTM was configured for "
-                f"{self.H}x{self.W}={self.H * self.W} grids, but input has "
-                f"{num_grids}."
+            # 1-D 展平索引：row-major (y * W + x)
+            valid_indices = y_norm * self.W + x_norm
+            self.register_buffer(
+                "valid_indices",
+                torch.from_numpy(valid_indices).long(),
+                persistent=False,
             )
-        return self.H, self.W
+        else:
+            # Fallback：呼叫端明確傳入 grid_h / grid_w
+            assert grid_h is not None and grid_w is not None, (
+                "AllGridConvLSTM requires either `coords` or both `grid_h` and `grid_w`."
+            )
+            self.H = grid_h
+            self.W = grid_w
+
+        self.conv = nn.Conv2d(1 + hidden_dim, 4 * hidden_dim, kernel_size=3, padding=1)
+        self.fc = nn.Linear(hidden_dim, 1)
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
-        if self.grid_order is not None:
-            x = x[:, self.grid_order, :]
         B, N, L = x.shape
-        H, W = self._resolve_grid_shape(N)
-        xg = x.view(B, H, W, L)
-        h  = torch.zeros(B, self.hidden_dim, H, W, device=x.device)
-        c  = torch.zeros(B, self.hidden_dim, H, W, device=x.device)
+
+        # ── Scatter：N 個網格 → 完整 H × W 空間畫布 ─────────────────────────
+        if hasattr(self, "valid_indices"):
+            xg_dense = torch.zeros(B, self.H * self.W, L, device=x.device)
+            idx = self.valid_indices.unsqueeze(0).unsqueeze(-1).expand(B, -1, L)
+            xg_dense.scatter_(1, idx, x)
+            xg = xg_dense.view(B, self.H, self.W, L)
+        else:
+            xg = x.view(B, self.H, self.W, L)
+
+        h = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
+        c = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
+
+        # ── ConvLSTM 時間迴圈 ─────────────────────────────────────────────────
         for t in range(L):
-            gates  = self.conv(torch.cat([xg[:, :, :, t].unsqueeze(1), h], dim=1))
+            gates = self.conv(torch.cat([xg[:, :, :, t].unsqueeze(1), h], dim=1))
             i_g, f_g, g_g, o_g = torch.chunk(gates, 4, dim=1)
             c = torch.sigmoid(f_g) * c + torch.sigmoid(i_g) * torch.tanh(g_g)
             h = torch.sigmoid(o_g) * torch.tanh(c)
-        out = (self.fc(h.permute(0, 2, 3, 1).reshape(B * N, self.hidden_dim))
-               .view(B, N, 1))
-        if self.grid_order is not None:
-            out = out[:, self.inv_grid_order, :]
+
+        # ── Gather：H × W → 抽回原本的 N 個網格 ─────────────────────────────
+        h_flat = h.view(B, self.hidden_dim, self.H * self.W)
+        if hasattr(self, "valid_indices"):
+            idx = self.valid_indices.unsqueeze(0).unsqueeze(1).expand(B, self.hidden_dim, N)
+            h_valid = torch.gather(h_flat, 2, idx)  # (B, hidden_dim, N)
+        else:
+            h_valid = h_flat
+
+        out = self.fc(h_valid.transpose(1, 2))  # (B, N, 1)
         return out
 
 
@@ -166,35 +189,31 @@ class AllGridConvLSTM(nn.Module):
 class AllGridDLinear(nn.Module):
     """
     DLinear — AAAI 2023 (LTSF-Linear).
-    Decomposes input into trend (moving average) + seasonal (residual).
-    Applies an independent linear layer to each component.
-    Channel-independent: weights shared across grids.
-
-    Reference: Zeng et al., "Are Transformers Effective for Time Series
-    Forecasting?", AAAI 2023.
+    通道獨立 (Channel-Independent) + TSL series_decomp.
     """
 
-    def __init__(self, lookback: int = 12, kernel_size: int = 3):
+    def __init__(self, lookback: int = 12, kernel_size: int = 3, d_model: int = 32, **kwargs):
         super().__init__()
-
-        # Moving-average decomposition kernel (causal padding keeps length)
-        pad = (kernel_size - 1) // 2
-        self.avg_pool = nn.AvgPool1d(kernel_size, stride=1, padding=pad)
-
-        # One linear per component; channel-independent (shared across N)
-        self.linear_trend    = nn.Linear(lookback, 1)
+        self.decomp = series_decomp(kernel_size)
+        # Linear heads：lookback → 1（1-step 預測）
+        self.linear_trend = nn.Linear(lookback, 1)
         self.linear_seasonal = nn.Linear(lookback, 1)
 
+        # 均勻初始化（對齊 TSL 原始實作）
+        nn.init.constant_(self.linear_trend.weight, 1.0 / lookback)
+        nn.init.constant_(self.linear_seasonal.weight, 1.0 / lookback)
+
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
-        """x: (B, N, L) → (B, N, 1)"""
         B, N, L = x.shape
-        # Decompose (operate on the flattened B*N stream)
-        x_flat   = x.view(B * N, 1, L)
-        trend    = self.avg_pool(x_flat).view(B, N, L)    # (B, N, L)
-        seasonal = x - trend
-        # Predict
-        out = (self.linear_trend(trend)
-               + self.linear_seasonal(seasonal))           # (B, N, 1)
+
+        # (B, N, L) → (B*N, L, 1)
+        x_flat = x.view(B * N, L, 1)
+        seasonal, trend = self.decomp(x_flat)          # both (B*N, L, 1)
+        seasonal = seasonal.squeeze(-1)                 # (B*N, L)
+        trend = trend.squeeze(-1)                       # (B*N, L)
+
+        out = self.linear_trend(trend) + self.linear_seasonal(seasonal)  # (B*N, 1)
+        out = out.view(B, N, 1)
         return out
 
 
@@ -202,56 +221,174 @@ class AllGridDLinear(nn.Module):
 class AllGridPatchTST(nn.Module):
     """
     PatchTST — ICLR 2023.
-    Channel-independent patch-based Transformer.
-    Splits the input time series into non-overlapping patches,
-    embeds each patch as a token, and applies standard Transformer encoder.
-
-    For L=12, patch_len=4, stride=4 → 3 patches.
-
-    Reference: Nie et al., "A Time Series is Worth 64 Words: Long-term
-    Forecasting with Transformers", ICLR 2023.
+    使用 TSL PatchEmbedding + FullAttention Transformer Encoder.
     """
 
-    def __init__(self, lookback: int = 12, patch_len: int = 4, stride: int = 4,
-                 d_model: int = 32, nhead: int = 4, num_layers: int = 2):
+    def __init__(
+        self,
+        lookback: int = 12,
+        patch_len: int = 4,
+        stride: int = 2,
+        d_model: int = 32,
+        nhead: int = 4,
+        num_layers: int = 2,
+        dropout: float = 0.1,
+        **kwargs,
+    ):
         super().__init__()
-        self.patch_len  = patch_len
-        self.stride     = stride
+        self.patch_len = patch_len
+        self.stride = stride
+        padding = stride  # TSL 的 padding = stride
 
-        # Number of patches (no padding — choose patch_len/stride to divide L evenly)
-        self.n_patches = (lookback - patch_len) // stride + 1
+        self.patch_embedding = PatchEmbedding(d_model, patch_len, stride, padding, dropout)
 
-        # Patch value embedding
-        self.patch_emb = nn.Linear(patch_len, d_model)
-        # Learnable positional embedding
-        self.pos_emb   = nn.Parameter(
-            torch.randn(1, self.n_patches, d_model) * 0.02)
+        # n_patches 計算（含 padding）
+        n_patches = int((lookback - patch_len) / stride + 2)
 
-        enc_layer = nn.TransformerEncoderLayer(
-            d_model=d_model, nhead=nhead,
-            dim_feedforward=4 * d_model,
-            batch_first=True, dropout=0.1)
-        self.transformer = nn.TransformerEncoder(enc_layer, num_layers=num_layers)
+        self.encoder = Encoder(
+            [
+                EncoderLayer(
+                    AttentionLayer(
+                        FullAttention(False, factor=5, attention_dropout=dropout),
+                        d_model,
+                        nhead,
+                    ),
+                    d_model,
+                    d_ff=4 * d_model,
+                    dropout=dropout,
+                    activation="gelu",
+                )
+                for _ in range(num_layers)
+            ],
+            norm_layer=nn.Sequential(
+                _Transpose(1, 2),
+                nn.BatchNorm1d(d_model),
+                _Transpose(1, 2),
+            ),
+        )
 
-        # Flatten all patch representations → predict 1 step
-        self.out_proj = nn.Linear(self.n_patches * d_model, 1)
+        # Flatten head
+        head_nf = d_model * n_patches
+        self.head_dropout = nn.Dropout(dropout)
+        self.head_linear = nn.Linear(head_nf, 1)
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
-        """x: (B, N, L) → (B, N, 1)"""
         B, N, L = x.shape
 
-        # Extract patches: (B, N, n_patches, patch_len)
-        patches = x.unfold(-1, self.patch_len, self.stride)
+        x_perm = x.reshape(B * N, 1, L)  # treat each grid as a separate "variate"
 
-        # Process channel-independently: (B*N, n_patches, patch_len)
-        p_flat = patches.reshape(B * N, self.n_patches, self.patch_len)
+        enc_out, n_vars = self.patch_embedding(x_perm)  # (B*N, n_patches, d_model)
+        enc_out, _ = self.encoder(enc_out)               # (B*N, n_patches, d_model)
 
-        # Embed + positional
-        h = self.patch_emb(p_flat) + self.pos_emb          # (B*N, P, d_model)
+        # Reshape back: (B, N, d_model, n_patches)
+        enc_out = enc_out.reshape(B, N, enc_out.shape[-2], enc_out.shape[-1])
+        enc_out = enc_out.permute(0, 1, 3, 2)  # (B, N, d_model, n_patches)
 
-        # Transformer
-        h = self.transformer(h)                              # (B*N, P, d_model)
+        # Flatten head
+        h = self.head_dropout(enc_out.reshape(B * N, -1))
+        out = self.head_linear(h).view(B, N, 1)
+        return out
 
-        # Predict: flatten patches → 1 value
-        out = self.out_proj(h.reshape(B * N, -1)).view(B, N, 1)
+
+class _Transpose(nn.Module):
+    """Helper for BatchNorm inside Sequential."""
+
+    def __init__(self, *dims):
+        super().__init__()
+        self.dims = dims
+
+    def forward(self, x):
+        return x.transpose(*self.dims)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+class AllGridInformer(nn.Module):
+    """
+    Informer — AAAI 2021.
+    Channel-independent wrapper: 每個 grid 單獨跑 Informer encoder-decoder。
+    """
+
+    def __init__(
+        self,
+        lookback: int = 12,
+        d_model: int = 32,
+        nhead: int = 4,
+        num_layers: int = 2,   # e_layers
+        d_layers: int = 1,     # decoder layers
+        d_ff: int | None = None,
+        factor: int = 5,
+        dropout: float = 0.1,
+        distil: bool = False,
+        **kwargs,
+    ):
+        super().__init__()
+        d_ff = d_ff or 4 * d_model
+
+        # Channel-independent: c_in = c_out = 1
+        self.enc_embedding = DataEmbedding(c_in=1, d_model=d_model, dropout=dropout)
+        self.dec_embedding = DataEmbedding(c_in=1, d_model=d_model, dropout=dropout)
+
+        self.encoder = Encoder(
+            [
+                EncoderLayer(
+                    AttentionLayer(
+                        FullAttention(False, factor, attention_dropout=dropout),
+                        d_model,
+                        nhead,
+                    ),
+                    d_model,
+                    d_ff,
+                    dropout=dropout,
+                    activation="gelu",
+                )
+                for _ in range(num_layers)
+            ],
+            conv_layers=(
+                [ConvLayer(d_model) for _ in range(num_layers - 1)]
+                if distil and num_layers > 1
+                else None
+            ),
+            norm_layer=nn.LayerNorm(d_model),
+        )
+
+        self.decoder = Decoder(
+            [
+                DecoderLayer(
+                    AttentionLayer(
+                        FullAttention(True, factor, attention_dropout=dropout),
+                        d_model,
+                        nhead,
+                    ),
+                    AttentionLayer(
+                        FullAttention(False, factor, attention_dropout=dropout),
+                        d_model,
+                        nhead,
+                    ),
+                    d_model,
+                    d_ff,
+                    dropout=dropout,
+                    activation="gelu",
+                )
+                for _ in range(d_layers)
+            ],
+            norm_layer=nn.LayerNorm(d_model),
+            projection=nn.Linear(d_model, 1, bias=True),
+        )
+
+    def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
+        B, N, L = x.shape
+
+        # (B, N, L) → (B*N, L, 1)
+        x_flat = x.reshape(B * N, L, 1)
+
+        # Encoder
+        enc_out = self.enc_embedding(x_flat)              # (B*N, L, d_model)
+        enc_out, _ = self.encoder(enc_out)                # (B*N, L', d_model)
+
+        # Decoder：start token = 最後一個 enc 輸入步
+        dec_in = x_flat[:, -1:, :]                        # (B*N, 1, 1)
+        dec_out = self.dec_embedding(dec_in)               # (B*N, 1, d_model)
+        dec_out = self.decoder(dec_out, enc_out)           # (B*N, 1, 1)
+
+        out = dec_out[:, -1:, :].view(B, N, 1)            # (B, N, 1)
         return out
