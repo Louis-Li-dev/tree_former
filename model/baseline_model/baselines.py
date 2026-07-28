@@ -12,7 +12,6 @@ Models:
 All models:
   - Input:  (B, N, L)  raw population flow
   - Output: (B, N, 1)  next-step prediction
-  - Use RevIN for fair distribution-shift handling
   - Accept (hour, dow) kwargs but ignore them (no time embedding = our contribution)
 """
 
@@ -25,27 +24,6 @@ from hmst.utils.coords import infer_grid_shape_and_order
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-class RevIN(nn.Module):
-    """Per-instance, per-grid reversible normalization."""
-
-    def __init__(self, eps: float = 1e-5):
-        super().__init__()
-        self.eps = eps
-        self._mu    = None
-        self._sigma = None
-
-    def norm(self, x: torch.Tensor) -> torch.Tensor:
-        """x: (B, N, L) → normalised"""
-        self._mu    = x.mean(dim=-1, keepdim=True).detach()
-        self._sigma = x.std(dim=-1,  keepdim=True).clamp(min=self.eps).detach()
-        return (x - self._mu) / self._sigma
-
-    def denorm(self, y: torch.Tensor) -> torch.Tensor:
-        """y: (B, N, *) → raw scale"""
-        return y * self._sigma + self._mu
-
-
-# ─────────────────────────────────────────────────────────────────────────────
 class EachGridLSTM(nn.Module):
     """
     500 independent per-grid LSTMs sharing the same weight structure.
@@ -53,10 +31,8 @@ class EachGridLSTM(nn.Module):
     """
 
     def __init__(self, num_grids: int, lookback: int = 12,
-                 hidden_dim: int = 16, use_revin: bool = True):
+                 hidden_dim: int = 16):
         super().__init__()
-        self.use_revin  = use_revin
-        self.revin      = RevIN()
         self.hidden_dim = hidden_dim
 
         self.W_ih     = nn.Parameter(torch.Tensor(num_grids, 4 * hidden_dim, 1))
@@ -71,8 +47,6 @@ class EachGridLSTM(nn.Module):
         nn.init.xavier_uniform_(self.out_proj)
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
-        if self.use_revin:
-            x = self.revin.norm(x)
         B, N, L = x.shape
         h = torch.zeros(B, N, self.hidden_dim, device=x.device)
         c = torch.zeros(B, N, self.hidden_dim, device=x.device)
@@ -85,8 +59,6 @@ class EachGridLSTM(nn.Module):
             h = torch.sigmoid(o_g) * torch.tanh(c)
         out = (torch.einsum("bnh,noh->bno", h, self.out_proj)
                + self.out_bias.unsqueeze(0))
-        if self.use_revin:
-            out = self.revin.denorm(out)
         return out
 
 
@@ -94,21 +66,15 @@ class EachGridLSTM(nn.Module):
 class AllGridLSTM(nn.Module):
     """Single shared LSTM applied independently to every grid."""
 
-    def __init__(self, hidden_dim: int = 32, use_revin: bool = True):
+    def __init__(self, hidden_dim: int = 32):
         super().__init__()
-        self.use_revin = use_revin
-        self.revin = RevIN()
         self.lstm  = nn.LSTM(1, hidden_dim, batch_first=True)
         self.fc    = nn.Linear(hidden_dim, 1)
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
-        if self.use_revin:
-            x = self.revin.norm(x)
         B, N, L  = x.shape
         out_flat, _ = self.lstm(x.view(B * N, L, 1))
         out = self.fc(out_flat[:, -1, :]).view(B, N, 1)
-        if self.use_revin:
-            out = self.revin.denorm(out)
         return out
 
 
@@ -126,11 +92,8 @@ class AllGridConvLSTM(nn.Module):
         grid_h: int = 20,
         grid_w: int = 25,
         coords: np.ndarray | None = None,
-        use_revin: bool = True,
     ):
         super().__init__()
-        self.use_revin  = use_revin
-        self.revin      = RevIN()
         self.hidden_dim = hidden_dim
         self.H, self.W  = grid_h, grid_w
         self.grid_order = None
@@ -180,8 +143,6 @@ class AllGridConvLSTM(nn.Module):
         return self.H, self.W
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
-        if self.use_revin:
-            x = self.revin.norm(x)
         if self.grid_order is not None:
             x = x[:, self.grid_order, :]
         B, N, L = x.shape
@@ -198,8 +159,6 @@ class AllGridConvLSTM(nn.Module):
                .view(B, N, 1))
         if self.grid_order is not None:
             out = out[:, self.inv_grid_order, :]
-        if self.use_revin:
-            out = self.revin.denorm(out)
         return out
 
 
@@ -215,11 +174,8 @@ class AllGridDLinear(nn.Module):
     Forecasting?", AAAI 2023.
     """
 
-    def __init__(self, lookback: int = 12, kernel_size: int = 3,
-                 use_revin: bool = True):
+    def __init__(self, lookback: int = 12, kernel_size: int = 3):
         super().__init__()
-        self.use_revin = use_revin
-        self.revin     = RevIN()
 
         # Moving-average decomposition kernel (causal padding keeps length)
         pad = (kernel_size - 1) // 2
@@ -231,8 +187,6 @@ class AllGridDLinear(nn.Module):
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
         """x: (B, N, L) → (B, N, 1)"""
-        if self.use_revin:
-            x = self.revin.norm(x)
         B, N, L = x.shape
         # Decompose (operate on the flattened B*N stream)
         x_flat   = x.view(B * N, 1, L)
@@ -241,8 +195,6 @@ class AllGridDLinear(nn.Module):
         # Predict
         out = (self.linear_trend(trend)
                + self.linear_seasonal(seasonal))           # (B, N, 1)
-        if self.use_revin:
-            out = self.revin.denorm(out)
         return out
 
 
@@ -261,11 +213,8 @@ class AllGridPatchTST(nn.Module):
     """
 
     def __init__(self, lookback: int = 12, patch_len: int = 4, stride: int = 4,
-                 d_model: int = 32, nhead: int = 4, num_layers: int = 2,
-                 use_revin: bool = True):
+                 d_model: int = 32, nhead: int = 4, num_layers: int = 2):
         super().__init__()
-        self.use_revin  = use_revin
-        self.revin      = RevIN()
         self.patch_len  = patch_len
         self.stride     = stride
 
@@ -289,8 +238,6 @@ class AllGridPatchTST(nn.Module):
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
         """x: (B, N, L) → (B, N, 1)"""
-        if self.use_revin:
-            x = self.revin.norm(x)
         B, N, L = x.shape
 
         # Extract patches: (B, N, n_patches, patch_len)
@@ -307,7 +254,4 @@ class AllGridPatchTST(nn.Module):
 
         # Predict: flatten patches → 1 value
         out = self.out_proj(h.reshape(B * N, -1)).view(B, N, 1)
-
-        if self.use_revin:
-            out = self.revin.denorm(out)
         return out
