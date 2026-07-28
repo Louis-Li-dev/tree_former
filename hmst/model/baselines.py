@@ -21,6 +21,8 @@ import torch
 import torch.nn as nn
 import math
 
+from hmst.utils.coords import infer_grid_shape_and_order
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 class RevIN(nn.Module):
@@ -112,15 +114,35 @@ class AllGridLSTM(nn.Module):
 
 # ─────────────────────────────────────────────────────────────────────────────
 class AllGridConvLSTM(nn.Module):
-    """ConvLSTM treating the N grids as a H×W spatial map (default 20×25)."""
+    """ConvLSTM treating the N grids as a H×W spatial map.
 
-    def __init__(self, hidden_dim: int = 16, grid_h: int = 20, grid_w: int = 25,
-                 use_revin: bool = True):
+    If grid coordinates are provided, the model infers the spatial grid shape
+    and applies a consistent row-major ordering to the input channels.
+    """
+
+    def __init__(
+        self,
+        hidden_dim: int = 16,
+        grid_h: int = 20,
+        grid_w: int = 25,
+        coords: np.ndarray | None = None,
+        use_revin: bool = True,
+    ):
         super().__init__()
         self.use_revin  = use_revin
         self.revin      = RevIN()
         self.hidden_dim = hidden_dim
         self.H, self.W  = grid_h, grid_w
+        self.grid_order = None
+        self.inv_grid_order = None
+
+        if coords is not None:
+            (self.H, self.W), order = infer_grid_shape_and_order(coords)
+            inv_order = np.empty_like(order)
+            inv_order[order] = np.arange(order.shape[0], dtype=np.int64)
+            self.register_buffer("grid_order", torch.from_numpy(order), persistent=False)
+            self.register_buffer("inv_grid_order", torch.from_numpy(inv_order), persistent=False)
+
         self.conv = nn.Conv2d(1 + hidden_dim, 4 * hidden_dim,
                               kernel_size=3, padding=1)
         self.fc   = nn.Linear(hidden_dim, 1)
@@ -131,8 +153,7 @@ class AllGridConvLSTM(nn.Module):
             if side * side != num_grids:
                 raise ValueError(
                     f"AllGridConvLSTM requires a full spatial grid, but got "
-                    f"{num_grids} grids. Provide grid_h/grid_w or use a "
-                    f"non-spatial baseline like AllGridLSTM."
+                    f"{num_grids} grids. Provide coords or grid_h/grid_w."
                 )
             return side, side
 
@@ -161,6 +182,8 @@ class AllGridConvLSTM(nn.Module):
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
         if self.use_revin:
             x = self.revin.norm(x)
+        if self.grid_order is not None:
+            x = x[:, self.grid_order, :]
         B, N, L = x.shape
         H, W = self._resolve_grid_shape(N)
         xg = x.view(B, H, W, L)
@@ -173,6 +196,8 @@ class AllGridConvLSTM(nn.Module):
             h = torch.sigmoid(o_g) * torch.tanh(c)
         out = (self.fc(h.permute(0, 2, 3, 1).reshape(B * N, self.hidden_dim))
                .view(B, N, 1))
+        if self.grid_order is not None:
+            out = out[:, self.inv_grid_order, :]
         if self.use_revin:
             out = self.revin.denorm(out)
         return out

@@ -19,9 +19,7 @@ Usage::
 # Data / sequence constants
 # ---------------------------------------------------------------------------
 LOOKBACK: int = 12          # look-back window (hours)
-NUM_GRIDS: int = 500        # total spatial grid cells (20 × 25)
-GRID_H: int = 20
-GRID_W: int = 25
+NUM_GRIDS: int = 500        # number of selected grids sampled from clean data
 BATCH_SIZE: int = 32
 
 # ---------------------------------------------------------------------------
