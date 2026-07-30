@@ -17,7 +17,7 @@ AllGridLSTM     : shared LSTM treating all grids as batch elements
 AllGridConvLSTM : spatial ConvLSTM with auto coordinate-detection
 AllGridDLinear  : DLinear (AAAI 2023) with TSL series_decomp
 AllGridPatchTST : PatchTST (ICLR 2023) with TSL PatchEmbedding
-AllGridInformer : Informer (AAAI 2021) encoder-decoder architecture
+AllGridReformer : Reformer (ICLR 2020) encoder-only, O(L log L) LSH attention
 """
 
 from __future__ import annotations
@@ -33,11 +33,9 @@ from hmst.layers.Embed import DataEmbedding, PatchEmbedding
 from hmst.layers.SelfAttention_Family import (
     AttentionLayer,
     FullAttention,
+    ReformerLayer,
 )
 from hmst.layers.Transformer_EncDec import (
-    ConvLayer,
-    Decoder,
-    DecoderLayer,
     Encoder,
     EncoderLayer,
 )
@@ -302,10 +300,14 @@ class _Transpose(nn.Module):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-class AllGridInformer(nn.Module):
+class AllGridReformer(nn.Module):
     """
-    Informer — AAAI 2021.
-    Channel-independent wrapper: 每個 grid 單獨跑 Informer encoder-decoder。
+    Reformer — ICLR 2020 (Kitaev et al.).
+    Channel-independent wrapper: 每個 grid 單獨跟Reformer encoder。
+
+    Uses LSH self-attention with O(L log L) complexity instead of the O(L²)
+    full attention in standard Transformers — substantially faster than
+    Informer (which also needed a decoder), especially at the Large tier.
     """
 
     def __init__(
@@ -313,28 +315,28 @@ class AllGridInformer(nn.Module):
         lookback: int = 12,
         d_model: int = 32,
         nhead: int = 4,
-        num_layers: int = 2,   # e_layers
-        d_layers: int = 1,     # decoder layers
+        num_layers: int = 2,
         d_ff: int | None = None,
-        factor: int = 5,
         dropout: float = 0.1,
-        distil: bool = False,
+        bucket_size: int = 4,
+        n_hashes: int = 4,
         **kwargs,
     ):
         super().__init__()
         d_ff = d_ff or 4 * d_model
 
-        # Channel-independent: c_in = c_out = 1
+        # Channel-independent: c_in = 1
         self.enc_embedding = DataEmbedding(c_in=1, d_model=d_model, dropout=dropout)
-        self.dec_embedding = DataEmbedding(c_in=1, d_model=d_model, dropout=dropout)
 
         self.encoder = Encoder(
             [
                 EncoderLayer(
-                    AttentionLayer(
-                        FullAttention(False, factor, attention_dropout=dropout),
+                    ReformerLayer(
+                        None,           # attention arg unused
                         d_model,
                         nhead,
+                        bucket_size=bucket_size,
+                        n_hashes=n_hashes,
                     ),
                     d_model,
                     d_ff,
@@ -343,37 +345,11 @@ class AllGridInformer(nn.Module):
                 )
                 for _ in range(num_layers)
             ],
-            conv_layers=(
-                [ConvLayer(d_model) for _ in range(num_layers - 1)]
-                if distil and num_layers > 1
-                else None
-            ),
             norm_layer=nn.LayerNorm(d_model),
         )
 
-        self.decoder = Decoder(
-            [
-                DecoderLayer(
-                    AttentionLayer(
-                        FullAttention(True, factor, attention_dropout=dropout),
-                        d_model,
-                        nhead,
-                    ),
-                    AttentionLayer(
-                        FullAttention(False, factor, attention_dropout=dropout),
-                        d_model,
-                        nhead,
-                    ),
-                    d_model,
-                    d_ff,
-                    dropout=dropout,
-                    activation="gelu",
-                )
-                for _ in range(d_layers)
-            ],
-            norm_layer=nn.LayerNorm(d_model),
-            projection=nn.Linear(d_model, 1, bias=True),
-        )
+        # Encoder-only (like PatchTST): project last token to prediction
+        self.projection = nn.Linear(d_model, 1, bias=True)
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
         B, N, L = x.shape
@@ -382,13 +358,14 @@ class AllGridInformer(nn.Module):
         x_flat = x.reshape(B * N, L, 1)
 
         # Encoder
-        enc_out = self.enc_embedding(x_flat)              # (B*N, L, d_model)
-        enc_out, _ = self.encoder(enc_out)                # (B*N, L', d_model)
+        enc_out = self.enc_embedding(x_flat)         # (B*N, L, d_model)
+        enc_out, _ = self.encoder(enc_out)            # (B*N, L, d_model)
 
-        # Decoder：start token = 最後一個 enc 輸入步
-        dec_in = x_flat[:, -1:, :]                        # (B*N, 1, 1)
-        dec_out = self.dec_embedding(dec_in)               # (B*N, 1, d_model)
-        dec_out = self.decoder(dec_out, enc_out)           # (B*N, 1, 1)
-
-        out = dec_out[:, -1:, :].view(B, N, 1)            # (B, N, 1)
+        # Take last time-step and project to 1-step prediction
+        out = self.projection(enc_out[:, -1, :])     # (B*N, 1)
+        out = out.view(B, N, 1)
         return out
+
+
+# Backwards-compatibility alias
+AllGridInformer = AllGridReformer

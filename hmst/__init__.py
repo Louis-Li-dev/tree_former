@@ -15,7 +15,7 @@ Quick start::
 
 from .model   import HMSTv2, TimeEmbedding, HierarchicalBlock
 from .model   import RevIN, EachGridLSTM, AllGridLSTM, AllGridConvLSTM
-from .model   import AllGridDLinear, AllGridPatchTST, AllGridInformer
+from .model   import AllGridDLinear, AllGridPatchTST, AllGridReformer, AllGridInformer
 from .train   import CHTDataset, make_loaders, run_training
 from .utils   import MODEL_SIZES, TRAIN_CFG, SMALL, BASE, LARGE
 from .utils   import calculate_metrics, build_forest_masks
@@ -28,7 +28,7 @@ __all__ = [
     "HMSTv2", "TimeEmbedding", "HierarchicalBlock",
     # models — baselines
     "RevIN", "EachGridLSTM", "AllGridLSTM", "AllGridConvLSTM",
-    "AllGridDLinear", "AllGridPatchTST", "AllGridInformer",
+    "AllGridDLinear", "AllGridPatchTST", "AllGridReformer", "AllGridInformer",
     # training
     "CHTDataset", "make_loaders", "run_training",
     # utilities

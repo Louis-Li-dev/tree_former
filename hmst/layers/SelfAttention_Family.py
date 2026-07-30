@@ -3,16 +3,18 @@ SelfAttention_Family
 ====================
 Adapted from Time-Series-Library (thuml/Time-Series-Library).
 
-Includes only the attention classes needed for Informer and PatchTST:
-    - FullAttention     : standard scaled dot-product attention
-    - ProbAttention     : sparse ProbSparse attention (Informer, AAAI 2021)
+Includes attention classes used by baseline models:
+    - FullAttention     : standard scaled dot-product attention (O(L²))
+    - ProbAttention     : ProbSparse attention (Informer, AAAI 2021, O(L log L))
     - AttentionLayer    : multi-head projection wrapper
+    - ReformerLayer     : LSH self-attention (Reformer, ICLR 2020, O(L log L))
 """
 
 import torch
 import torch.nn as nn
 import numpy as np
 from math import sqrt
+from reformer_pytorch import LSHSelfAttention
 
 
 class TriangularCausalMask:
@@ -183,6 +185,53 @@ class ProbAttention(nn.Module):
             context, values, scores_top, index, L_Q, attn_mask
         )
         return context.contiguous(), attn
+
+
+# ---------------------------------------------------------------------------
+class ReformerLayer(nn.Module):
+    """LSH self-attention wrapper matching the AttentionLayer signature.
+
+    Uses Locality-Sensitive Hashing (LSH) for O(L log L) attention.
+    Adapted from Time-Series-Library (Reformer, ICLR 2020).
+    """
+
+    def __init__(
+        self,
+        attention,          # unused – kept for interface compatibility
+        d_model: int,
+        n_heads: int,
+        d_keys=None,        # unused
+        d_values=None,      # unused
+        causal: bool = False,
+        bucket_size: int = 4,
+        n_hashes: int = 4,
+    ):
+        super().__init__()
+        self.bucket_size = bucket_size
+        self.attn = LSHSelfAttention(
+            dim=d_model,
+            heads=n_heads,
+            bucket_size=bucket_size,
+            n_hashes=n_hashes,
+            causal=causal,
+        )
+
+    def _fit_length(self, x: torch.Tensor) -> torch.Tensor:
+        """Pad sequence so N % (bucket_size * 2) == 0."""
+        B, N, C = x.shape
+        remainder = N % (self.bucket_size * 2)
+        if remainder == 0:
+            return x
+        fill_len = self.bucket_size * 2 - remainder
+        return torch.cat(
+            [x, torch.zeros(B, fill_len, C, device=x.device, dtype=x.dtype)], dim=1
+        )
+
+    def forward(self, queries, keys, values, attn_mask, tau=None, delta=None):
+        # Reformer is self-attention: queries == keys
+        B, N, C = queries.shape
+        out = self.attn(self._fit_length(queries))[:, :N, :]
+        return out, None
 
 
 # ---------------------------------------------------------------------------

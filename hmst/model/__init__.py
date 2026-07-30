@@ -17,7 +17,7 @@ Baselines
     AllGridConvLSTM — Spatial ConvLSTM (auto H×W from coords); NO internal RevIN
     AllGridDLinear  — DLinear (AAAI 2023, TSL series_decomp); internal RevIN
     AllGridPatchTST — PatchTST (ICLR 2023, TSL PatchEmbedding); internal RevIN
-    AllGridInformer — Informer (AAAI 2021, ProbSparse attention); internal RevIN
+    AllGridReformer — Reformer (ICLR 2020, LSH attention); internal RevIN
 """
 
 from .hmstv2 import TimeEmbedding, HierarchicalBlock, HMSTv2, RevIN
@@ -27,7 +27,8 @@ from .baselines import (
     AllGridConvLSTM,
     AllGridDLinear,
     AllGridPatchTST,
-    AllGridInformer,
+    AllGridReformer,
+    AllGridInformer,  # backwards-compat alias for AllGridReformer
 )
 
 __all__ = [
@@ -35,5 +36,6 @@ __all__ = [
     "TimeEmbedding", "HierarchicalBlock", "HMSTv2",
     # baselines
     "RevIN", "EachGridLSTM", "AllGridLSTM",
-    "AllGridConvLSTM", "AllGridDLinear", "AllGridPatchTST", "AllGridInformer",
+    "AllGridConvLSTM", "AllGridDLinear", "AllGridPatchTST",
+    "AllGridReformer", "AllGridInformer",
 ]
