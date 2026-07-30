@@ -106,6 +106,11 @@ class AllGridConvLSTM(nn.Module):
         y_norm = y - y.min()   (range 0 … y.max()-y.min())
         W = x.max() - x.min() + 1
         H = y.max() - y.min() + 1
+
+    Valid-mask channel：
+        Conv 輸入額外加入一個靜態的 0/1 mask channel，標記哪些 H×W 格子
+        對應真實資料（1）、哪些是空白填充（0）。避免 Z-score 後空白格的
+        0 值被誤認為「接近平均人流」而污染相鄰格子的卷積結果。
     """
 
     def __init__(
@@ -138,6 +143,15 @@ class AllGridConvLSTM(nn.Module):
                 torch.from_numpy(valid_indices).long(),
                 persistent=False,
             )
+
+            # valid_mask：(1, 1, H, W)，有資料的格子為 1，空白為 0
+            mask_flat = torch.zeros(self.H * self.W, dtype=torch.float32)
+            mask_flat[torch.from_numpy(valid_indices).long()] = 1.0
+            self.register_buffer(
+                "valid_mask",
+                mask_flat.view(1, 1, self.H, self.W),
+                persistent=False,
+            )
         else:
             # Fallback：呼叫端明確傳入 grid_h / grid_w
             assert grid_h is not None and grid_w is not None, (
@@ -145,8 +159,15 @@ class AllGridConvLSTM(nn.Module):
             )
             self.H = grid_h
             self.W = grid_w
+            # Fallback 時所有格子都有效
+            self.register_buffer(
+                "valid_mask",
+                torch.ones(1, 1, self.H, self.W, dtype=torch.float32),
+                persistent=False,
+            )
 
-        self.conv = nn.Conv2d(1 + hidden_dim, 4 * hidden_dim, kernel_size=3, padding=1)
+        # 輸入通道：data (1) + valid_mask (1) + hidden state (hidden_dim)
+        self.conv = nn.Conv2d(2 + hidden_dim, 4 * hidden_dim, kernel_size=3, padding=1)
         self.fc = nn.Linear(hidden_dim, 1)
 
     def forward(self, x: torch.Tensor, hour=None, dow=None) -> torch.Tensor:
@@ -164,9 +185,13 @@ class AllGridConvLSTM(nn.Module):
         h = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
         c = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
 
+        # valid_mask 擴展至 batch：(B, 1, H, W)，每個 time step 共用
+        mask = self.valid_mask.expand(B, -1, -1, -1)
+
         # ── ConvLSTM 時間迴圈 ─────────────────────────────────────────────────
         for t in range(L):
-            gates = self.conv(torch.cat([xg[:, :, :, t].unsqueeze(1), h], dim=1))
+            # 輸入 = [data_t, valid_mask, h_prev]，讓 conv 核知道哪些格子有真實資料
+            gates = self.conv(torch.cat([xg[:, :, :, t].unsqueeze(1), mask, h], dim=1))
             i_g, f_g, g_g, o_g = torch.chunk(gates, 4, dim=1)
             c = torch.sigmoid(f_g) * c + torch.sigmoid(i_g) * torch.tanh(g_g)
             h = torch.sigmoid(o_g) * torch.tanh(c)
