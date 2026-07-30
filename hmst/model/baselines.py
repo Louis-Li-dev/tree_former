@@ -97,6 +97,42 @@ class AllGridLSTM(nn.Module):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+def _coord_to_grid_indices(vals: np.ndarray) -> np.ndarray:
+    """
+    將浮點座標轉換為從 0 開始的整數格位索引。
+
+    原理
+    ----
+    找出所有唯一座標值之間的最小非零間距 (min_step)，以其倒數
+    作為 scale factor，使得 min_step * scale ≈ 1（即相鄰格點
+    距離恰好 1 格）。再減去最小值歸零，得到緊湊的整數索引。
+
+    範例
+    ----
+    vals = [121.23, 121.24, 121.26]
+      unique diffs = [0.01, 0.02] → min_step = 0.01 → scale = 100
+      scaled = [12123, 12124, 12126]
+      norm   = [0, 1, 3]          → W = 4 (range + 1)
+    """
+    unique_sorted = np.unique(vals)
+    if len(unique_sorted) < 2:
+        # 只有一個唯一值，所有格點疊在同一列/行
+        return np.zeros(len(vals), dtype=int)
+
+    diffs = np.diff(unique_sorted)
+    positive_diffs = diffs[diffs > 1e-9]
+    if len(positive_diffs) == 0 or positive_diffs.min() >= 1 - 1e-9:
+        # 座標本身已是整數間距（或間距 ≥ 1），直接 round
+        scale = 1.0
+    else:
+        min_step = positive_diffs.min()
+        scale = round(1.0 / min_step)
+
+    scaled = np.round(vals * scale).astype(int)
+    return (scaled - scaled.min()).astype(int)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 class AllGridConvLSTM(nn.Module):
     """
     空間 ConvLSTM：自動偵測座標範圍，並將 N 個序列映射為 H × W 空間網格。
@@ -129,9 +165,10 @@ class AllGridConvLSTM(nn.Module):
             x = coords[:, 0]
             y = coords[:, 1]
 
-            # 自動平移：最小值歸零，整數化
-            x_norm = np.round(x - x.min()).astype(int)
-            y_norm = np.round(y - y.min()).astype(int)
+            # 自動偵測 scale，讓浮點座標正確對齊到整數格位
+            # （例如 0.01° 精度的經緯度 → scale=100，避免 round 後撞格）
+            x_norm = _coord_to_grid_indices(x)
+            y_norm = _coord_to_grid_indices(y)
 
             self.W = int(x_norm.max() + 1)   # width  = x range + 1
             self.H = int(y_norm.max() + 1)   # height = y range + 1
@@ -195,6 +232,10 @@ class AllGridConvLSTM(nn.Module):
             i_g, f_g, g_g, o_g = torch.chunk(gates, 4, dim=1)
             c = torch.sigmoid(f_g) * c + torch.sigmoid(i_g) * torch.tanh(g_g)
             h = torch.sigmoid(o_g) * torch.tanh(c)
+            # 空白格子的狀態歸零：防止幻影狀態跨 time step 污染相鄰有效格子
+            # mask: (B, 1, H, W) broadcast → (B, hidden_dim, H, W)
+            h = h * mask
+            c = c * mask
 
         # ── Gather：H × W → 抽回原本的 N 個網格 ─────────────────────────────
         h_flat = h.view(B, self.hidden_dim, self.H * self.W)
