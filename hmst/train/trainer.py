@@ -1,4 +1,4 @@
-"""
+﻿"""
 hmst.train.trainer
 ==================
 Training loop and evaluation utilities for HMST-v2 and baseline models.
@@ -6,13 +6,13 @@ Training loop and evaluation utilities for HMST-v2 and baseline models.
 The ``run_training`` function is a self-contained train/validate/test cycle
 with early stopping, gradient clipping, and automatic best-weight restoration.
 
-Normalization & Output Rules
-----------------------------
+Normalisation and Output Rules
+-------------------------------
 1. HMST-v2 (proposed model, ``use_revin=True``):
    Applies per-instance RevIN internally. Input dataloaders yield raw data.
 2. Baselines (``use_revin=False``):
-   Trained with dataset-level Z-score standardization (per-grid mean and std
-   computed from training split). Inputs are normalized before forward pass, and
+   Trained with dataset-level Z-score standardisation (per-grid mean and std
+   computed from training split). Inputs are normalised before forward pass, and
    outputs are inverse-transformed back to raw population scale during evaluation.
 3. Integer Output Alignment:
    All final predictions (and test outputs) are rounded to non-negative integers
@@ -36,8 +36,10 @@ Usage::
 
 from __future__ import annotations
 import copy
+import gc
+import logging
 import time
-from typing import Optional, Union, Tuple
+from typing import Optional, Tuple
 
 import numpy as np
 import torch
@@ -58,6 +60,7 @@ def run_training(
     eval_grid_mask: Optional[np.ndarray] = None,
     integer_outputs: bool = True,
     verbose: bool = True,
+    logger: Optional[logging.Logger] = None,
 ) -> tuple:
     """
     Train *model* and evaluate on the test set.
@@ -65,18 +68,20 @@ def run_training(
     Parameters
     ----------
     name           : human-readable model name (used only for logging)
-    model          : nn.Module — will be moved to *device* in-place
+    model          : nn.Module -- will be moved to *device* in-place
     cfg            : dict with keys ``lr``, ``max_epochs``, ``patience``, ``clip``
     train_loader   : DataLoader yielding (x, y, hour, dow) batches
     val_loader     : validation DataLoader
     test_loader    : test DataLoader
     device         : torch.device
-    scaler         : optional tuple (mean, std) for dataset Z-score normalization;
+    scaler         : optional tuple (mean, std) for dataset Z-score normalisation;
                      if None and model does NOT use internal RevIN, scaler is
                      automatically computed from train_loader.dataset.data
-    eval_grid_mask : optional (M,) index array — restrict test metrics to these grids
+    eval_grid_mask : optional (M,) index array -- restrict test metrics to these grids
     integer_outputs: if True (default), round final predictions to non-negative ints
-    verbose        : print per-epoch progress
+    verbose        : print per-epoch progress to stdout
+    logger         : optional Python logger; epoch lines are sent to both stdout
+                     (when verbose=True) and the log file
 
     Returns
     -------
@@ -88,34 +93,40 @@ def run_training(
         train_time_s: wall-clock seconds for the entire training run
         n_params    : trainable parameter count
     """
+    def _log(msg: str) -> None:
+        if logger:
+            logger.info(msg)
+        elif verbose:
+            print(msg)
+
     model = model.to(device)
     use_internal_revin = getattr(model, "use_revin", False)
 
-    # Prepare Z-score normalization tensors for baselines if RevIN is not used internally
+    # Prepare Z-score normalisation tensors for baselines (no internal RevIN)
     mean_t, std_t = None, None
     if not use_internal_revin:
         if scaler is not None:
             mean_np, std_np = scaler
         else:
-            # Extract raw training array from train_loader dataset if available
             raw_train = getattr(train_loader.dataset, "data", None)
             if raw_train is not None:
                 mean_np = raw_train.mean(axis=1, keepdims=True)
-                std_np = raw_train.std(axis=1, keepdims=True) + 1e-5
+                std_np  = raw_train.std(axis=1, keepdims=True) + 1e-5
             else:
                 mean_np, std_np = None, None
 
         if mean_np is not None and std_np is not None:
             mean_t = torch.tensor(mean_np, dtype=torch.float32, device=device).view(1, -1, 1)
-            std_t = torch.tensor(std_np, dtype=torch.float32, device=device).view(1, -1, 1)
+            std_t  = torch.tensor(std_np,  dtype=torch.float32, device=device).view(1, -1, 1)
 
     opt     = torch.optim.Adam(model.parameters(), lr=cfg["lr"])
     crit    = nn.MSELoss()
     best_val, best_weights, no_improve = float("inf"), None, 0
+    max_ep  = cfg.get("max_epochs", 10)
     t_start = time.time()
 
-    for epoch in range(cfg["max_epochs"]):
-        # ── Training ────────────────────────────────────────────────────────
+    for epoch in range(max_ep):
+        # -- Training ---------------------------------------------------------
         model.train()
         t_loss = 0.0
         for xb, yb, hb, db in train_loader:
@@ -137,7 +148,7 @@ def run_training(
             t_loss += loss.item() * xb.size(0)
         t_loss /= len(train_loader.dataset)
 
-        # ── Validation ──────────────────────────────────────────────────────
+        # -- Validation -------------------------------------------------------
         model.eval()
         v_loss = 0.0
         with torch.no_grad():
@@ -154,7 +165,7 @@ def run_training(
                 v_loss += crit(model(xb_in, hb, db), yb_in).item() * xb.size(0)
         v_loss /= len(val_loader.dataset)
 
-        # ── Early stopping ──────────────────────────────────────────────────
+        # -- Early stopping ---------------------------------------------------
         tag = ""
         if v_loss < best_val:
             best_val, best_weights, no_improve = (
@@ -164,24 +175,33 @@ def run_training(
         else:
             no_improve += 1
 
-        if verbose and ((epoch + 1) % 5 == 0 or tag):
-            print(
-                f"  [{name}] Epoch {epoch+1:3d} | "
-                f"Train: {t_loss:.5f}  Val: {v_loss:.5f}{tag}"
-            )
+        # GPU memory info (only when CUDA is active)
+        gpu_info = ""
+        if device.type == "cuda":
+            used_mb  = torch.cuda.memory_allocated(device) / 1024 ** 2
+            total_mb = torch.cuda.get_device_properties(device).total_memory / 1024 ** 2
+            gpu_info = f" | GPU {used_mb:.0f}/{total_mb:.0f}MB"
+
+        elapsed = time.time() - t_start
+        line = (
+            f"  [{name}] Epoch {epoch+1:3d}/{max_ep:3d} | "
+            f"Train: {t_loss:.5f} | Val: {v_loss:.5f}{tag} | "
+            f"elapsed {elapsed:.1f}s{gpu_info}"
+        )
+        _log(line)
+
         if no_improve >= cfg["patience"]:
-            if verbose:
-                print(f"  [Early Stop] epoch {epoch + 1}")
+            _log(f"  [Early Stop] {name} epoch {epoch + 1}")
             break
 
     train_time = time.time() - t_start
     n_params   = sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-    # ── Restore best weights ─────────────────────────────────────────────────
+    # Restore best weights
     if best_weights is not None:
         model.load_state_dict(best_weights)
 
-    # ── Test inference ───────────────────────────────────────────────────────
+    # -- Test inference -------------------------------------------------------
     model.eval()
     preds_list, trues_list = [], []
     with torch.no_grad():
@@ -190,7 +210,7 @@ def run_training(
             hb, db = hb.to(device), db.to(device)
 
             if mean_t is not None:
-                xb_in = (xb - mean_t) / std_t
+                xb_in    = (xb - mean_t) / std_t
                 pred_out = model(xb_in, hb, db)
                 pred_raw = pred_out * std_t + mean_t
             else:

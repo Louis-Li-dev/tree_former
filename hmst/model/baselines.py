@@ -135,18 +135,20 @@ def _coord_to_grid_indices(vals: np.ndarray) -> np.ndarray:
 # ─────────────────────────────────────────────────────────────────────────────
 class AllGridConvLSTM(nn.Module):
     """
-    空間 ConvLSTM：自動偵測座標範圍，並將 N 個序列映射為 H × W 空間網格。
+    Spatial ConvLSTM: auto-detects coordinate range and maps N grid sequences
+    to an H x W spatial canvas.
 
-    座標自動歸零：
-        x_norm = x - x.min()   (range 0 … x.max()-x.min())
-        y_norm = y - y.min()   (range 0 … y.max()-y.min())
+    Coordinate normalisation:
+        x_norm = x - x.min()   (range 0 ... x.max()-x.min())
+        y_norm = y - y.min()   (range 0 ... y.max()-y.min())
         W = x.max() - x.min() + 1
         H = y.max() - y.min() + 1
 
-    Valid-mask channel：
-        Conv 輸入額外加入一個靜態的 0/1 mask channel，標記哪些 H×W 格子
-        對應真實資料（1）、哪些是空白填充（0）。避免 Z-score 後空白格的
-        0 值被誤認為「接近平均人流」而污染相鄰格子的卷積結果。
+    Valid-mask channel:
+        A static 0/1 mask channel is concatenated to the Conv2d input at every
+        time step to indicate which H x W cells contain real data (1) versus
+        empty padding (0).  This prevents Z-score-normalised empty cells
+        (value 0 ~= mean flow) from polluting adjacent cells via convolution.
     """
 
     def __init__(
@@ -203,7 +205,7 @@ class AllGridConvLSTM(nn.Module):
                 persistent=False,
             )
 
-        # 輸入通道：data (1) + valid_mask (1) + hidden state (hidden_dim)
+        # Input channels: data (1) + valid_mask (1) + hidden state (hidden_dim)
         self.conv = nn.Conv2d(2 + hidden_dim, 4 * hidden_dim, kernel_size=3, padding=1)
         self.fc = nn.Linear(hidden_dim, 1)
 
@@ -219,21 +221,23 @@ class AllGridConvLSTM(nn.Module):
         else:
             xg = x.view(B, self.H, self.W, L)
 
+        # valid_mask expanded to batch: (B, 1, H, W), shared across all time steps
+        mask = self.valid_mask.expand(B, -1, -1, -1)
+
         h = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
         c = torch.zeros(B, self.hidden_dim, self.H, self.W, device=x.device)
 
-        # valid_mask 擴展至 batch：(B, 1, H, W)，每個 time step 共用
-        mask = self.valid_mask.expand(B, -1, -1, -1)
-
-        # ── ConvLSTM 時間迴圈 ─────────────────────────────────────────────────
+        # -- ConvLSTM time loop -----------------------------------------------
         for t in range(L):
-            # 輸入 = [data_t, valid_mask, h_prev]，讓 conv 核知道哪些格子有真實資料
+            # Input = [data_t, valid_mask, h_prev] so the conv kernel knows
+            # which cells contain real data vs empty padding.
             gates = self.conv(torch.cat([xg[:, :, :, t].unsqueeze(1), mask, h], dim=1))
             i_g, f_g, g_g, o_g = torch.chunk(gates, 4, dim=1)
             c = torch.sigmoid(f_g) * c + torch.sigmoid(i_g) * torch.tanh(g_g)
             h = torch.sigmoid(o_g) * torch.tanh(c)
-            # 空白格子的狀態歸零：防止幻影狀態跨 time step 污染相鄰有效格子
-            # mask: (B, 1, H, W) broadcast → (B, hidden_dim, H, W)
+            # Zero out empty cells to prevent phantom states from leaking into
+            # adjacent valid cells across time steps.
+            # mask: (B, 1, H, W) broadcasts to (B, hidden_dim, H, W)
             h = h * mask
             c = c * mask
 

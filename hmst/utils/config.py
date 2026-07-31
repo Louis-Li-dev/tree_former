@@ -1,32 +1,27 @@
 """
 hmst.utils.config
 =================
-Centralised hyperparameter registry.
+Centralised hyperparameter registry — single source of truth.
 
 All model sizes and training hyperparameters are defined here so that every
-experiment references the same constants — a single source of truth.
+experiment (notebook cell or standalone script) references the same constants.
 
 Usage::
 
-    from hmst.utils.config import MODEL_SIZES, TRAIN_CFG, LOOKBACK
+    from hmst.utils.config import MODEL_SIZES, TRAIN_CFG, LOOKBACK, NUM_GRIDS
 
-    size   = MODEL_SIZES["large"]
+    size    = MODEL_SIZES["large"]
     d_model = size["d_model"]          # 64
     cfg     = TRAIN_CFG               # lr, max_epochs, patience, clip
-
-Note on sizes
--------------
-    small / base / large map to the same hidden_dim / d_model regardless of
-    model type.  For data adjustment, result tables, and all comparison plots
-    use the **large** configuration as the canonical representative.
 """
 
 # ---------------------------------------------------------------------------
 # Data / sequence constants
 # ---------------------------------------------------------------------------
-LOOKBACK: int = 12          # look-back window (hours)
-NUM_GRIDS: int = 500        # number of selected grids sampled from clean data
-BATCH_SIZE: int = 32
+LOOKBACK: int   = 12    # look-back window length (hours)
+NUM_GRIDS: int  = 10   # number of grids randomly sampled from the clean data
+BATCH_SIZE: int = 32    # mini-batch size for all DataLoaders
+K_ROOTS: int    = 4     # number of root spatial partitions (AgglomerativeClustering)
 
 # ---------------------------------------------------------------------------
 # Fixed training hyperparameters — identical for every model
@@ -41,25 +36,25 @@ TRAIN_CFG: dict = {
 # ---------------------------------------------------------------------------
 # Model architecture sizes
 #
-#   Rule: same SIZE KEY → same hidden_dim / d_model regardless of model type.
-#         e.g. "base" always means d_model=32, hidden_dim=32.
+#   Rule: the same size key -> the same hidden_dim / d_model regardless of
+#         model type.  e.g. "base" always means d_model=32, hidden_dim=32.
 #
-#   Keys shared across architectures
+#   Shared keys across architectures
 #   ---------------------------------
-#   hidden_dim  : LSTM / ConvLSTM hidden state width
-#   d_model     : Transformer token width (PatchTST, Informer, HMST)
-#   d_k         : Attention key/query dim  (HMST only)
-#   num_layers  : Transformer encoder depth (PatchTST, Informer, HMST)
-#   nhead       : Transformer attention heads — d_model / 8
-#   d_ff        : FFN inner dim (Informer) — 4 × d_model
+#   hidden_dim  : LSTM / ConvLSTM hidden-state width
+#   d_model     : Transformer token width (PatchTST, Reformer, HMST)
+#   d_k         : attention key/query dim  (HMST only)
+#   num_layers  : Transformer encoder depth (PatchTST, Reformer, HMST)
+#   nhead       : number of attention heads  (d_model / 8)
+#   d_ff        : FFN inner dim (Reformer)   (4 x d_model)
 #
 #   ConvLSTM note
 #   -------------
-#   ConvLSTM does NOT apply internal RevIN; the caller must normalise the
-#   data before passing it in (external normalisation).
+#   ConvLSTM does NOT apply internal RevIN; the caller normalises the data
+#   before passing it in (external Z-score normalisation via the trainer).
 #
-#   Canonical size for plots / data adjustment
-#   ------------------------------------------
+#   Canonical size for plots / tables
+#   ----------------------------------
 #   Always use MODEL_SIZES["large"] (LARGE alias) when generating result
 #   tables, ablation plots, or any single-representative comparison.
 # ---------------------------------------------------------------------------
@@ -94,3 +89,4 @@ MODEL_SIZES: dict = {
 SMALL = MODEL_SIZES["small"]
 BASE  = MODEL_SIZES["base"]
 LARGE = MODEL_SIZES["large"]
+

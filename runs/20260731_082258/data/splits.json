@@ -1,0 +1,8 @@
+{
+  "T_total": 8760,
+  "split_train": 6132,
+  "split_val": 7446,
+  "train_hours": 6132,
+  "val_hours": 1314,
+  "test_hours": 1314
+}
