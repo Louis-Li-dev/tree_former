@@ -1,0 +1,11 @@
+{
+  "model_name": "All-Grid DLinear (Large)",
+  "size": "large",
+  "n_params_K": 0.0,
+  "train_time_s": 7.6,
+  "MAE": 70.35222625732422,
+  "RMSE": 124.52918243408203,
+  "wMAPE": 4.001039936842006,
+  "Daily_DTW": 876.924074074074,
+  "Step_DTW": 33.49324116743472
+}

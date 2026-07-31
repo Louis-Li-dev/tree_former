@@ -1,0 +1,72 @@
+2026-07-31 08:53:50 [INFO] === results  run_dir=C:\Users\ss348\Desktop\New folder\runs\20260731_085237 ===
+2026-07-31 08:53:50 [INFO] 
+--- Loading benchmark results ---
+2026-07-31 08:53:51 [INFO]   Loaded: All-Grid DLinear (Small)  MAE=69.8261
+2026-07-31 08:53:52 [INFO]   Loaded: All-Grid DLinear (Base)  MAE=70.4429
+2026-07-31 08:53:54 [INFO]   Loaded: All-Grid DLinear (Large)  MAE=70.3522
+2026-07-31 08:53:55 [INFO]   Loaded: HMST-v2 (Base)  MAE=47.9216
+2026-07-31 08:53:55 [INFO]   Saved: benchmark_tradeoffs.png
+2026-07-31 08:53:55 [INFO]   Saved: trajectory_case_a_best.png
+2026-07-31 08:53:56 [INFO]   Saved: trajectory_case_b_worst.png
+2026-07-31 08:53:56 [INFO] 
+--- Loading ablation results ---
+2026-07-31 08:53:56 [INFO] 
+--- Loading adaptation results ---
+2026-07-31 08:53:56 [INFO]   Loaded: All-Grid DLinear Zero-Shot  MAE=79.7005
+2026-07-31 08:53:56 [INFO]   Loaded: All-Grid DLinear Retrain  MAE=76.5858
+2026-07-31 08:53:57 [INFO]   Saved: adapt_trajectory_best.png
+2026-07-31 08:53:57 [INFO]   Saved: adapt_trajectory_worst.png
+2026-07-31 08:53:57 [INFO]   Saved: adapt_speed_accuracy_scatter.png
+2026-07-31 08:53:57 [INFO] 
+Summary: 4 benchmark | 0 ablation | 2 adaptation results. Tables -> C:\Users\ss348\Desktop\New folder\runs\20260731_085237\plots\results_tables.md  Plots -> C:\Users\ss348\Desktop\New folder\runs\20260731_085237\plots
+2026-07-31 08:54:43 [INFO] === results  run_dir=C:\Users\ss348\Desktop\New folder\runs\20260731_085237 ===
+2026-07-31 08:54:43 [INFO] 
+--- Loading benchmark results ---
+2026-07-31 08:54:44 [INFO]   Loaded: Each-Grid LSTM (Small)  MAE=56.8640
+2026-07-31 08:54:45 [INFO]   Loaded: All-Grid DLinear (Small)  MAE=69.8261
+2026-07-31 08:54:46 [INFO]   Loaded: All-Grid DLinear (Base)  MAE=70.4429
+2026-07-31 08:54:47 [INFO]   Loaded: All-Grid DLinear (Large)  MAE=70.3522
+2026-07-31 08:54:48 [INFO]   Loaded: HMST-v2 (Base)  MAE=47.9216
+2026-07-31 08:54:49 [INFO]   Loaded: HMST-v2 (Large)  MAE=49.1416
+2026-07-31 08:54:50 [INFO]   Saved: benchmark_tradeoffs.png
+2026-07-31 08:54:50 [INFO]   Saved: trajectory_case_a_best.png
+2026-07-31 08:54:50 [INFO]   Saved: trajectory_case_b_worst.png
+2026-07-31 08:54:50 [INFO] 
+--- Loading ablation results ---
+2026-07-31 08:54:50 [INFO] 
+--- Loading adaptation results ---
+2026-07-31 08:54:51 [INFO]   Loaded: HMST Zero-Shot  MAE=111.7809
+2026-07-31 08:54:51 [INFO]   Loaded: All-Grid DLinear Zero-Shot  MAE=79.7005
+2026-07-31 08:54:51 [INFO]   Loaded: All-Grid DLinear Retrain  MAE=76.5858
+2026-07-31 08:54:52 [INFO]   Saved: adapt_trajectory_best.png
+2026-07-31 08:54:52 [INFO]   Saved: adapt_trajectory_worst.png
+2026-07-31 08:54:52 [INFO]   Saved: adapt_speed_accuracy_scatter.png
+2026-07-31 08:54:52 [INFO] 
+Summary: 6 benchmark | 0 ablation | 3 adaptation results. Tables -> C:\Users\ss348\Desktop\New folder\runs\20260731_085237\plots\results_tables.md  Plots -> C:\Users\ss348\Desktop\New folder\runs\20260731_085237\plots
+2026-07-31 08:55:49 [INFO] === results  run_dir=C:\Users\ss348\Desktop\New folder\runs\20260731_085237 ===
+2026-07-31 08:55:49 [INFO] 
+--- Loading benchmark results ---
+2026-07-31 08:55:50 [INFO]   Loaded: Each-Grid LSTM (Small)  MAE=56.8640
+2026-07-31 08:55:51 [INFO]   Loaded: Each-Grid LSTM (Base)  MAE=56.3833
+2026-07-31 08:55:52 [INFO]   Loaded: All-Grid DLinear (Small)  MAE=69.8261
+2026-07-31 08:55:52 [INFO]   Loaded: All-Grid DLinear (Base)  MAE=70.4429
+2026-07-31 08:55:53 [INFO]   Loaded: All-Grid DLinear (Large)  MAE=70.3522
+2026-07-31 08:55:54 [INFO]   Loaded: HMST-v2 (Base)  MAE=47.9216
+2026-07-31 08:55:55 [INFO]   Loaded: HMST-v2 (Large)  MAE=49.1416
+2026-07-31 08:55:55 [INFO]   Saved: benchmark_tradeoffs.png
+2026-07-31 08:55:56 [INFO]   Saved: trajectory_case_a_best.png
+2026-07-31 08:55:56 [INFO]   Saved: trajectory_case_b_worst.png
+2026-07-31 08:55:56 [INFO] 
+--- Loading ablation results ---
+2026-07-31 08:55:56 [INFO] 
+--- Loading adaptation results ---
+2026-07-31 08:55:56 [INFO]   Loaded: HMST Zero-Shot  MAE=111.7809
+2026-07-31 08:55:57 [INFO]   Loaded: HMST Fine-Tune  MAE=47.0941
+2026-07-31 08:55:57 [INFO]   Loaded: Each-Grid LSTM Zero-Shot  MAE=109.6864
+2026-07-31 08:55:57 [INFO]   Loaded: All-Grid DLinear Zero-Shot  MAE=79.7005
+2026-07-31 08:55:58 [INFO]   Loaded: All-Grid DLinear Retrain  MAE=76.5858
+2026-07-31 08:55:58 [INFO]   Saved: adapt_trajectory_best.png
+2026-07-31 08:55:58 [INFO]   Saved: adapt_trajectory_worst.png
+2026-07-31 08:55:58 [INFO]   Saved: adapt_speed_accuracy_scatter.png
+2026-07-31 08:55:58 [INFO] 
+Summary: 7 benchmark | 0 ablation | 5 adaptation results. Tables -> C:\Users\ss348\Desktop\New folder\runs\20260731_085237\plots\results_tables.md  Plots -> C:\Users\ss348\Desktop\New folder\runs\20260731_085237\plots

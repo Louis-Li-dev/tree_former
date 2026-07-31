@@ -120,7 +120,7 @@ def run(sizes=SIZES, force=False, do_adapt=True):
                     device, eval_grid_mask=bc_mask, logger=logger,
                 )
                 rm, *_ = calculate_metrics(rte, rpe)
-                save_result(run_dir, ret_key, rp, rt,
+                save_result(run_dir, ret_key, rpe, rte,
                             {"model_name": "All-Grid PatchTST (Large) Retrain",
                              "train_time_s": round(rt_s, 1), "MAE": rm})
                 logger.info(f"  [Adapt] Retrain MAE on B+C = {rm:.4f}")

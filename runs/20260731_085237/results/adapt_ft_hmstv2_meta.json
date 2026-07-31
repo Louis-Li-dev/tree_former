@@ -1,0 +1,5 @@
+{
+  "model_name": "HMST-v2 Fine-Tune",
+  "train_time_s": 53.8,
+  "MAE": 47.094085693359375
+}

@@ -1,0 +1,5 @@
+{
+  "model_name": "All-Grid LSTM (Large) Retrain",
+  "train_time_s": 8.5,
+  "MAE": 79.12288665771484
+}

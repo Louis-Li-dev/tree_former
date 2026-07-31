@@ -1,0 +1,125 @@
+2026-07-31 08:53:40 [INFO] === baseline_lstm  run_dir=C:\Users\ss348\Desktop\New folder\runs\20260731_085237 ===
+2026-07-31 08:53:41 [INFO] Device: cuda
+2026-07-31 08:53:41 [INFO] 
+============================================================
+  Each-Grid LSTM (Small)
+============================================================
+2026-07-31 08:53:41 [INFO]   Params: 12.3K
+2026-07-31 08:53:45 [INFO]   [Each-Grid LSTM (Small)] Epoch   1/ 10 | Train: 0.58125 | Val: 0.28588 <- best | elapsed 4.5s | GPU 17/4096MB
+2026-07-31 08:53:50 [INFO]   [Each-Grid LSTM (Small)] Epoch   2/ 10 | Train: 0.17679 | Val: 0.16208 <- best | elapsed 9.0s | GPU 17/4096MB
+2026-07-31 08:53:55 [INFO]   [Each-Grid LSTM (Small)] Epoch   3/ 10 | Train: 0.12450 | Val: 0.13377 <- best | elapsed 14.1s | GPU 17/4096MB
+2026-07-31 08:53:59 [INFO]   [Each-Grid LSTM (Small)] Epoch   4/ 10 | Train: 0.10797 | Val: 0.12151 <- best | elapsed 18.6s | GPU 17/4096MB
+2026-07-31 08:54:03 [INFO]   [Each-Grid LSTM (Small)] Epoch   5/ 10 | Train: 0.10093 | Val: 0.11612 <- best | elapsed 22.7s | GPU 17/4096MB
+2026-07-31 08:54:07 [INFO]   [Each-Grid LSTM (Small)] Epoch   6/ 10 | Train: 0.09733 | Val: 0.11214 <- best | elapsed 26.8s | GPU 17/4096MB
+2026-07-31 08:54:12 [INFO]   [Each-Grid LSTM (Small)] Epoch   7/ 10 | Train: 0.09526 | Val: 0.11087 <- best | elapsed 30.9s | GPU 17/4096MB
+2026-07-31 08:54:16 [INFO]   [Each-Grid LSTM (Small)] Epoch   8/ 10 | Train: 0.09412 | Val: 0.11093 | elapsed 34.9s | GPU 17/4096MB
+2026-07-31 08:54:20 [INFO]   [Each-Grid LSTM (Small)] Epoch   9/ 10 | Train: 0.09319 | Val: 0.10954 <- best | elapsed 38.9s | GPU 17/4096MB
+2026-07-31 08:54:24 [INFO]   [Each-Grid LSTM (Small)] Epoch  10/ 10 | Train: 0.09241 | Val: 0.11226 | elapsed 43.3s | GPU 17/4096MB
+2026-07-31 08:54:25 [INFO]   TEST MAE=56.8640  wMAPE=3.23%  Time=43.3s
+2026-07-31 08:54:25 [INFO] 
+============================================================
+  Each-Grid LSTM (Base)
+============================================================
+2026-07-31 08:54:25 [INFO]   Params: 45.1K
+2026-07-31 08:54:29 [INFO]   [Each-Grid LSTM (Base)] Epoch   1/ 10 | Train: 0.41767 | Val: 0.20462 <- best | elapsed 4.2s | GPU 17/4096MB
+2026-07-31 08:54:34 [INFO]   [Each-Grid LSTM (Base)] Epoch   2/ 10 | Train: 0.14256 | Val: 0.13400 <- best | elapsed 8.4s | GPU 17/4096MB
+2026-07-31 08:54:38 [INFO]   [Each-Grid LSTM (Base)] Epoch   3/ 10 | Train: 0.10841 | Val: 0.11418 <- best | elapsed 12.8s | GPU 17/4096MB
+2026-07-31 08:54:42 [INFO]   [Each-Grid LSTM (Base)] Epoch   4/ 10 | Train: 0.09881 | Val: 0.10996 <- best | elapsed 17.0s | GPU 17/4096MB
+2026-07-31 08:54:46 [INFO]   [Each-Grid LSTM (Base)] Epoch   5/ 10 | Train: 0.09507 | Val: 0.10912 <- best | elapsed 21.1s | GPU 17/4096MB
+2026-07-31 08:54:51 [INFO]   [Each-Grid LSTM (Base)] Epoch   6/ 10 | Train: 0.09390 | Val: 0.10842 <- best | elapsed 25.4s | GPU 17/4096MB
+2026-07-31 08:54:55 [INFO]   [Each-Grid LSTM (Base)] Epoch   7/ 10 | Train: 0.09284 | Val: 0.10915 | elapsed 29.8s | GPU 17/4096MB
+2026-07-31 08:54:59 [INFO]   [Each-Grid LSTM (Base)] Epoch   8/ 10 | Train: 0.09232 | Val: 0.10798 <- best | elapsed 33.8s | GPU 17/4096MB
+2026-07-31 08:55:03 [INFO]   [Each-Grid LSTM (Base)] Epoch   9/ 10 | Train: 0.09194 | Val: 0.10863 | elapsed 37.9s | GPU 17/4096MB
+2026-07-31 08:55:07 [INFO]   [Each-Grid LSTM (Base)] Epoch  10/ 10 | Train: 0.09130 | Val: 0.10838 | elapsed 42.0s | GPU 17/4096MB
+2026-07-31 08:55:08 [INFO]   TEST MAE=56.3833  wMAPE=3.21%  Time=42.0s
+2026-07-31 08:55:08 [INFO] 
+============================================================
+  Each-Grid LSTM (Large)
+============================================================
+2026-07-31 08:55:08 [INFO]   Params: 172.2K
+2026-07-31 08:55:12 [INFO]   [Each-Grid LSTM (Large)] Epoch   1/ 10 | Train: 0.35496 | Val: 0.18007 <- best | elapsed 4.0s | GPU 20/4096MB
+2026-07-31 08:55:17 [INFO]   [Each-Grid LSTM (Large)] Epoch   2/ 10 | Train: 0.13181 | Val: 0.12423 <- best | elapsed 8.1s | GPU 20/4096MB
+2026-07-31 08:55:21 [INFO]   [Each-Grid LSTM (Large)] Epoch   3/ 10 | Train: 0.10462 | Val: 0.11473 <- best | elapsed 12.3s | GPU 20/4096MB
+2026-07-31 08:55:25 [INFO]   [Each-Grid LSTM (Large)] Epoch   4/ 10 | Train: 0.09758 | Val: 0.11036 <- best | elapsed 16.6s | GPU 20/4096MB
+2026-07-31 08:55:29 [INFO]   [Each-Grid LSTM (Large)] Epoch   5/ 10 | Train: 0.09496 | Val: 0.10913 <- best | elapsed 20.6s | GPU 20/4096MB
+2026-07-31 08:55:33 [INFO]   [Each-Grid LSTM (Large)] Epoch   6/ 10 | Train: 0.09340 | Val: 0.10966 | elapsed 25.0s | GPU 20/4096MB
+2026-07-31 08:55:38 [INFO]   [Each-Grid LSTM (Large)] Epoch   7/ 10 | Train: 0.09253 | Val: 0.10815 <- best | elapsed 29.5s | GPU 20/4096MB
+2026-07-31 08:55:42 [INFO]   [Each-Grid LSTM (Large)] Epoch   8/ 10 | Train: 0.09202 | Val: 0.11012 | elapsed 33.9s | GPU 20/4096MB
+2026-07-31 08:55:47 [INFO]   [Each-Grid LSTM (Large)] Epoch   9/ 10 | Train: 0.09133 | Val: 0.10936 | elapsed 38.4s | GPU 20/4096MB
+2026-07-31 08:55:51 [INFO]   [Each-Grid LSTM (Large)] Epoch  10/ 10 | Train: 0.09065 | Val: 0.10768 <- best | elapsed 42.8s | GPU 20/4096MB
+2026-07-31 08:55:52 [INFO]   TEST MAE=53.4322  wMAPE=3.04%  Time=42.8s
+2026-07-31 08:55:53 [INFO]   [Adapt] Zero-Shot MAE on B+C = 109.6864
+2026-07-31 08:55:53 [INFO]   [Adapt] Retraining Each-Grid LSTM on adapted data ...
+2026-07-31 08:55:58 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   1/ 10 | Train: 0.36119 | Val: 0.16007 <- best | elapsed 4.5s | GPU 20/4096MB
+2026-07-31 08:56:02 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   2/ 10 | Train: 0.11035 | Val: 0.10035 <- best | elapsed 8.9s | GPU 20/4096MB
+2026-07-31 08:56:06 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   3/ 10 | Train: 0.07853 | Val: 0.08847 <- best | elapsed 13.3s | GPU 20/4096MB
+2026-07-31 08:56:11 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   4/ 10 | Train: 0.07040 | Val: 0.08315 <- best | elapsed 17.7s | GPU 20/4096MB
+2026-07-31 08:56:15 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   5/ 10 | Train: 0.06720 | Val: 0.08347 | elapsed 22.1s | GPU 20/4096MB
+2026-07-31 08:56:20 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   6/ 10 | Train: 0.06588 | Val: 0.08089 <- best | elapsed 26.6s | GPU 20/4096MB
+2026-07-31 08:56:24 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   7/ 10 | Train: 0.06487 | Val: 0.08087 <- best | elapsed 31.1s | GPU 20/4096MB
+2026-07-31 08:56:29 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   8/ 10 | Train: 0.06389 | Val: 0.07990 <- best | elapsed 35.5s | GPU 20/4096MB
+2026-07-31 08:56:33 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch   9/ 10 | Train: 0.06320 | Val: 0.07998 | elapsed 39.9s | GPU 20/4096MB
+2026-07-31 08:56:38 [INFO]   [Each-Grid LSTM (Large) Retrain] Epoch  10/ 10 | Train: 0.06299 | Val: 0.08084 | elapsed 44.4s | GPU 20/4096MB
+2026-07-31 08:56:38 [INFO]   [Adapt] Retrain MAE on B+C = 60.2878
+2026-07-31 08:56:38 [INFO] 
+============================================================
+  All-Grid LSTM (Small)
+============================================================
+2026-07-31 08:56:38 [INFO]   Params: 1.2K
+2026-07-31 08:56:39 [INFO]   [All-Grid LSTM (Small)] Epoch   1/ 10 | Train: 0.50260 | Val: 0.22220 <- best | elapsed 1.0s | GPU 16/4096MB
+2026-07-31 08:56:40 [INFO]   [All-Grid LSTM (Small)] Epoch   2/ 10 | Train: 0.16038 | Val: 0.14392 <- best | elapsed 1.9s | GPU 16/4096MB
+2026-07-31 08:56:41 [INFO]   [All-Grid LSTM (Small)] Epoch   3/ 10 | Train: 0.12174 | Val: 0.12556 <- best | elapsed 2.7s | GPU 16/4096MB
+2026-07-31 08:56:42 [INFO]   [All-Grid LSTM (Small)] Epoch   4/ 10 | Train: 0.11203 | Val: 0.12263 <- best | elapsed 3.5s | GPU 16/4096MB
+2026-07-31 08:56:43 [INFO]   [All-Grid LSTM (Small)] Epoch   5/ 10 | Train: 0.11026 | Val: 0.12257 <- best | elapsed 4.4s | GPU 16/4096MB
+2026-07-31 08:56:43 [INFO]   [All-Grid LSTM (Small)] Epoch   6/ 10 | Train: 0.10996 | Val: 0.12169 <- best | elapsed 5.2s | GPU 16/4096MB
+2026-07-31 08:56:44 [INFO]   [All-Grid LSTM (Small)] Epoch   7/ 10 | Train: 0.10951 | Val: 0.12115 <- best | elapsed 6.0s | GPU 16/4096MB
+2026-07-31 08:56:45 [INFO]   [All-Grid LSTM (Small)] Epoch   8/ 10 | Train: 0.10885 | Val: 0.12150 | elapsed 6.8s | GPU 16/4096MB
+2026-07-31 08:56:46 [INFO]   [All-Grid LSTM (Small)] Epoch   9/ 10 | Train: 0.10829 | Val: 0.12044 <- best | elapsed 7.6s | GPU 16/4096MB
+2026-07-31 08:56:47 [INFO]   [All-Grid LSTM (Small)] Epoch  10/ 10 | Train: 0.10787 | Val: 0.12082 | elapsed 8.5s | GPU 16/4096MB
+2026-07-31 08:56:48 [INFO]   TEST MAE=67.0975  wMAPE=3.82%  Time=8.5s
+2026-07-31 08:56:48 [INFO] 
+============================================================
+  All-Grid LSTM (Base)
+============================================================
+2026-07-31 08:56:48 [INFO]   Params: 4.5K
+2026-07-31 08:56:49 [INFO]   [All-Grid LSTM (Base)] Epoch   1/ 10 | Train: 0.46953 | Val: 0.18214 <- best | elapsed 0.9s | GPU 16/4096MB
+2026-07-31 08:56:49 [INFO]   [All-Grid LSTM (Base)] Epoch   2/ 10 | Train: 0.14039 | Val: 0.12873 <- best | elapsed 1.9s | GPU 16/4096MB
+2026-07-31 08:56:50 [INFO]   [All-Grid LSTM (Base)] Epoch   3/ 10 | Train: 0.11470 | Val: 0.12183 <- best | elapsed 2.7s | GPU 16/4096MB
+2026-07-31 08:56:51 [INFO]   [All-Grid LSTM (Base)] Epoch   4/ 10 | Train: 0.11110 | Val: 0.11960 <- best | elapsed 3.5s | GPU 16/4096MB
+2026-07-31 08:56:52 [INFO]   [All-Grid LSTM (Base)] Epoch   5/ 10 | Train: 0.11040 | Val: 0.12007 | elapsed 4.4s | GPU 16/4096MB
+2026-07-31 08:56:53 [INFO]   [All-Grid LSTM (Base)] Epoch   6/ 10 | Train: 0.10949 | Val: 0.11997 | elapsed 5.2s | GPU 16/4096MB
+2026-07-31 08:56:54 [INFO]   [All-Grid LSTM (Base)] Epoch   7/ 10 | Train: 0.10898 | Val: 0.11958 <- best | elapsed 6.1s | GPU 16/4096MB
+2026-07-31 08:56:55 [INFO]   [All-Grid LSTM (Base)] Epoch   8/ 10 | Train: 0.10813 | Val: 0.12197 | elapsed 6.9s | GPU 16/4096MB
+2026-07-31 08:56:55 [INFO]   [All-Grid LSTM (Base)] Epoch   9/ 10 | Train: 0.10786 | Val: 0.12022 | elapsed 7.8s | GPU 16/4096MB
+2026-07-31 08:56:56 [INFO]   [All-Grid LSTM (Base)] Epoch  10/ 10 | Train: 0.10779 | Val: 0.12000 | elapsed 8.6s | GPU 16/4096MB
+2026-07-31 08:56:57 [INFO]   TEST MAE=70.2153  wMAPE=3.99%  Time=8.6s
+2026-07-31 08:56:57 [INFO] 
+============================================================
+  All-Grid LSTM (Large)
+============================================================
+2026-07-31 08:56:57 [INFO]   Params: 17.2K
+2026-07-31 08:56:58 [INFO]   [All-Grid LSTM (Large)] Epoch   1/ 10 | Train: 0.31747 | Val: 0.13895 <- best | elapsed 1.0s | GPU 17/4096MB
+2026-07-31 08:56:59 [INFO]   [All-Grid LSTM (Large)] Epoch   2/ 10 | Train: 0.11838 | Val: 0.12095 <- best | elapsed 1.8s | GPU 17/4096MB
+2026-07-31 08:57:00 [INFO]   [All-Grid LSTM (Large)] Epoch   3/ 10 | Train: 0.11121 | Val: 0.12031 <- best | elapsed 2.7s | GPU 17/4096MB
+2026-07-31 08:57:01 [INFO]   [All-Grid LSTM (Large)] Epoch   4/ 10 | Train: 0.11101 | Val: 0.12131 | elapsed 3.6s | GPU 17/4096MB
+2026-07-31 08:57:02 [INFO]   [All-Grid LSTM (Large)] Epoch   5/ 10 | Train: 0.11019 | Val: 0.12044 | elapsed 4.5s | GPU 17/4096MB
+2026-07-31 08:57:03 [INFO]   [All-Grid LSTM (Large)] Epoch   6/ 10 | Train: 0.10950 | Val: 0.12027 <- best | elapsed 5.4s | GPU 17/4096MB
+2026-07-31 08:57:03 [INFO]   [All-Grid LSTM (Large)] Epoch   7/ 10 | Train: 0.10887 | Val: 0.11991 <- best | elapsed 6.3s | GPU 17/4096MB
+2026-07-31 08:57:04 [INFO]   [All-Grid LSTM (Large)] Epoch   8/ 10 | Train: 0.10824 | Val: 0.12172 | elapsed 7.1s | GPU 17/4096MB
+2026-07-31 08:57:05 [INFO]   [All-Grid LSTM (Large)] Epoch   9/ 10 | Train: 0.10778 | Val: 0.12065 | elapsed 8.0s | GPU 17/4096MB
+2026-07-31 08:57:06 [INFO]   [All-Grid LSTM (Large)] Epoch  10/ 10 | Train: 0.10720 | Val: 0.11895 <- best | elapsed 8.9s | GPU 17/4096MB
+2026-07-31 08:57:07 [INFO]   TEST MAE=67.9038  wMAPE=3.86%  Time=8.9s
+2026-07-31 08:57:07 [INFO]   [Adapt] Zero-Shot MAE on B+C = 74.9553
+2026-07-31 08:57:07 [INFO]   [Adapt] Retraining All-Grid LSTM on adapted data ...
+2026-07-31 08:57:08 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   1/ 10 | Train: 0.29018 | Val: 0.10714 <- best | elapsed 0.9s | GPU 17/4096MB
+2026-07-31 08:57:09 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   2/ 10 | Train: 0.08940 | Val: 0.09191 <- best | elapsed 1.8s | GPU 17/4096MB
+2026-07-31 08:57:10 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   3/ 10 | Train: 0.07977 | Val: 0.08840 <- best | elapsed 2.7s | GPU 17/4096MB
+2026-07-31 08:57:11 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   4/ 10 | Train: 0.07855 | Val: 0.08898 | elapsed 3.6s | GPU 17/4096MB
+2026-07-31 08:57:12 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   5/ 10 | Train: 0.07733 | Val: 0.08997 | elapsed 4.4s | GPU 17/4096MB
+2026-07-31 08:57:13 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   6/ 10 | Train: 0.07684 | Val: 0.08855 | elapsed 5.2s | GPU 17/4096MB
+2026-07-31 08:57:14 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   7/ 10 | Train: 0.07616 | Val: 0.08834 <- best | elapsed 6.1s | GPU 17/4096MB
+2026-07-31 08:57:14 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   8/ 10 | Train: 0.07609 | Val: 0.08868 | elapsed 6.9s | GPU 17/4096MB
+2026-07-31 08:57:15 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch   9/ 10 | Train: 0.07586 | Val: 0.08705 <- best | elapsed 7.7s | GPU 17/4096MB
+2026-07-31 08:57:16 [INFO]   [All-Grid LSTM (Large) Retrain] Epoch  10/ 10 | Train: 0.07562 | Val: 0.08731 | elapsed 8.5s | GPU 17/4096MB
+2026-07-31 08:57:16 [INFO]   [Adapt] Retrain MAE on B+C = 79.1229
+2026-07-31 08:57:17 [INFO] === baseline_lstm complete ===

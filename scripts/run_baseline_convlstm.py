@@ -134,7 +134,7 @@ def run(sizes=SIZES, force=False, do_adapt=True):
                     device, eval_grid_mask=bc_mask, logger=logger,
                 )
                 rm, *_ = calculate_metrics(rte, rpe)
-                save_result(run_dir, ret_key, rp, rt, {
+                save_result(run_dir, ret_key, rpe, rte, {
                     "model_name": "All-Grid ConvLSTM (Large) Retrain",
                     "size": "large", "train_time_s": round(rt_s, 1), "MAE": rm,
                 })

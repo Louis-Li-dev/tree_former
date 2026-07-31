@@ -1,0 +1,11 @@
+{
+  "model_name": "All-Grid LSTM (Base)",
+  "size": "base",
+  "n_params_K": 4.5,
+  "train_time_s": 8.6,
+  "MAE": 70.21528625488281,
+  "RMSE": 125.44640350341797,
+  "wMAPE": 3.9932517673640997,
+  "Daily_DTW": 927.2685185185185,
+  "Step_DTW": 35.5215821812596
+}
