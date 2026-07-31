@@ -41,18 +41,12 @@ TRAIN_CFG: dict = {
 #
 #   Shared keys across architectures
 #   ---------------------------------
-#   hidden_dim  : LSTM / ConvLSTM hidden-state width
+#   hidden_dim  : LSTM hidden-state width
 #   d_model     : Transformer token width (PatchTST, Reformer, HMST)
 #   d_k         : attention key/query dim  (HMST only)
 #   num_layers  : Transformer encoder depth (PatchTST, Reformer, HMST)
 #   nhead       : number of attention heads  (d_model / 8)
 #   d_ff        : FFN inner dim (Reformer)   (4 x d_model)
-#
-#   ConvLSTM note
-#   -------------
-#   ConvLSTM does NOT apply internal RevIN; the caller normalises the data
-#   before passing it in (external Z-score normalisation via the trainer).
-#
 #   Canonical size for plots / tables
 #   ----------------------------------
 #   Always use MODEL_SIZES["large"] (LARGE alias) when generating result

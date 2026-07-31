@@ -1,4 +1,4 @@
-﻿"""
+"""
 scripts/_common.py
 ==================
 Shared utilities for all run_*.py scripts.
@@ -33,9 +33,6 @@ from torch.utils.data import DataLoader
 # Canonical parameter counts (from notebook; used by run_results.py)
 # ---------------------------------------------------------------------------
 KNOWN_PARAMS: dict[str, float] = {
-    "All-Grid ConvLSTM (Small)":  10.4,
-    "All-Grid ConvLSTM (Base)":   39.3,
-    "All-Grid ConvLSTM (Large)": 152.4,
     "Each-Grid LSTM (Small)":     12.3,
     "Each-Grid LSTM (Base)":      45.1,
     "Each-Grid LSTM (Large)":    172.2,

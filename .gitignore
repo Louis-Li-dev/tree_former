@@ -1,2 +1,4 @@
 *.pyc
 Time-Series-L*
+*.png
+run/

@@ -63,9 +63,6 @@ SCRIPT = "results"
 # Key Mapping & Family Style Definitions
 # ─────────────────────────────────────────────────────────────────────────────
 BENCHMARK_KEYS = {
-    "All-Grid ConvLSTM (Small)":   "baseline_convlstm_small",
-    "All-Grid ConvLSTM (Base)":    "baseline_convlstm_base",
-    "All-Grid ConvLSTM (Large)":   "baseline_convlstm_large",
     "Each-Grid LSTM (Small)":      "baseline_each_grid_lstm_small",
     "Each-Grid LSTM (Base)":       "baseline_each_grid_lstm_base",
     "Each-Grid LSTM (Large)":      "baseline_each_grid_lstm_large",
@@ -95,8 +92,6 @@ ABLATION_KEYS = {
 ADAPT_KEYS = {
     "HMST Zero-Shot":               ["adapt_zs_hmstv2", "adapt_zs_hmstv2_large"],
     "HMST Fine-Tune":               "adapt_ft_hmstv2",
-    "All-Grid ConvLSTM Zero-Shot":  ["adapt_zs_convlstm", "adapt_zs_convlstm_large"],
-    "All-Grid ConvLSTM Retrain":   "adapt_retrain_convlstm",
     "Each-Grid LSTM Zero-Shot":     ["adapt_zs_each_grid_lstm", "adapt_zs_each_grid_lstm_large"],
     "Each-Grid LSTM Retrain":      "adapt_retrain_each_grid_lstm",
     "All-Grid LSTM Zero-Shot":      ["adapt_zs_all_grid_lstm", "adapt_zs_all_grid_lstm_large"],
@@ -114,7 +109,6 @@ FAMILY_STYLE = {
     "Reformer":        {"color": "#8e44ad", "marker": "s", "s": 140, "zorder": 4},
     "PatchTST":        {"color": "#27ae60", "marker": "D", "s": 140, "zorder": 4},
     "Each-Grid LSTM":  {"color": "#3498db", "marker": "^", "s": 140, "zorder": 3},
-    "ConvLSTM":        {"color": "#6c5ce7", "marker": "v", "s": 140, "zorder": 3},
     "All-Grid LSTM":   {"color": "#2980b9", "marker": "<", "s": 140, "zorder": 3},
     "DLinear":         {"color": "#636e72", "marker": "o", "s": 140, "zorder": 3},
 }
@@ -128,9 +122,6 @@ LABEL_OFFSETS = {
     "All-Grid LSTM (Small)":   (-10,  14),
     "All-Grid LSTM (Base)":    (-10,   0),
     "All-Grid LSTM (Large)":   (-10, -14),
-    "ConvLSTM (Small)":        (-10,  14),
-    "ConvLSTM (Base)":         (-10,   0),
-    "ConvLSTM (Large)":        (-10, -14),
     "DLinear (Small)":         ( 10,  14),
     "DLinear (Base)":          (-10,   6),
     "DLinear (Large)":         (-10,  -6),
@@ -148,7 +139,6 @@ def _family(name):
     if "Reformer"      in name: return "Reformer"
     if "PatchTST"      in name: return "PatchTST"
     if "Each-Grid"     in name: return "Each-Grid LSTM"
-    if "ConvLSTM"      in name: return "ConvLSTM"
     if "All-Grid LSTM" in name: return "All-LSTM"
     return "DLinear"
 

@@ -14,7 +14,7 @@ Quick start::
 """
 
 from .model   import HMSTv2, TimeEmbedding, HierarchicalBlock
-from .model   import RevIN, EachGridLSTM, AllGridLSTM, AllGridConvLSTM
+from .model   import RevIN, EachGridLSTM, AllGridLSTM
 from .model   import AllGridDLinear, AllGridPatchTST, AllGridReformer, AllGridInformer
 from .train   import CHTDataset, make_loaders, run_training
 from .utils   import MODEL_SIZES, TRAIN_CFG, SMALL, BASE, LARGE
@@ -27,7 +27,7 @@ __all__ = [
     # models — proposed
     "HMSTv2", "TimeEmbedding", "HierarchicalBlock",
     # models — baselines
-    "RevIN", "EachGridLSTM", "AllGridLSTM", "AllGridConvLSTM",
+    "RevIN", "EachGridLSTM", "AllGridLSTM",
     "AllGridDLinear", "AllGridPatchTST", "AllGridReformer", "AllGridInformer",
     # training
     "CHTDataset", "make_loaders", "run_training",
