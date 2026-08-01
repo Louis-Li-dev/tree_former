@@ -1,0 +1,11 @@
+{
+  "model_name": "HMST-v2 (Large)",
+  "size": "large",
+  "n_params_K": 253.1,
+  "train_time_s": 120.1,
+  "MAE": 38.8215446472168,
+  "RMSE": 70.48822021484375,
+  "wMAPE": 2.8717200756073,
+  "Daily_DTW": 827.305925925926,
+  "Step_DTW": 32.86357910906298
+}

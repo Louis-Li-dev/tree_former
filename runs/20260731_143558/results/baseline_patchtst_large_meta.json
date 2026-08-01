@@ -1,0 +1,11 @@
+{
+  "model_name": "All-Grid PatchTST (Large)",
+  "size": "large",
+  "n_params_K": 200.6,
+  "train_time_s": 199.7,
+  "MAE": 50.77474594116211,
+  "RMSE": 101.86344909667969,
+  "wMAPE": 3.7559263706207275,
+  "Daily_DTW": 822.2055555555555,
+  "Step_DTW": 31.992350230414743
+}

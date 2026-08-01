@@ -1,0 +1,12 @@
+{
+  "model_name": "w/o RevIN",
+  "variant": "w/o RevIN",
+  "size": "large",
+  "n_params_K": 253.1,
+  "train_time_s": 135.8,
+  "MAE": 39.151390075683594,
+  "RMSE": 73.12882232666016,
+  "wMAPE": 2.8961193561553955,
+  "Daily_DTW": 703.8562962962963,
+  "Step_DTW": 28.146559139784944
+}

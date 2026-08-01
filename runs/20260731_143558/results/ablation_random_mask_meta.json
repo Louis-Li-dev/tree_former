@@ -1,0 +1,12 @@
+{
+  "model_name": "Random Mask",
+  "variant": "Random Mask",
+  "size": "large",
+  "n_params_K": 253.1,
+  "train_time_s": 74.7,
+  "MAE": 40.60187530517578,
+  "RMSE": 73.16584014892578,
+  "wMAPE": 3.00341534614563,
+  "Daily_DTW": 712.8696296296297,
+  "Step_DTW": 28.121551459293393
+}

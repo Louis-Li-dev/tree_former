@@ -1,0 +1,12 @@
+{
+  "model_name": "w/o R-Tree Mask",
+  "variant": "w/o R-Tree Mask",
+  "size": "large",
+  "n_params_K": 253.1,
+  "train_time_s": 131.7,
+  "MAE": 37.757694244384766,
+  "RMSE": 70.12569427490234,
+  "wMAPE": 2.7930245399475098,
+  "Daily_DTW": 724.5918518518519,
+  "Step_DTW": 28.785222734254994
+}

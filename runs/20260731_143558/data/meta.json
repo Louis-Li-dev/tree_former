@@ -1,0 +1,9 @@
+{
+  "run_id": "20260731_143558",
+  "NUM_GRIDS": 300,
+  "LOOKBACK": 12,
+  "BATCH_SIZE": 32,
+  "K_ROOTS": 4,
+  "T_total": 8760,
+  "created": "2026-07-31T14:36:00.956424"
+}

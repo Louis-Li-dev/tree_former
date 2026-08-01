@@ -1,0 +1,11 @@
+{
+  "model_name": "Each-Grid LSTM (Small)",
+  "size": "small",
+  "n_params_K": 369.9,
+  "train_time_s": 157.4,
+  "MAE": 46.5244140625,
+  "RMSE": 87.79789733886719,
+  "wMAPE": 3.441519260406494,
+  "Daily_DTW": 885.4777777777778,
+  "Step_DTW": 34.59278033794163
+}

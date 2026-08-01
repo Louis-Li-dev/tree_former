@@ -1,4 +1,6 @@
 *.pyc
 Time-Series-L*
 *.png
-run/
+run/*
+kepler*
+test.ipynb

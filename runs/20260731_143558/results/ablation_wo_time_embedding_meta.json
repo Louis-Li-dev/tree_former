@@ -1,0 +1,12 @@
+{
+  "model_name": "w/o Time Embedding",
+  "variant": "w/o Time Embedding",
+  "size": "large",
+  "n_params_K": 253.1,
+  "train_time_s": 190.6,
+  "MAE": 39.00000762939453,
+  "RMSE": 70.43921661376953,
+  "wMAPE": 2.8849215507507324,
+  "Daily_DTW": 650.7948148148148,
+  "Step_DTW": 26.06554531490015
+}

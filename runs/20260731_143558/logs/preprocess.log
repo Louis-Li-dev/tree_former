@@ -1,0 +1,24 @@
+2026-07-31 14:35:58 [INFO] === run_preprocess.py  run_id=20260731_143558 ===
+2026-07-31 14:35:58 [INFO] Config: NUM_GRIDS=300, LOOKBACK=12, BATCH_SIZE=32, K_ROOTS=4
+2026-07-31 14:35:58 [INFO] Loading data from C:\Users\user\Desktop\ansyu_li\tree_former\data\2019_hourly_pop_byCHT.parquet ...
+2026-07-31 14:35:59 [INFO] Loaded: 2923 grids, 8760 hours.
+2026-07-31 14:35:59 [INFO] Cleaning: filter1=28 filter2=93 filter3=42 filter4=849 total_removed=992 remaining=1931
+2026-07-31 14:35:59 [INFO] Selected 300 grids from 1931 clean grids.
+2026-07-31 14:35:59 [INFO]   Region 0: 23 grids (7.7%)
+2026-07-31 14:35:59 [INFO]   Region 1: 149 grids (49.7%)
+2026-07-31 14:35:59 [INFO]   Region 2: 35 grids (11.7%)
+2026-07-31 14:35:59 [INFO]   Region 3: 93 grids (31.0%)
+2026-07-31 14:35:59 [INFO] Building per-region R-Tree hierarchies ...
+2026-07-31 14:35:59 [INFO]   Region 0: 6 R-Tree levels, root has 1 groups.
+2026-07-31 14:35:59 [INFO]   Region 1: 9 R-Tree levels, root has 1 groups.
+2026-07-31 14:35:59 [INFO]   Region 2: 7 R-Tree levels, root has 1 groups.
+2026-07-31 14:35:59 [INFO]   Region 3: 8 R-Tree levels, root has 1 groups.
+2026-07-31 14:35:59 [INFO] Building HMST attention masks ...
+2026-07-31 14:35:59 [INFO]   4 masks built, shape: (300, 300)
+2026-07-31 14:35:59 [INFO] Splits: train=6132h  val=1314h  test=1314h
+2026-07-31 14:35:59 [INFO] Generating region-swap adaptation dataset ...
+2026-07-31 14:35:59 [INFO] Generating preprocessing & adaptation setup figures ...
+2026-07-31 14:36:00 [INFO] Preprocessing plots successfully generated and saved to plots/.
+2026-07-31 14:36:00 [INFO] Saving data to C:\Users\user\Desktop\ansyu_li\tree_former\runs\20260731_143558\data ...
+2026-07-31 14:36:00 [INFO] Preprocessing complete in 2.4s. Run ID: 20260731_143558
+2026-07-31 14:36:00 [INFO] Run directory: C:\Users\user\Desktop\ansyu_li\tree_former\runs\20260731_143558

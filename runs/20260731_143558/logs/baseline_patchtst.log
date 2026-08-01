@@ -1,0 +1,135 @@
+2026-07-31 14:51:18 [INFO] === baseline_patchtst  run_dir=C:\Users\user\Desktop\ansyu_li\tree_former\runs\20260731_143558 ===
+2026-07-31 14:51:18 [INFO] Device: cuda
+2026-07-31 14:51:18 [INFO] 
+============================================================
+  All-Grid PatchTST (Base)
+============================================================
+2026-07-31 14:51:18 [INFO]   Params: 25.7K
+2026-07-31 14:51:21 [INFO]   [All-Grid PatchTST (Base)] Epoch   1/100 | Train: 0.19884 | Val: 0.12112 <- best | elapsed 2.0s | GPU 19/24564MB
+2026-07-31 14:51:23 [INFO]   [All-Grid PatchTST (Base)] Epoch   2/100 | Train: 0.13075 | Val: 0.12219 | elapsed 3.7s | GPU 19/24564MB
+2026-07-31 14:51:24 [INFO]   [All-Grid PatchTST (Base)] Epoch   3/100 | Train: 0.12538 | Val: 0.11740 <- best | elapsed 5.4s | GPU 19/24564MB
+2026-07-31 14:51:26 [INFO]   [All-Grid PatchTST (Base)] Epoch   4/100 | Train: 0.12148 | Val: 0.11609 <- best | elapsed 7.0s | GPU 19/24564MB
+2026-07-31 14:51:28 [INFO]   [All-Grid PatchTST (Base)] Epoch   5/100 | Train: 0.12006 | Val: 0.11281 <- best | elapsed 8.7s | GPU 19/24564MB
+2026-07-31 14:51:29 [INFO]   [All-Grid PatchTST (Base)] Epoch   6/100 | Train: 0.11912 | Val: 0.11290 | elapsed 10.4s | GPU 19/24564MB
+2026-07-31 14:51:31 [INFO]   [All-Grid PatchTST (Base)] Epoch   7/100 | Train: 0.11838 | Val: 0.11625 | elapsed 12.1s | GPU 19/24564MB
+2026-07-31 14:51:33 [INFO]   [All-Grid PatchTST (Base)] Epoch   8/100 | Train: 0.11733 | Val: 0.11982 | elapsed 13.8s | GPU 19/24564MB
+2026-07-31 14:51:34 [INFO]   [All-Grid PatchTST (Base)] Epoch   9/100 | Train: 0.11713 | Val: 0.11304 | elapsed 15.5s | GPU 19/24564MB
+2026-07-31 14:51:36 [INFO]   [All-Grid PatchTST (Base)] Epoch  10/100 | Train: 0.11575 | Val: 0.11362 | elapsed 17.2s | GPU 19/24564MB
+2026-07-31 14:51:38 [INFO]   [All-Grid PatchTST (Base)] Epoch  11/100 | Train: 0.11603 | Val: 0.11412 | elapsed 18.8s | GPU 19/24564MB
+2026-07-31 14:51:39 [INFO]   [All-Grid PatchTST (Base)] Epoch  12/100 | Train: 0.11521 | Val: 0.11184 <- best | elapsed 20.5s | GPU 19/24564MB
+2026-07-31 14:51:41 [INFO]   [All-Grid PatchTST (Base)] Epoch  13/100 | Train: 0.11477 | Val: 0.11156 <- best | elapsed 22.2s | GPU 19/24564MB
+2026-07-31 14:51:43 [INFO]   [All-Grid PatchTST (Base)] Epoch  14/100 | Train: 0.11525 | Val: 0.11616 | elapsed 23.9s | GPU 19/24564MB
+2026-07-31 14:51:44 [INFO]   [All-Grid PatchTST (Base)] Epoch  15/100 | Train: 0.11483 | Val: 0.11866 | elapsed 25.6s | GPU 19/24564MB
+2026-07-31 14:51:46 [INFO]   [All-Grid PatchTST (Base)] Epoch  16/100 | Train: 0.11360 | Val: 0.11216 | elapsed 27.3s | GPU 19/24564MB
+2026-07-31 14:51:48 [INFO]   [All-Grid PatchTST (Base)] Epoch  17/100 | Train: 0.11382 | Val: 0.11046 <- best | elapsed 28.9s | GPU 19/24564MB
+2026-07-31 14:51:50 [INFO]   [All-Grid PatchTST (Base)] Epoch  18/100 | Train: 0.11337 | Val: 0.11222 | elapsed 30.6s | GPU 19/24564MB
+2026-07-31 14:51:51 [INFO]   [All-Grid PatchTST (Base)] Epoch  19/100 | Train: 0.11285 | Val: 0.11152 | elapsed 32.4s | GPU 19/24564MB
+2026-07-31 14:51:53 [INFO]   [All-Grid PatchTST (Base)] Epoch  20/100 | Train: 0.11285 | Val: 0.11131 | elapsed 34.1s | GPU 19/24564MB
+2026-07-31 14:51:55 [INFO]   [All-Grid PatchTST (Base)] Epoch  21/100 | Train: 0.11272 | Val: 0.11244 | elapsed 35.8s | GPU 19/24564MB
+2026-07-31 14:51:56 [INFO]   [All-Grid PatchTST (Base)] Epoch  22/100 | Train: 0.11304 | Val: 0.11059 | elapsed 37.5s | GPU 19/24564MB
+2026-07-31 14:51:58 [INFO]   [All-Grid PatchTST (Base)] Epoch  23/100 | Train: 0.11201 | Val: 0.11093 | elapsed 39.3s | GPU 19/24564MB
+2026-07-31 14:52:00 [INFO]   [All-Grid PatchTST (Base)] Epoch  24/100 | Train: 0.11238 | Val: 0.11230 | elapsed 41.0s | GPU 19/24564MB
+2026-07-31 14:52:02 [INFO]   [All-Grid PatchTST (Base)] Epoch  25/100 | Train: 0.11201 | Val: 0.10978 <- best | elapsed 42.7s | GPU 19/24564MB
+2026-07-31 14:52:03 [INFO]   [All-Grid PatchTST (Base)] Epoch  26/100 | Train: 0.11112 | Val: 0.11384 | elapsed 44.4s | GPU 19/24564MB
+2026-07-31 14:52:05 [INFO]   [All-Grid PatchTST (Base)] Epoch  27/100 | Train: 0.11169 | Val: 0.10991 | elapsed 46.2s | GPU 19/24564MB
+2026-07-31 14:52:07 [INFO]   [All-Grid PatchTST (Base)] Epoch  28/100 | Train: 0.11168 | Val: 0.11260 | elapsed 48.1s | GPU 19/24564MB
+2026-07-31 14:52:09 [INFO]   [All-Grid PatchTST (Base)] Epoch  29/100 | Train: 0.11113 | Val: 0.10918 <- best | elapsed 49.9s | GPU 19/24564MB
+2026-07-31 14:52:11 [INFO]   [All-Grid PatchTST (Base)] Epoch  30/100 | Train: 0.11113 | Val: 0.10975 | elapsed 51.7s | GPU 19/24564MB
+2026-07-31 14:52:12 [INFO]   [All-Grid PatchTST (Base)] Epoch  31/100 | Train: 0.11090 | Val: 0.10916 <- best | elapsed 53.6s | GPU 19/24564MB
+2026-07-31 14:52:14 [INFO]   [All-Grid PatchTST (Base)] Epoch  32/100 | Train: 0.11095 | Val: 0.11221 | elapsed 55.4s | GPU 19/24564MB
+2026-07-31 14:52:16 [INFO]   [All-Grid PatchTST (Base)] Epoch  33/100 | Train: 0.11049 | Val: 0.10895 <- best | elapsed 57.2s | GPU 19/24564MB
+2026-07-31 14:52:18 [INFO]   [All-Grid PatchTST (Base)] Epoch  34/100 | Train: 0.11065 | Val: 0.11667 | elapsed 59.0s | GPU 19/24564MB
+2026-07-31 14:52:20 [INFO]   [All-Grid PatchTST (Base)] Epoch  35/100 | Train: 0.10971 | Val: 0.11608 | elapsed 60.8s | GPU 19/24564MB
+2026-07-31 14:52:21 [INFO]   [All-Grid PatchTST (Base)] Epoch  36/100 | Train: 0.11017 | Val: 0.11066 | elapsed 62.6s | GPU 19/24564MB
+2026-07-31 14:52:23 [INFO]   [All-Grid PatchTST (Base)] Epoch  37/100 | Train: 0.11023 | Val: 0.11987 | elapsed 64.4s | GPU 19/24564MB
+2026-07-31 14:52:25 [INFO]   [All-Grid PatchTST (Base)] Epoch  38/100 | Train: 0.11012 | Val: 0.10927 | elapsed 66.2s | GPU 19/24564MB
+2026-07-31 14:52:27 [INFO]   [All-Grid PatchTST (Base)] Epoch  39/100 | Train: 0.10975 | Val: 0.11362 | elapsed 68.0s | GPU 19/24564MB
+2026-07-31 14:52:29 [INFO]   [All-Grid PatchTST (Base)] Epoch  40/100 | Train: 0.10969 | Val: 0.11010 | elapsed 69.8s | GPU 19/24564MB
+2026-07-31 14:52:30 [INFO]   [All-Grid PatchTST (Base)] Epoch  41/100 | Train: 0.10956 | Val: 0.11687 | elapsed 71.6s | GPU 19/24564MB
+2026-07-31 14:52:32 [INFO]   [All-Grid PatchTST (Base)] Epoch  42/100 | Train: 0.10984 | Val: 0.11580 | elapsed 73.3s | GPU 19/24564MB
+2026-07-31 14:52:34 [INFO]   [All-Grid PatchTST (Base)] Epoch  43/100 | Train: 0.10945 | Val: 0.11361 | elapsed 75.0s | GPU 19/24564MB
+2026-07-31 14:52:34 [INFO]   [Early Stop] All-Grid PatchTST (Base) epoch 43
+2026-07-31 14:52:37 [INFO]   TEST MAE=53.8227  wMAPE=3.98%  Time=75.0s
+2026-07-31 14:52:37 [INFO] 
+============================================================
+  All-Grid PatchTST (Large)
+============================================================
+2026-07-31 14:52:37 [INFO]   Params: 200.6K
+2026-07-31 14:52:42 [INFO]   [All-Grid PatchTST (Large)] Epoch   1/100 | Train: 0.17046 | Val: 0.12717 <- best | elapsed 5.5s | GPU 23/24564MB
+2026-07-31 14:52:47 [INFO]   [All-Grid PatchTST (Large)] Epoch   2/100 | Train: 0.12211 | Val: 0.12439 <- best | elapsed 10.7s | GPU 23/24564MB
+2026-07-31 14:52:53 [INFO]   [All-Grid PatchTST (Large)] Epoch   3/100 | Train: 0.11748 | Val: 0.11477 <- best | elapsed 16.0s | GPU 23/24564MB
+2026-07-31 14:52:58 [INFO]   [All-Grid PatchTST (Large)] Epoch   4/100 | Train: 0.11522 | Val: 0.11644 | elapsed 21.2s | GPU 23/24564MB
+2026-07-31 14:53:03 [INFO]   [All-Grid PatchTST (Large)] Epoch   5/100 | Train: 0.11374 | Val: 0.12384 | elapsed 26.5s | GPU 23/24564MB
+2026-07-31 14:53:08 [INFO]   [All-Grid PatchTST (Large)] Epoch   6/100 | Train: 0.11406 | Val: 0.11010 <- best | elapsed 31.7s | GPU 23/24564MB
+2026-07-31 14:53:14 [INFO]   [All-Grid PatchTST (Large)] Epoch   7/100 | Train: 0.11217 | Val: 0.13078 | elapsed 37.0s | GPU 23/24564MB
+2026-07-31 14:53:19 [INFO]   [All-Grid PatchTST (Large)] Epoch   8/100 | Train: 0.11127 | Val: 0.10988 <- best | elapsed 42.2s | GPU 23/24564MB
+2026-07-31 14:53:24 [INFO]   [All-Grid PatchTST (Large)] Epoch   9/100 | Train: 0.11082 | Val: 0.11037 | elapsed 47.4s | GPU 23/24564MB
+2026-07-31 14:53:29 [INFO]   [All-Grid PatchTST (Large)] Epoch  10/100 | Train: 0.11010 | Val: 0.11457 | elapsed 52.7s | GPU 23/24564MB
+2026-07-31 14:53:35 [INFO]   [All-Grid PatchTST (Large)] Epoch  11/100 | Train: 0.10942 | Val: 0.11104 | elapsed 57.9s | GPU 23/24564MB
+2026-07-31 14:53:40 [INFO]   [All-Grid PatchTST (Large)] Epoch  12/100 | Train: 0.10932 | Val: 0.10851 <- best | elapsed 63.1s | GPU 23/24564MB
+2026-07-31 14:53:45 [INFO]   [All-Grid PatchTST (Large)] Epoch  13/100 | Train: 0.10930 | Val: 0.10978 | elapsed 68.4s | GPU 23/24564MB
+2026-07-31 14:53:50 [INFO]   [All-Grid PatchTST (Large)] Epoch  14/100 | Train: 0.10847 | Val: 0.10726 <- best | elapsed 73.6s | GPU 23/24564MB
+2026-07-31 14:53:56 [INFO]   [All-Grid PatchTST (Large)] Epoch  15/100 | Train: 0.10841 | Val: 0.11564 | elapsed 78.9s | GPU 23/24564MB
+2026-07-31 14:54:01 [INFO]   [All-Grid PatchTST (Large)] Epoch  16/100 | Train: 0.10795 | Val: 0.10710 <- best | elapsed 84.1s | GPU 23/24564MB
+2026-07-31 14:54:06 [INFO]   [All-Grid PatchTST (Large)] Epoch  17/100 | Train: 0.10778 | Val: 0.11005 | elapsed 89.4s | GPU 23/24564MB
+2026-07-31 14:54:11 [INFO]   [All-Grid PatchTST (Large)] Epoch  18/100 | Train: 0.10776 | Val: 0.10722 | elapsed 94.6s | GPU 23/24564MB
+2026-07-31 14:54:17 [INFO]   [All-Grid PatchTST (Large)] Epoch  19/100 | Train: 0.10749 | Val: 0.10945 | elapsed 99.9s | GPU 23/24564MB
+2026-07-31 14:54:22 [INFO]   [All-Grid PatchTST (Large)] Epoch  20/100 | Train: 0.10699 | Val: 0.11073 | elapsed 105.1s | GPU 23/24564MB
+2026-07-31 14:54:27 [INFO]   [All-Grid PatchTST (Large)] Epoch  21/100 | Train: 0.10680 | Val: 0.10973 | elapsed 110.4s | GPU 23/24564MB
+2026-07-31 14:54:32 [INFO]   [All-Grid PatchTST (Large)] Epoch  22/100 | Train: 0.10615 | Val: 0.11051 | elapsed 115.6s | GPU 23/24564MB
+2026-07-31 14:54:38 [INFO]   [All-Grid PatchTST (Large)] Epoch  23/100 | Train: 0.10593 | Val: 0.11137 | elapsed 120.9s | GPU 23/24564MB
+2026-07-31 14:54:43 [INFO]   [All-Grid PatchTST (Large)] Epoch  24/100 | Train: 0.10656 | Val: 0.12788 | elapsed 126.1s | GPU 23/24564MB
+2026-07-31 14:54:48 [INFO]   [All-Grid PatchTST (Large)] Epoch  25/100 | Train: 0.10669 | Val: 0.10654 <- best | elapsed 131.4s | GPU 23/24564MB
+2026-07-31 14:54:53 [INFO]   [All-Grid PatchTST (Large)] Epoch  26/100 | Train: 0.10605 | Val: 0.11259 | elapsed 136.6s | GPU 23/24564MB
+2026-07-31 14:54:59 [INFO]   [All-Grid PatchTST (Large)] Epoch  27/100 | Train: 0.10503 | Val: 0.10776 | elapsed 141.9s | GPU 23/24564MB
+2026-07-31 14:55:04 [INFO]   [All-Grid PatchTST (Large)] Epoch  28/100 | Train: 0.10553 | Val: 0.10522 <- best | elapsed 147.1s | GPU 23/24564MB
+2026-07-31 14:55:09 [INFO]   [All-Grid PatchTST (Large)] Epoch  29/100 | Train: 0.10525 | Val: 0.10956 | elapsed 152.4s | GPU 23/24564MB
+2026-07-31 14:55:14 [INFO]   [All-Grid PatchTST (Large)] Epoch  30/100 | Train: 0.10545 | Val: 0.10563 | elapsed 157.6s | GPU 23/24564MB
+2026-07-31 14:55:20 [INFO]   [All-Grid PatchTST (Large)] Epoch  31/100 | Train: 0.10503 | Val: 0.10871 | elapsed 162.9s | GPU 23/24564MB
+2026-07-31 14:55:25 [INFO]   [All-Grid PatchTST (Large)] Epoch  32/100 | Train: 0.10535 | Val: 0.11241 | elapsed 168.1s | GPU 23/24564MB
+2026-07-31 14:55:30 [INFO]   [All-Grid PatchTST (Large)] Epoch  33/100 | Train: 0.10544 | Val: 0.11377 | elapsed 173.4s | GPU 23/24564MB
+2026-07-31 14:55:35 [INFO]   [All-Grid PatchTST (Large)] Epoch  34/100 | Train: 0.10416 | Val: 0.10687 | elapsed 178.6s | GPU 23/24564MB
+2026-07-31 14:55:41 [INFO]   [All-Grid PatchTST (Large)] Epoch  35/100 | Train: 0.10405 | Val: 0.10789 | elapsed 183.9s | GPU 23/24564MB
+2026-07-31 14:55:46 [INFO]   [All-Grid PatchTST (Large)] Epoch  36/100 | Train: 0.10380 | Val: 0.10758 | elapsed 189.1s | GPU 23/24564MB
+2026-07-31 14:55:51 [INFO]   [All-Grid PatchTST (Large)] Epoch  37/100 | Train: 0.10390 | Val: 0.10884 | elapsed 194.4s | GPU 23/24564MB
+2026-07-31 14:55:56 [INFO]   [All-Grid PatchTST (Large)] Epoch  38/100 | Train: 0.10398 | Val: 0.11196 | elapsed 199.6s | GPU 23/24564MB
+2026-07-31 14:55:56 [INFO]   [Early Stop] All-Grid PatchTST (Large) epoch 38
+2026-07-31 14:55:59 [INFO]   TEST MAE=50.7747  wMAPE=3.76%  Time=199.7s
+2026-07-31 14:56:02 [INFO]   [Adapt] Zero-Shot MAE on B+C = 53.4291
+2026-07-31 14:56:02 [INFO]   [Adapt] Retraining on adapted data ...
+2026-07-31 14:56:08 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   1/100 | Train: 0.17642 | Val: 0.14613 <- best | elapsed 5.4s | GPU 23/24564MB
+2026-07-31 14:56:13 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   2/100 | Train: 0.13237 | Val: 0.12970 <- best | elapsed 10.7s | GPU 23/24564MB
+2026-07-31 14:56:18 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   3/100 | Train: 0.12648 | Val: 0.12606 <- best | elapsed 15.9s | GPU 23/24564MB
+2026-07-31 14:56:23 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   4/100 | Train: 0.12466 | Val: 0.13017 | elapsed 21.2s | GPU 23/24564MB
+2026-07-31 14:56:29 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   5/100 | Train: 0.12192 | Val: 0.12692 | elapsed 26.4s | GPU 23/24564MB
+2026-07-31 14:56:34 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   6/100 | Train: 0.12108 | Val: 0.12152 <- best | elapsed 31.7s | GPU 23/24564MB
+2026-07-31 14:56:39 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   7/100 | Train: 0.12081 | Val: 0.11855 <- best | elapsed 36.9s | GPU 23/24564MB
+2026-07-31 14:56:44 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   8/100 | Train: 0.12027 | Val: 0.14006 | elapsed 42.2s | GPU 23/24564MB
+2026-07-31 14:56:50 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch   9/100 | Train: 0.11941 | Val: 0.11850 <- best | elapsed 47.5s | GPU 23/24564MB
+2026-07-31 14:56:55 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  10/100 | Train: 0.11766 | Val: 0.12058 | elapsed 52.7s | GPU 23/24564MB
+2026-07-31 14:57:00 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  11/100 | Train: 0.11834 | Val: 0.13202 | elapsed 58.0s | GPU 23/24564MB
+2026-07-31 14:57:05 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  12/100 | Train: 0.11749 | Val: 0.12293 | elapsed 63.2s | GPU 23/24564MB
+2026-07-31 14:57:11 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  13/100 | Train: 0.11755 | Val: 0.12709 | elapsed 68.5s | GPU 23/24564MB
+2026-07-31 14:57:16 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  14/100 | Train: 0.11660 | Val: 0.11624 <- best | elapsed 73.8s | GPU 23/24564MB
+2026-07-31 14:57:21 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  15/100 | Train: 0.11630 | Val: 0.11851 | elapsed 79.0s | GPU 23/24564MB
+2026-07-31 14:57:26 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  16/100 | Train: 0.11679 | Val: 0.11769 | elapsed 84.3s | GPU 23/24564MB
+2026-07-31 14:57:32 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  17/100 | Train: 0.11581 | Val: 0.12344 | elapsed 89.5s | GPU 23/24564MB
+2026-07-31 14:57:37 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  18/100 | Train: 0.11569 | Val: 0.12609 | elapsed 94.8s | GPU 23/24564MB
+2026-07-31 14:57:42 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  19/100 | Train: 0.11513 | Val: 0.13951 | elapsed 100.0s | GPU 23/24564MB
+2026-07-31 14:57:47 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  20/100 | Train: 0.11505 | Val: 0.11836 | elapsed 105.3s | GPU 23/24564MB
+2026-07-31 14:57:53 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  21/100 | Train: 0.11440 | Val: 0.11944 | elapsed 110.5s | GPU 23/24564MB
+2026-07-31 14:57:58 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  22/100 | Train: 0.11506 | Val: 0.11896 | elapsed 115.8s | GPU 23/24564MB
+2026-07-31 14:58:03 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  23/100 | Train: 0.11429 | Val: 0.11510 <- best | elapsed 121.1s | GPU 23/24564MB
+2026-07-31 14:58:09 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  24/100 | Train: 0.11473 | Val: 0.12874 | elapsed 126.4s | GPU 23/24564MB
+2026-07-31 14:58:14 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  25/100 | Train: 0.11421 | Val: 0.13146 | elapsed 131.6s | GPU 23/24564MB
+2026-07-31 14:58:19 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  26/100 | Train: 0.11302 | Val: 0.12034 | elapsed 136.9s | GPU 23/24564MB
+2026-07-31 14:58:24 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  27/100 | Train: 0.11383 | Val: 0.11590 | elapsed 142.1s | GPU 23/24564MB
+2026-07-31 14:58:30 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  28/100 | Train: 0.11368 | Val: 0.12079 | elapsed 147.4s | GPU 23/24564MB
+2026-07-31 14:58:35 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  29/100 | Train: 0.11324 | Val: 0.11936 | elapsed 152.7s | GPU 23/24564MB
+2026-07-31 14:58:40 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  30/100 | Train: 0.11246 | Val: 0.12973 | elapsed 157.9s | GPU 23/24564MB
+2026-07-31 14:58:45 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  31/100 | Train: 0.11274 | Val: 0.12145 | elapsed 163.2s | GPU 23/24564MB
+2026-07-31 14:58:51 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  32/100 | Train: 0.11240 | Val: 0.11703 | elapsed 168.5s | GPU 23/24564MB
+2026-07-31 14:58:56 [INFO]   [All-Grid PatchTST (Large) Retrain] Epoch  33/100 | Train: 0.11203 | Val: 0.12071 | elapsed 173.7s | GPU 23/24564MB
+2026-07-31 14:58:56 [INFO]   [Early Stop] All-Grid PatchTST (Large) Retrain epoch 33
+2026-07-31 14:58:59 [INFO]   [Adapt] Retrain MAE on B+C = 56.1525
+2026-07-31 14:58:59 [INFO] === baseline_patchtst complete ===

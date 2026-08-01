@@ -46,8 +46,8 @@ KNOWN_PARAMS: dict[str, float] = {
     "All-Grid PatchTST (Large)": 200.8,
     "All-Grid Reformer (Base)":   23.4,
     "All-Grid Reformer (Large)": 183.2,
-    "HMST-v2 (Base)":             31.1,
-    "HMST-v2 (Large)":           235.3,
+    "R-Treeformer (Base)":        31.1,
+    "R-Treeformer (Large)":      235.3,
 }
 
 # ---------------------------------------------------------------------------
@@ -58,17 +58,25 @@ RUNS_DIR  = REPO_ROOT / "runs"
 
 
 def get_run_dir() -> Path:
-    """Return the current run directory (from runs/latest.txt)."""
+    """Return the current run directory (from runs/latest.txt, falling back to latest existing run folder)."""
     pointer = RUNS_DIR / "latest.txt"
-    if not pointer.exists():
-        raise FileNotFoundError(
-            "runs/latest.txt not found. Run scripts/run_preprocess.py first."
-        )
-    run_id  = pointer.read_text(encoding="utf-8").strip()
-    run_dir = RUNS_DIR / run_id
-    if not run_dir.exists():
-        raise FileNotFoundError(f"Run directory does not exist: {run_dir}")
-    return run_dir
+    run_id = pointer.read_text(encoding="utf-8").strip() if pointer.exists() else None
+    if run_id:
+        run_dir = RUNS_DIR / run_id
+        if run_dir.exists():
+            return run_dir
+
+    # Fallback to the latest existing run directory sorted by folder name / modification time
+    if RUNS_DIR.exists():
+        existing_runs = sorted([d for d in RUNS_DIR.iterdir() if d.is_dir()], key=lambda d: d.name, reverse=True)
+        if existing_runs:
+            latest_run = existing_runs[0]
+            pointer.write_text(latest_run.name, encoding="utf-8")
+            return latest_run
+
+    raise FileNotFoundError(
+        f"Run directory '{run_id}' does not exist and no alternative run directory was found in {RUNS_DIR}. Run scripts/run_preprocess.py first."
+    )
 
 
 def get_or_create_run_dir(run_id: str) -> Path:

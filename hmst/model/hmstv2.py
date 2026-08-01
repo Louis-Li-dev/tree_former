@@ -1,6 +1,6 @@
 """
-HMST-v2: Hierarchical Masked Spatial Transformer v2
-====================================================
+R-Treeformer (HMST-v2): Hierarchical Masked Spatial Transformer
+==============================================================
 
 Architecture
 ------------
@@ -12,8 +12,8 @@ Architecture
     → Output Head
     → RevIN⁻¹
 
-Ablation flags on HMSTv2
--------------------------
+Ablation flags on R-Treeformer
+------------------------------
     use_revin       : RevIN on/off
     use_rtree_mask  : hierarchical R-Tree masks on/off (False = full attention)
     random_mask     : replace R-Tree masks with random-group masks (same sparsity)
@@ -249,3 +249,8 @@ class HMSTv2(nn.Module):
         if self.use_revin:
             out = self.revin.denorm(out)
         return out
+
+
+# Alias for R-Treeformer
+RTreeformer = HMSTv2
+R_Treeformer = HMSTv2

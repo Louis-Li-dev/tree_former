@@ -1,11 +1,11 @@
 """
 scripts/run_hmstv2.py
 =====================
-Train proposed HMST-v2 model (Base / Large).
+Train proposed R-Treeformer model (Base / Large).
 
 This script also:
-  - Evaluates HMST-v2 Large zero-shot on the swapped adaptation test set
-  - Runs HMST-v2 partial fine-tuning on the swapped adaptation data
+  - Evaluates R-Treeformer Large zero-shot on the swapped adaptation test set
+  - Runs R-Treeformer partial fine-tuning on the swapped adaptation data
     (unfreezes blocks[0] and out_proj; trains with masked MSE on B+C grids)
 
 Usage
@@ -37,7 +37,7 @@ except ModuleNotFoundError:
         save_result, result_exists, load_run_data, eval_on_loader,
     )
 
-from hmst.model   import HMSTv2
+from hmst.model   import HMSTv2 as RTreeformer
 from hmst.train   import CHTDataset, run_training
 from hmst.utils   import MODEL_SIZES, TRAIN_CFG, LOOKBACK, BATCH_SIZE, calculate_metrics
 
@@ -151,8 +151,8 @@ def run(sizes=SIZES, force=False, do_finetune=True):
             continue
 
         s = MODEL_SIZES[sz]
-        logger.info(f"\n{'='*60}\n  HMST-v2 ({sz.capitalize()})\n{'='*60}")
-        model = HMSTv2(
+        logger.info(f"\n{'='*60}\n  R-Treeformer ({sz.capitalize()})\n{'='*60}")
+        model = RTreeformer(
             num_grids=N, lookback=LOOKBACK,
             d_model=s["d_model"], d_k=s["d_k"],
             num_layers=s["num_layers"], dropout=0.1,
@@ -164,12 +164,12 @@ def run(sizes=SIZES, force=False, do_finetune=True):
         logger.info(f"  Params: {n_params/1000:.1f}K")
 
         _, preds, trues, pe, te, t_secs, _ = run_training(
-            f"HMST-v2 ({sz.capitalize()})",
+            f"R-Treeformer ({sz.capitalize()})",
             model, TRAIN_CFG, train_l, val_l, test_l, device, logger=logger,
         )
         mae, rmse, wmape, ddtw, sdtw = calculate_metrics(te, pe)
         save_result(run_dir, key, preds, trues, {
-            "model_name": f"HMST-v2 ({sz.capitalize()})",
+            "model_name": f"R-Treeformer ({sz.capitalize()})",
             "size": sz, "n_params_K": round(n_params/1000, 1),
             "train_time_s": round(t_secs, 1),
             "MAE": mae, "RMSE": rmse, "wMAPE": wmape,
@@ -183,19 +183,19 @@ def run(sizes=SIZES, force=False, do_finetune=True):
             zs_p, zs_t = eval_on_loader(model, ad_test_l, device, grid_mask=bc_mask)
             zm, *_ = calculate_metrics(zs_t, zs_p)
             save_result(run_dir, zs_key, zs_p, zs_t,
-                        {"model_name": "HMST-v2 (Large) Zero-Shot", "MAE": zm})
+                        {"model_name": "R-Treeformer (Large) Zero-Shot", "MAE": zm})
             logger.info(f"  Zero-Shot MAE on B+C = {zm:.4f}")
 
             # Partial fine-tune
             if do_finetune and (not result_exists(run_dir, ft_key) or force):
-                logger.info("  Starting HMST partial fine-tune on adapted data ...")
+                logger.info("  Starting R-Treeformer partial fine-tune on adapted data ...")
                 ft_model, ft_time = finetune_hmst(
                     model, ad_train_l, ad_val_l, bc_tensor, device, logger
                 )
                 ft_p, ft_t = eval_on_loader(ft_model, ad_test_l, device, grid_mask=bc_mask)
                 fm, *_ = calculate_metrics(ft_t, ft_p)
                 save_result(run_dir, ft_key, ft_p, ft_t, {
-                    "model_name": "HMST-v2 Fine-Tune",
+                    "model_name": "R-Treeformer Fine-Tune",
                     "train_time_s": round(ft_time, 1), "MAE": fm,
                 })
                 logger.info(f"  Fine-Tune MAE on B+C = {fm:.4f}  Time={ft_time:.1f}s")

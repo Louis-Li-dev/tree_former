@@ -1,0 +1,11 @@
+{
+  "model_name": "All-Grid Reformer (Base)",
+  "size": "base",
+  "n_params_K": 23.4,
+  "train_time_s": 909.9,
+  "MAE": 52.710567474365234,
+  "RMSE": 106.09160614013672,
+  "wMAPE": 3.899123430252075,
+  "Daily_DTW": 807.5296296296297,
+  "Step_DTW": 31.213179723502304
+}

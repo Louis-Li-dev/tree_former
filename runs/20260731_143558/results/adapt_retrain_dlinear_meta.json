@@ -1,0 +1,5 @@
+{
+  "model_name": "All-Grid DLinear (Large) Retrain",
+  "train_time_s": 12.0,
+  "MAE": 64.21302795410156
+}

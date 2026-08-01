@@ -1,0 +1,11 @@
+{
+  "model_name": "All-Grid Reformer (Large)",
+  "size": "large",
+  "n_params_K": 183.2,
+  "train_time_s": 1223.1,
+  "MAE": 51.80438232421875,
+  "RMSE": 103.78156280517578,
+  "wMAPE": 3.8320906162261963,
+  "Daily_DTW": 678.0829629629629,
+  "Step_DTW": 26.324715821812596
+}

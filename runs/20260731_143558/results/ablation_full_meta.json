@@ -1,0 +1,12 @@
+{
+  "model_name": "Full",
+  "variant": "Full",
+  "size": "large",
+  "n_params_K": 253.1,
+  "train_time_s": 184.1,
+  "MAE": 37.7989387512207,
+  "RMSE": 69.40528106689453,
+  "wMAPE": 2.7960753440856934,
+  "Daily_DTW": 716.1896296296296,
+  "Step_DTW": 28.58599078341014
+}

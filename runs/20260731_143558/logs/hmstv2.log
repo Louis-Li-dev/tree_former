@@ -1,0 +1,144 @@
+2026-07-31 16:01:07 [INFO] === hmstv2  run_dir=C:\Users\user\Desktop\ansyu_li\tree_former\runs\20260731_143558 ===
+2026-07-31 16:01:07 [INFO] Device: cuda
+2026-07-31 16:01:07 [INFO] 
+============================================================
+  HMST-v2 (Base)
+============================================================
+2026-07-31 16:01:07 [INFO]   Params: 40.0K
+2026-07-31 16:01:10 [INFO]   [HMST-v2 (Base)] Epoch   1/100 | Train: 39140.73267 | Val: 14184.19128 <- best | elapsed 1.7s | GPU 22/24564MB
+2026-07-31 16:01:11 [INFO]   [HMST-v2 (Base)] Epoch   2/100 | Train: 12359.33349 | Val: 9955.15616 <- best | elapsed 3.2s | GPU 22/24564MB
+2026-07-31 16:01:13 [INFO]   [HMST-v2 (Base)] Epoch   3/100 | Train: 9973.03595 | Val: 9031.46328 <- best | elapsed 4.8s | GPU 22/24564MB
+2026-07-31 16:01:14 [INFO]   [HMST-v2 (Base)] Epoch   4/100 | Train: 8935.96136 | Val: 8554.23276 <- best | elapsed 6.3s | GPU 22/24564MB
+2026-07-31 16:01:16 [INFO]   [HMST-v2 (Base)] Epoch   5/100 | Train: 8179.84935 | Val: 7518.73914 <- best | elapsed 7.7s | GPU 22/24564MB
+2026-07-31 16:01:17 [INFO]   [HMST-v2 (Base)] Epoch   6/100 | Train: 7681.78790 | Val: 7119.41913 <- best | elapsed 9.1s | GPU 22/24564MB
+2026-07-31 16:01:19 [INFO]   [HMST-v2 (Base)] Epoch   7/100 | Train: 7285.94799 | Val: 7484.18258 | elapsed 10.5s | GPU 22/24564MB
+2026-07-31 16:01:20 [INFO]   [HMST-v2 (Base)] Epoch   8/100 | Train: 7111.29725 | Val: 6835.56892 <- best | elapsed 11.9s | GPU 22/24564MB
+2026-07-31 16:01:21 [INFO]   [HMST-v2 (Base)] Epoch   9/100 | Train: 6768.11249 | Val: 6665.41967 <- best | elapsed 13.3s | GPU 22/24564MB
+2026-07-31 16:01:23 [INFO]   [HMST-v2 (Base)] Epoch  10/100 | Train: 6646.93595 | Val: 6382.64297 <- best | elapsed 14.7s | GPU 22/24564MB
+2026-07-31 16:01:24 [INFO]   [HMST-v2 (Base)] Epoch  11/100 | Train: 6462.86156 | Val: 6858.61503 | elapsed 16.1s | GPU 22/24564MB
+2026-07-31 16:01:25 [INFO]   [HMST-v2 (Base)] Epoch  12/100 | Train: 6386.75390 | Val: 6522.85728 | elapsed 17.5s | GPU 22/24564MB
+2026-07-31 16:01:27 [INFO]   [HMST-v2 (Base)] Epoch  13/100 | Train: 6304.34920 | Val: 6029.17448 <- best | elapsed 18.9s | GPU 22/24564MB
+2026-07-31 16:01:28 [INFO]   [HMST-v2 (Base)] Epoch  14/100 | Train: 6065.97934 | Val: 6108.28985 | elapsed 20.3s | GPU 22/24564MB
+2026-07-31 16:01:30 [INFO]   [HMST-v2 (Base)] Epoch  15/100 | Train: 5996.57454 | Val: 5745.97876 <- best | elapsed 21.7s | GPU 22/24564MB
+2026-07-31 16:01:31 [INFO]   [HMST-v2 (Base)] Epoch  16/100 | Train: 5926.48175 | Val: 5864.21304 | elapsed 23.1s | GPU 22/24564MB
+2026-07-31 16:01:32 [INFO]   [HMST-v2 (Base)] Epoch  17/100 | Train: 5857.83631 | Val: 5872.85681 | elapsed 24.5s | GPU 22/24564MB
+2026-07-31 16:01:34 [INFO]   [HMST-v2 (Base)] Epoch  18/100 | Train: 5741.44630 | Val: 5968.42688 | elapsed 25.9s | GPU 22/24564MB
+2026-07-31 16:01:35 [INFO]   [HMST-v2 (Base)] Epoch  19/100 | Train: 5672.02850 | Val: 5609.33271 <- best | elapsed 27.3s | GPU 22/24564MB
+2026-07-31 16:01:37 [INFO]   [HMST-v2 (Base)] Epoch  20/100 | Train: 5629.03160 | Val: 5573.19036 <- best | elapsed 28.7s | GPU 22/24564MB
+2026-07-31 16:01:38 [INFO]   [HMST-v2 (Base)] Epoch  21/100 | Train: 5562.01630 | Val: 5853.55504 | elapsed 30.1s | GPU 22/24564MB
+2026-07-31 16:01:39 [INFO]   [HMST-v2 (Base)] Epoch  22/100 | Train: 5521.78182 | Val: 5545.97505 <- best | elapsed 31.5s | GPU 22/24564MB
+2026-07-31 16:01:41 [INFO]   [HMST-v2 (Base)] Epoch  23/100 | Train: 5561.76539 | Val: 5482.76798 <- best | elapsed 32.9s | GPU 22/24564MB
+2026-07-31 16:01:42 [INFO]   [HMST-v2 (Base)] Epoch  24/100 | Train: 5463.33790 | Val: 5536.70217 | elapsed 34.3s | GPU 22/24564MB
+2026-07-31 16:01:44 [INFO]   [HMST-v2 (Base)] Epoch  25/100 | Train: 5389.04876 | Val: 5465.22530 <- best | elapsed 35.8s | GPU 22/24564MB
+2026-07-31 16:01:45 [INFO]   [HMST-v2 (Base)] Epoch  26/100 | Train: 5347.14410 | Val: 5657.26719 | elapsed 37.2s | GPU 22/24564MB
+2026-07-31 16:01:47 [INFO]   [HMST-v2 (Base)] Epoch  27/100 | Train: 5314.10831 | Val: 5561.95850 | elapsed 38.6s | GPU 22/24564MB
+2026-07-31 16:01:48 [INFO]   [HMST-v2 (Base)] Epoch  28/100 | Train: 5219.48791 | Val: 5318.99201 <- best | elapsed 40.0s | GPU 22/24564MB
+2026-07-31 16:01:50 [INFO]   [HMST-v2 (Base)] Epoch  29/100 | Train: 5226.91500 | Val: 5310.41030 <- best | elapsed 41.6s | GPU 22/24564MB
+2026-07-31 16:01:51 [INFO]   [HMST-v2 (Base)] Epoch  30/100 | Train: 5169.40228 | Val: 5481.87086 | elapsed 43.4s | GPU 22/24564MB
+2026-07-31 16:01:53 [INFO]   [HMST-v2 (Base)] Epoch  31/100 | Train: 5128.63343 | Val: 5387.04837 | elapsed 45.2s | GPU 22/24564MB
+2026-07-31 16:01:55 [INFO]   [HMST-v2 (Base)] Epoch  32/100 | Train: 5129.92183 | Val: 5228.32616 <- best | elapsed 47.0s | GPU 22/24564MB
+2026-07-31 16:01:57 [INFO]   [HMST-v2 (Base)] Epoch  33/100 | Train: 5045.54972 | Val: 5379.50485 | elapsed 48.8s | GPU 22/24564MB
+2026-07-31 16:01:59 [INFO]   [HMST-v2 (Base)] Epoch  34/100 | Train: 5035.84240 | Val: 5373.91614 | elapsed 50.7s | GPU 22/24564MB
+2026-07-31 16:02:00 [INFO]   [HMST-v2 (Base)] Epoch  35/100 | Train: 5004.86861 | Val: 5407.59079 | elapsed 52.5s | GPU 22/24564MB
+2026-07-31 16:02:02 [INFO]   [HMST-v2 (Base)] Epoch  36/100 | Train: 5008.22468 | Val: 5312.83318 | elapsed 54.2s | GPU 22/24564MB
+2026-07-31 16:02:04 [INFO]   [HMST-v2 (Base)] Epoch  37/100 | Train: 4944.80116 | Val: 5429.78399 | elapsed 56.0s | GPU 22/24564MB
+2026-07-31 16:02:06 [INFO]   [HMST-v2 (Base)] Epoch  38/100 | Train: 4930.57487 | Val: 5354.21110 | elapsed 57.7s | GPU 22/24564MB
+2026-07-31 16:02:07 [INFO]   [HMST-v2 (Base)] Epoch  39/100 | Train: 4872.54034 | Val: 5153.01930 <- best | elapsed 59.5s | GPU 22/24564MB
+2026-07-31 16:02:09 [INFO]   [HMST-v2 (Base)] Epoch  40/100 | Train: 4820.27992 | Val: 5198.46477 | elapsed 61.3s | GPU 22/24564MB
+2026-07-31 16:02:11 [INFO]   [HMST-v2 (Base)] Epoch  41/100 | Train: 4829.08693 | Val: 5092.97372 <- best | elapsed 63.0s | GPU 22/24564MB
+2026-07-31 16:02:13 [INFO]   [HMST-v2 (Base)] Epoch  42/100 | Train: 4803.68196 | Val: 5308.11036 | elapsed 64.8s | GPU 22/24564MB
+2026-07-31 16:02:15 [INFO]   [HMST-v2 (Base)] Epoch  43/100 | Train: 4805.38808 | Val: 5083.73890 <- best | elapsed 66.6s | GPU 22/24564MB
+2026-07-31 16:02:16 [INFO]   [HMST-v2 (Base)] Epoch  44/100 | Train: 4760.12134 | Val: 5047.95947 <- best | elapsed 68.5s | GPU 22/24564MB
+2026-07-31 16:02:18 [INFO]   [HMST-v2 (Base)] Epoch  45/100 | Train: 4733.88661 | Val: 5036.12596 <- best | elapsed 70.3s | GPU 22/24564MB
+2026-07-31 16:02:20 [INFO]   [HMST-v2 (Base)] Epoch  46/100 | Train: 4733.55046 | Val: 5066.08709 | elapsed 71.9s | GPU 22/24564MB
+2026-07-31 16:02:21 [INFO]   [HMST-v2 (Base)] Epoch  47/100 | Train: 4682.75113 | Val: 4981.58697 <- best | elapsed 73.3s | GPU 22/24564MB
+2026-07-31 16:02:23 [INFO]   [HMST-v2 (Base)] Epoch  48/100 | Train: 4659.22371 | Val: 5147.41982 | elapsed 74.7s | GPU 22/24564MB
+2026-07-31 16:02:24 [INFO]   [HMST-v2 (Base)] Epoch  49/100 | Train: 4679.98007 | Val: 4914.05699 <- best | elapsed 76.3s | GPU 22/24564MB
+2026-07-31 16:02:26 [INFO]   [HMST-v2 (Base)] Epoch  50/100 | Train: 4646.15971 | Val: 4988.20460 | elapsed 77.7s | GPU 22/24564MB
+2026-07-31 16:02:27 [INFO]   [HMST-v2 (Base)] Epoch  51/100 | Train: 4622.18460 | Val: 4829.03284 <- best | elapsed 79.3s | GPU 22/24564MB
+2026-07-31 16:02:29 [INFO]   [HMST-v2 (Base)] Epoch  52/100 | Train: 4612.33724 | Val: 4973.30918 | elapsed 80.7s | GPU 22/24564MB
+2026-07-31 16:02:30 [INFO]   [HMST-v2 (Base)] Epoch  53/100 | Train: 4603.55508 | Val: 4912.08113 | elapsed 82.2s | GPU 22/24564MB
+2026-07-31 16:02:32 [INFO]   [HMST-v2 (Base)] Epoch  54/100 | Train: 4570.65484 | Val: 4927.55819 | elapsed 83.7s | GPU 22/24564MB
+2026-07-31 16:02:33 [INFO]   [HMST-v2 (Base)] Epoch  55/100 | Train: 4547.52294 | Val: 4854.09213 | elapsed 85.1s | GPU 22/24564MB
+2026-07-31 16:02:35 [INFO]   [HMST-v2 (Base)] Epoch  56/100 | Train: 4557.90665 | Val: 5150.14262 | elapsed 86.9s | GPU 22/24564MB
+2026-07-31 16:02:36 [INFO]   [HMST-v2 (Base)] Epoch  57/100 | Train: 4516.36280 | Val: 4862.66165 | elapsed 88.5s | GPU 22/24564MB
+2026-07-31 16:02:38 [INFO]   [HMST-v2 (Base)] Epoch  58/100 | Train: 4471.90707 | Val: 4984.71317 | elapsed 90.3s | GPU 22/24564MB
+2026-07-31 16:02:40 [INFO]   [HMST-v2 (Base)] Epoch  59/100 | Train: 4485.69887 | Val: 4950.58163 | elapsed 91.9s | GPU 22/24564MB
+2026-07-31 16:02:41 [INFO]   [HMST-v2 (Base)] Epoch  60/100 | Train: 4471.08272 | Val: 4869.77567 | elapsed 93.3s | GPU 22/24564MB
+2026-07-31 16:02:43 [INFO]   [HMST-v2 (Base)] Epoch  61/100 | Train: 4451.02802 | Val: 4946.60406 | elapsed 95.0s | GPU 22/24564MB
+2026-07-31 16:02:43 [INFO]   [Early Stop] HMST-v2 (Base) epoch 61
+2026-07-31 16:02:46 [INFO]   TEST MAE=39.8813  wMAPE=2.95%  Time=95.0s
+2026-07-31 16:02:46 [INFO] 
+============================================================
+  HMST-v2 (Large)
+============================================================
+2026-07-31 16:02:46 [INFO]   Params: 253.1K
+2026-07-31 16:02:49 [INFO]   [HMST-v2 (Large)] Epoch   1/100 | Train: 23691.49305 | Val: 11208.24082 <- best | elapsed 2.8s | GPU 30/24564MB
+2026-07-31 16:02:51 [INFO]   [HMST-v2 (Large)] Epoch   2/100 | Train: 10418.49206 | Val: 9677.52755 <- best | elapsed 5.3s | GPU 30/24564MB
+2026-07-31 16:02:53 [INFO]   [HMST-v2 (Large)] Epoch   3/100 | Train: 8972.82107 | Val: 8394.78018 <- best | elapsed 7.5s | GPU 30/24564MB
+2026-07-31 16:02:56 [INFO]   [HMST-v2 (Large)] Epoch   4/100 | Train: 7973.01630 | Val: 7726.89963 <- best | elapsed 9.8s | GPU 30/24564MB
+2026-07-31 16:02:58 [INFO]   [HMST-v2 (Large)] Epoch   5/100 | Train: 7343.44226 | Val: 6611.18856 <- best | elapsed 12.1s | GPU 30/24564MB
+2026-07-31 16:03:01 [INFO]   [HMST-v2 (Large)] Epoch   6/100 | Train: 6844.12254 | Val: 6747.50064 | elapsed 14.7s | GPU 30/24564MB
+2026-07-31 16:03:03 [INFO]   [HMST-v2 (Large)] Epoch   7/100 | Train: 6524.69923 | Val: 6128.39737 <- best | elapsed 17.1s | GPU 30/24564MB
+2026-07-31 16:03:06 [INFO]   [HMST-v2 (Large)] Epoch   8/100 | Train: 6338.70868 | Val: 5972.47793 <- best | elapsed 19.8s | GPU 30/24564MB
+2026-07-31 16:03:08 [INFO]   [HMST-v2 (Large)] Epoch   9/100 | Train: 6007.85633 | Val: 5934.65959 <- best | elapsed 22.5s | GPU 30/24564MB
+2026-07-31 16:03:11 [INFO]   [HMST-v2 (Large)] Epoch  10/100 | Train: 5833.05560 | Val: 5878.19978 <- best | elapsed 24.9s | GPU 30/24564MB
+2026-07-31 16:03:13 [INFO]   [HMST-v2 (Large)] Epoch  11/100 | Train: 5712.37982 | Val: 6094.26702 | elapsed 27.6s | GPU 30/24564MB
+2026-07-31 16:03:16 [INFO]   [HMST-v2 (Large)] Epoch  12/100 | Train: 5773.01267 | Val: 5405.49184 <- best | elapsed 29.9s | GPU 30/24564MB
+2026-07-31 16:03:18 [INFO]   [HMST-v2 (Large)] Epoch  13/100 | Train: 5443.30771 | Val: 5511.62845 | elapsed 32.2s | GPU 30/24564MB
+2026-07-31 16:03:20 [INFO]   [HMST-v2 (Large)] Epoch  14/100 | Train: 5222.41031 | Val: 5245.13942 <- best | elapsed 34.5s | GPU 30/24564MB
+2026-07-31 16:03:23 [INFO]   [HMST-v2 (Large)] Epoch  15/100 | Train: 5185.64107 | Val: 5296.17682 | elapsed 36.7s | GPU 30/24564MB
+2026-07-31 16:03:25 [INFO]   [HMST-v2 (Large)] Epoch  16/100 | Train: 5076.17885 | Val: 5495.60125 | elapsed 39.0s | GPU 30/24564MB
+2026-07-31 16:03:27 [INFO]   [HMST-v2 (Large)] Epoch  17/100 | Train: 5082.67881 | Val: 5103.16242 <- best | elapsed 41.2s | GPU 30/24564MB
+2026-07-31 16:03:29 [INFO]   [HMST-v2 (Large)] Epoch  18/100 | Train: 4981.74590 | Val: 5483.84071 | elapsed 43.5s | GPU 30/24564MB
+2026-07-31 16:03:32 [INFO]   [HMST-v2 (Large)] Epoch  19/100 | Train: 4883.89308 | Val: 5206.95624 | elapsed 45.8s | GPU 30/24564MB
+2026-07-31 16:03:34 [INFO]   [HMST-v2 (Large)] Epoch  20/100 | Train: 4762.34188 | Val: 5080.15983 <- best | elapsed 48.0s | GPU 30/24564MB
+2026-07-31 16:03:36 [INFO]   [HMST-v2 (Large)] Epoch  21/100 | Train: 4758.71264 | Val: 5107.38026 | elapsed 50.3s | GPU 30/24564MB
+2026-07-31 16:03:38 [INFO]   [HMST-v2 (Large)] Epoch  22/100 | Train: 4674.52724 | Val: 5021.28644 <- best | elapsed 52.6s | GPU 30/24564MB
+2026-07-31 16:03:41 [INFO]   [HMST-v2 (Large)] Epoch  23/100 | Train: 4706.07957 | Val: 5303.65587 | elapsed 54.8s | GPU 30/24564MB
+2026-07-31 16:03:43 [INFO]   [HMST-v2 (Large)] Epoch  24/100 | Train: 4568.75768 | Val: 4806.58523 <- best | elapsed 57.1s | GPU 30/24564MB
+2026-07-31 16:03:45 [INFO]   [HMST-v2 (Large)] Epoch  25/100 | Train: 4594.51028 | Val: 4934.97896 | elapsed 59.4s | GPU 30/24564MB
+2026-07-31 16:03:48 [INFO]   [HMST-v2 (Large)] Epoch  26/100 | Train: 4476.51631 | Val: 5086.72964 | elapsed 61.7s | GPU 30/24564MB
+2026-07-31 16:03:50 [INFO]   [HMST-v2 (Large)] Epoch  27/100 | Train: 4476.78211 | Val: 5123.84690 | elapsed 64.0s | GPU 30/24564MB
+2026-07-31 16:03:52 [INFO]   [HMST-v2 (Large)] Epoch  28/100 | Train: 4415.79547 | Val: 5852.41956 | elapsed 66.6s | GPU 30/24564MB
+2026-07-31 16:03:55 [INFO]   [HMST-v2 (Large)] Epoch  29/100 | Train: 4381.85141 | Val: 5062.57838 | elapsed 69.6s | GPU 30/24564MB
+2026-07-31 16:03:58 [INFO]   [HMST-v2 (Large)] Epoch  30/100 | Train: 4311.07228 | Val: 5055.32881 | elapsed 72.5s | GPU 30/24564MB
+2026-07-31 16:04:01 [INFO]   [HMST-v2 (Large)] Epoch  31/100 | Train: 4277.48062 | Val: 4966.43840 | elapsed 75.5s | GPU 30/24564MB
+2026-07-31 16:04:04 [INFO]   [HMST-v2 (Large)] Epoch  32/100 | Train: 4191.78269 | Val: 4716.61092 <- best | elapsed 78.3s | GPU 30/24564MB
+2026-07-31 16:04:07 [INFO]   [HMST-v2 (Large)] Epoch  33/100 | Train: 4204.77308 | Val: 5079.82309 | elapsed 81.2s | GPU 30/24564MB
+2026-07-31 16:04:10 [INFO]   [HMST-v2 (Large)] Epoch  34/100 | Train: 4230.24224 | Val: 4804.39260 | elapsed 84.1s | GPU 30/24564MB
+2026-07-31 16:04:13 [INFO]   [HMST-v2 (Large)] Epoch  35/100 | Train: 4116.53681 | Val: 4897.50086 | elapsed 87.1s | GPU 30/24564MB
+2026-07-31 16:04:16 [INFO]   [HMST-v2 (Large)] Epoch  36/100 | Train: 4121.76676 | Val: 4747.71322 | elapsed 90.0s | GPU 30/24564MB
+2026-07-31 16:04:19 [INFO]   [HMST-v2 (Large)] Epoch  37/100 | Train: 4081.76572 | Val: 4642.33411 <- best | elapsed 93.0s | GPU 30/24564MB
+2026-07-31 16:04:21 [INFO]   [HMST-v2 (Large)] Epoch  38/100 | Train: 4010.58381 | Val: 4627.17570 <- best | elapsed 95.3s | GPU 30/24564MB
+2026-07-31 16:04:23 [INFO]   [HMST-v2 (Large)] Epoch  39/100 | Train: 4010.63904 | Val: 4648.32399 | elapsed 97.5s | GPU 30/24564MB
+2026-07-31 16:04:26 [INFO]   [HMST-v2 (Large)] Epoch  40/100 | Train: 4005.29467 | Val: 4798.26076 | elapsed 99.7s | GPU 30/24564MB
+2026-07-31 16:04:28 [INFO]   [HMST-v2 (Large)] Epoch  41/100 | Train: 3977.97660 | Val: 5292.61463 | elapsed 102.0s | GPU 30/24564MB
+2026-07-31 16:04:30 [INFO]   [HMST-v2 (Large)] Epoch  42/100 | Train: 3999.72589 | Val: 5120.95751 | elapsed 104.3s | GPU 30/24564MB
+2026-07-31 16:04:32 [INFO]   [HMST-v2 (Large)] Epoch  43/100 | Train: 3985.91090 | Val: 5048.51662 | elapsed 106.6s | GPU 30/24564MB
+2026-07-31 16:04:35 [INFO]   [HMST-v2 (Large)] Epoch  44/100 | Train: 3891.53007 | Val: 4786.20718 | elapsed 109.3s | GPU 30/24564MB
+2026-07-31 16:04:38 [INFO]   [HMST-v2 (Large)] Epoch  45/100 | Train: 3860.97861 | Val: 4879.57355 | elapsed 112.2s | GPU 30/24564MB
+2026-07-31 16:04:41 [INFO]   [HMST-v2 (Large)] Epoch  46/100 | Train: 3838.25324 | Val: 4729.87252 | elapsed 115.0s | GPU 30/24564MB
+2026-07-31 16:04:44 [INFO]   [HMST-v2 (Large)] Epoch  47/100 | Train: 3813.07870 | Val: 4864.67116 | elapsed 117.8s | GPU 30/24564MB
+2026-07-31 16:04:46 [INFO]   [HMST-v2 (Large)] Epoch  48/100 | Train: 3782.92491 | Val: 5081.04422 | elapsed 120.1s | GPU 30/24564MB
+2026-07-31 16:04:46 [INFO]   [Early Stop] HMST-v2 (Large) epoch 48
+2026-07-31 16:04:49 [INFO]   TEST MAE=38.8215  wMAPE=2.87%  Time=120.1s
+2026-07-31 16:04:49 [INFO]   Zero-shot eval on adapted test set ...
+2026-07-31 16:04:51 [INFO]   Zero-Shot MAE on B+C = 68.8240
+2026-07-31 16:04:51 [INFO]   Starting HMST partial fine-tune on adapted data ...
+2026-07-31 16:04:54 [INFO]   FT Epoch   1 | Val: 7404.03491 <- best
+2026-07-31 16:04:56 [INFO]   FT Epoch   2 | Val: 6654.79916 <- best
+2026-07-31 16:04:58 [INFO]   FT Epoch   3 | Val: 6184.03215 <- best
+2026-07-31 16:05:01 [INFO]   FT Epoch   4 | Val: 5926.55826 <- best
+2026-07-31 16:05:03 [INFO]   FT Epoch   5 | Val: 5907.67041 <- best
+2026-07-31 16:05:06 [INFO]   FT Epoch   6 | Val: 5797.63714 <- best
+2026-07-31 16:05:10 [INFO]   FT Epoch   8 | Val: 5679.14762 <- best
+2026-07-31 16:05:13 [INFO]   FT Epoch   9 | Val: 5648.71400 <- best
+2026-07-31 16:05:15 [INFO]   FT Epoch  10 | Val: 5568.21779 <- best
+2026-07-31 16:05:22 [INFO]   FT Epoch  13 | Val: 5490.93525 <- best
+2026-07-31 16:05:24 [INFO]   FT Epoch  14 | Val: 5470.13410 <- best
+2026-07-31 16:05:26 [INFO]   FT Epoch  15 | Val: 5558.27305
+2026-07-31 16:05:36 [INFO]   FT Epoch  19 | Val: 5436.71072 <- best
+2026-07-31 16:05:38 [INFO]   FT Epoch  20 | Val: 5518.51836
+2026-07-31 16:05:41 [INFO]   Fine-Tune MAE on B+C = 41.9086  Time=46.7s
+2026-07-31 16:05:41 [INFO] === hmstv2 complete ===

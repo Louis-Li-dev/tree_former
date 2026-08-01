@@ -1,0 +1,165 @@
+2026-07-31 15:01:16 [INFO] === baseline_reformer  run_dir=C:\Users\user\Desktop\ansyu_li\tree_former\runs\20260731_143558 ===
+2026-07-31 15:01:16 [INFO] Device: cuda
+2026-07-31 15:01:16 [INFO] 
+============================================================
+  All-Grid Reformer (Base)
+============================================================
+2026-07-31 15:01:16 [INFO]   Params: 23.4K
+2026-07-31 15:01:29 [INFO]   [All-Grid Reformer (Base)] Epoch   1/100 | Train: 0.16415 | Val: 0.13421 <- best | elapsed 12.2s | GPU 24/24564MB
+2026-07-31 15:01:41 [INFO]   [All-Grid Reformer (Base)] Epoch   2/100 | Train: 0.13322 | Val: 0.12378 <- best | elapsed 24.0s | GPU 23/24564MB
+2026-07-31 15:01:53 [INFO]   [All-Grid Reformer (Base)] Epoch   3/100 | Train: 0.12633 | Val: 0.12039 <- best | elapsed 35.9s | GPU 23/24564MB
+2026-07-31 15:02:04 [INFO]   [All-Grid Reformer (Base)] Epoch   4/100 | Train: 0.12335 | Val: 0.11756 <- best | elapsed 47.8s | GPU 23/24564MB
+2026-07-31 15:02:16 [INFO]   [All-Grid Reformer (Base)] Epoch   5/100 | Train: 0.12060 | Val: 0.11604 <- best | elapsed 59.6s | GPU 23/24564MB
+2026-07-31 15:02:28 [INFO]   [All-Grid Reformer (Base)] Epoch   6/100 | Train: 0.11793 | Val: 0.11523 <- best | elapsed 71.5s | GPU 23/24564MB
+2026-07-31 15:02:40 [INFO]   [All-Grid Reformer (Base)] Epoch   7/100 | Train: 0.11643 | Val: 0.11483 <- best | elapsed 83.4s | GPU 23/24564MB
+2026-07-31 15:02:52 [INFO]   [All-Grid Reformer (Base)] Epoch   8/100 | Train: 0.11555 | Val: 0.11750 | elapsed 95.2s | GPU 23/24564MB
+2026-07-31 15:03:04 [INFO]   [All-Grid Reformer (Base)] Epoch   9/100 | Train: 0.11492 | Val: 0.11297 <- best | elapsed 107.1s | GPU 23/24564MB
+2026-07-31 15:03:16 [INFO]   [All-Grid Reformer (Base)] Epoch  10/100 | Train: 0.11459 | Val: 0.11395 | elapsed 118.9s | GPU 23/24564MB
+2026-07-31 15:03:27 [INFO]   [All-Grid Reformer (Base)] Epoch  11/100 | Train: 0.11306 | Val: 0.11294 <- best | elapsed 130.7s | GPU 23/24564MB
+2026-07-31 15:03:39 [INFO]   [All-Grid Reformer (Base)] Epoch  12/100 | Train: 0.11252 | Val: 0.11220 <- best | elapsed 142.5s | GPU 23/24564MB
+2026-07-31 15:03:51 [INFO]   [All-Grid Reformer (Base)] Epoch  13/100 | Train: 0.11241 | Val: 0.11319 | elapsed 154.3s | GPU 23/24564MB
+2026-07-31 15:04:03 [INFO]   [All-Grid Reformer (Base)] Epoch  14/100 | Train: 0.11166 | Val: 0.11247 | elapsed 166.1s | GPU 23/24564MB
+2026-07-31 15:04:15 [INFO]   [All-Grid Reformer (Base)] Epoch  15/100 | Train: 0.11146 | Val: 0.11214 <- best | elapsed 178.0s | GPU 23/24564MB
+2026-07-31 15:04:26 [INFO]   [All-Grid Reformer (Base)] Epoch  16/100 | Train: 0.11105 | Val: 0.11315 | elapsed 189.8s | GPU 23/24564MB
+2026-07-31 15:04:38 [INFO]   [All-Grid Reformer (Base)] Epoch  17/100 | Train: 0.11070 | Val: 0.11185 <- best | elapsed 201.7s | GPU 23/24564MB
+2026-07-31 15:04:50 [INFO]   [All-Grid Reformer (Base)] Epoch  18/100 | Train: 0.11027 | Val: 0.11202 | elapsed 213.5s | GPU 23/24564MB
+2026-07-31 15:05:02 [INFO]   [All-Grid Reformer (Base)] Epoch  19/100 | Train: 0.11039 | Val: 0.11040 <- best | elapsed 225.3s | GPU 23/24564MB
+2026-07-31 15:05:14 [INFO]   [All-Grid Reformer (Base)] Epoch  20/100 | Train: 0.10968 | Val: 0.11222 | elapsed 237.1s | GPU 23/24564MB
+2026-07-31 15:05:26 [INFO]   [All-Grid Reformer (Base)] Epoch  21/100 | Train: 0.10967 | Val: 0.11204 | elapsed 248.8s | GPU 23/24564MB
+2026-07-31 15:05:37 [INFO]   [All-Grid Reformer (Base)] Epoch  22/100 | Train: 0.10932 | Val: 0.11087 | elapsed 260.6s | GPU 23/24564MB
+2026-07-31 15:05:49 [INFO]   [All-Grid Reformer (Base)] Epoch  23/100 | Train: 0.10906 | Val: 0.11021 <- best | elapsed 272.4s | GPU 23/24564MB
+2026-07-31 15:06:01 [INFO]   [All-Grid Reformer (Base)] Epoch  24/100 | Train: 0.10877 | Val: 0.10983 <- best | elapsed 284.2s | GPU 23/24564MB
+2026-07-31 15:06:13 [INFO]   [All-Grid Reformer (Base)] Epoch  25/100 | Train: 0.10833 | Val: 0.10954 <- best | elapsed 296.0s | GPU 23/24564MB
+2026-07-31 15:06:24 [INFO]   [All-Grid Reformer (Base)] Epoch  26/100 | Train: 0.10817 | Val: 0.11000 | elapsed 307.8s | GPU 23/24564MB
+2026-07-31 15:06:36 [INFO]   [All-Grid Reformer (Base)] Epoch  27/100 | Train: 0.10794 | Val: 0.11137 | elapsed 319.6s | GPU 23/24564MB
+2026-07-31 15:06:48 [INFO]   [All-Grid Reformer (Base)] Epoch  28/100 | Train: 0.10777 | Val: 0.11206 | elapsed 331.4s | GPU 23/24564MB
+2026-07-31 15:07:00 [INFO]   [All-Grid Reformer (Base)] Epoch  29/100 | Train: 0.10773 | Val: 0.11009 | elapsed 343.2s | GPU 23/24564MB
+2026-07-31 15:07:12 [INFO]   [All-Grid Reformer (Base)] Epoch  30/100 | Train: 0.10746 | Val: 0.10992 | elapsed 355.0s | GPU 23/24564MB
+2026-07-31 15:07:23 [INFO]   [All-Grid Reformer (Base)] Epoch  31/100 | Train: 0.10736 | Val: 0.11095 | elapsed 366.8s | GPU 23/24564MB
+2026-07-31 15:07:35 [INFO]   [All-Grid Reformer (Base)] Epoch  32/100 | Train: 0.10747 | Val: 0.10987 | elapsed 378.6s | GPU 23/24564MB
+2026-07-31 15:07:47 [INFO]   [All-Grid Reformer (Base)] Epoch  33/100 | Train: 0.10727 | Val: 0.11064 | elapsed 390.4s | GPU 23/24564MB
+2026-07-31 15:07:59 [INFO]   [All-Grid Reformer (Base)] Epoch  34/100 | Train: 0.10707 | Val: 0.11070 | elapsed 402.2s | GPU 23/24564MB
+2026-07-31 15:08:11 [INFO]   [All-Grid Reformer (Base)] Epoch  35/100 | Train: 0.10721 | Val: 0.10939 <- best | elapsed 414.0s | GPU 23/24564MB
+2026-07-31 15:08:22 [INFO]   [All-Grid Reformer (Base)] Epoch  36/100 | Train: 0.10699 | Val: 0.11573 | elapsed 425.8s | GPU 23/24564MB
+2026-07-31 15:08:34 [INFO]   [All-Grid Reformer (Base)] Epoch  37/100 | Train: 0.10719 | Val: 0.10943 | elapsed 437.6s | GPU 23/24564MB
+2026-07-31 15:08:46 [INFO]   [All-Grid Reformer (Base)] Epoch  38/100 | Train: 0.10657 | Val: 0.10965 | elapsed 449.4s | GPU 23/24564MB
+2026-07-31 15:08:58 [INFO]   [All-Grid Reformer (Base)] Epoch  39/100 | Train: 0.10643 | Val: 0.10901 <- best | elapsed 461.2s | GPU 23/24564MB
+2026-07-31 15:09:10 [INFO]   [All-Grid Reformer (Base)] Epoch  40/100 | Train: 0.10653 | Val: 0.10952 | elapsed 473.0s | GPU 23/24564MB
+2026-07-31 15:09:22 [INFO]   [All-Grid Reformer (Base)] Epoch  41/100 | Train: 0.10652 | Val: 0.11275 | elapsed 484.8s | GPU 23/24564MB
+2026-07-31 15:09:33 [INFO]   [All-Grid Reformer (Base)] Epoch  42/100 | Train: 0.10648 | Val: 0.10872 <- best | elapsed 496.6s | GPU 23/24564MB
+2026-07-31 15:09:45 [INFO]   [All-Grid Reformer (Base)] Epoch  43/100 | Train: 0.10648 | Val: 0.10940 | elapsed 508.4s | GPU 23/24564MB
+2026-07-31 15:09:57 [INFO]   [All-Grid Reformer (Base)] Epoch  44/100 | Train: 0.10601 | Val: 0.11067 | elapsed 520.3s | GPU 23/24564MB
+2026-07-31 15:10:09 [INFO]   [All-Grid Reformer (Base)] Epoch  45/100 | Train: 0.10623 | Val: 0.10872 | elapsed 532.1s | GPU 23/24564MB
+2026-07-31 15:10:21 [INFO]   [All-Grid Reformer (Base)] Epoch  46/100 | Train: 0.10562 | Val: 0.10902 | elapsed 543.9s | GPU 23/24564MB
+2026-07-31 15:10:32 [INFO]   [All-Grid Reformer (Base)] Epoch  47/100 | Train: 0.10579 | Val: 0.11190 | elapsed 555.7s | GPU 23/24564MB
+2026-07-31 15:10:44 [INFO]   [All-Grid Reformer (Base)] Epoch  48/100 | Train: 0.10556 | Val: 0.10962 | elapsed 567.5s | GPU 23/24564MB
+2026-07-31 15:10:56 [INFO]   [All-Grid Reformer (Base)] Epoch  49/100 | Train: 0.10560 | Val: 0.10941 | elapsed 579.4s | GPU 23/24564MB
+2026-07-31 15:11:08 [INFO]   [All-Grid Reformer (Base)] Epoch  50/100 | Train: 0.10557 | Val: 0.10880 | elapsed 591.2s | GPU 23/24564MB
+2026-07-31 15:11:20 [INFO]   [All-Grid Reformer (Base)] Epoch  51/100 | Train: 0.10584 | Val: 0.11046 | elapsed 603.0s | GPU 23/24564MB
+2026-07-31 15:11:31 [INFO]   [All-Grid Reformer (Base)] Epoch  52/100 | Train: 0.10533 | Val: 0.10840 <- best | elapsed 614.8s | GPU 23/24564MB
+2026-07-31 15:11:43 [INFO]   [All-Grid Reformer (Base)] Epoch  53/100 | Train: 0.10537 | Val: 0.10851 | elapsed 626.6s | GPU 23/24564MB
+2026-07-31 15:11:55 [INFO]   [All-Grid Reformer (Base)] Epoch  54/100 | Train: 0.10540 | Val: 0.10912 | elapsed 638.4s | GPU 23/24564MB
+2026-07-31 15:12:07 [INFO]   [All-Grid Reformer (Base)] Epoch  55/100 | Train: 0.10529 | Val: 0.10842 | elapsed 650.2s | GPU 23/24564MB
+2026-07-31 15:12:19 [INFO]   [All-Grid Reformer (Base)] Epoch  56/100 | Train: 0.10526 | Val: 0.11092 | elapsed 662.0s | GPU 23/24564MB
+2026-07-31 15:12:30 [INFO]   [All-Grid Reformer (Base)] Epoch  57/100 | Train: 0.10519 | Val: 0.10849 | elapsed 673.8s | GPU 23/24564MB
+2026-07-31 15:12:42 [INFO]   [All-Grid Reformer (Base)] Epoch  58/100 | Train: 0.10520 | Val: 0.10823 <- best | elapsed 685.6s | GPU 23/24564MB
+2026-07-31 15:12:54 [INFO]   [All-Grid Reformer (Base)] Epoch  59/100 | Train: 0.10479 | Val: 0.10947 | elapsed 697.4s | GPU 23/24564MB
+2026-07-31 15:13:06 [INFO]   [All-Grid Reformer (Base)] Epoch  60/100 | Train: 0.10482 | Val: 0.11009 | elapsed 709.2s | GPU 23/24564MB
+2026-07-31 15:13:18 [INFO]   [All-Grid Reformer (Base)] Epoch  61/100 | Train: 0.10494 | Val: 0.10878 | elapsed 721.0s | GPU 23/24564MB
+2026-07-31 15:13:29 [INFO]   [All-Grid Reformer (Base)] Epoch  62/100 | Train: 0.10491 | Val: 0.10877 | elapsed 732.8s | GPU 23/24564MB
+2026-07-31 15:13:41 [INFO]   [All-Grid Reformer (Base)] Epoch  63/100 | Train: 0.10465 | Val: 0.10853 | elapsed 744.6s | GPU 23/24564MB
+2026-07-31 15:13:53 [INFO]   [All-Grid Reformer (Base)] Epoch  64/100 | Train: 0.10496 | Val: 0.11078 | elapsed 756.4s | GPU 23/24564MB
+2026-07-31 15:14:05 [INFO]   [All-Grid Reformer (Base)] Epoch  65/100 | Train: 0.10461 | Val: 0.10940 | elapsed 768.2s | GPU 23/24564MB
+2026-07-31 15:14:17 [INFO]   [All-Grid Reformer (Base)] Epoch  66/100 | Train: 0.10443 | Val: 0.10914 | elapsed 780.0s | GPU 23/24564MB
+2026-07-31 15:14:29 [INFO]   [All-Grid Reformer (Base)] Epoch  67/100 | Train: 0.10444 | Val: 0.10772 <- best | elapsed 791.8s | GPU 23/24564MB
+2026-07-31 15:14:40 [INFO]   [All-Grid Reformer (Base)] Epoch  68/100 | Train: 0.10442 | Val: 0.10882 | elapsed 803.6s | GPU 23/24564MB
+2026-07-31 15:14:52 [INFO]   [All-Grid Reformer (Base)] Epoch  69/100 | Train: 0.10449 | Val: 0.10848 | elapsed 815.5s | GPU 23/24564MB
+2026-07-31 15:15:04 [INFO]   [All-Grid Reformer (Base)] Epoch  70/100 | Train: 0.10428 | Val: 0.10955 | elapsed 827.3s | GPU 23/24564MB
+2026-07-31 15:15:16 [INFO]   [All-Grid Reformer (Base)] Epoch  71/100 | Train: 0.10431 | Val: 0.10813 | elapsed 839.1s | GPU 23/24564MB
+2026-07-31 15:15:28 [INFO]   [All-Grid Reformer (Base)] Epoch  72/100 | Train: 0.10439 | Val: 0.10772 | elapsed 850.9s | GPU 23/24564MB
+2026-07-31 15:15:39 [INFO]   [All-Grid Reformer (Base)] Epoch  73/100 | Train: 0.10432 | Val: 0.10943 | elapsed 862.7s | GPU 23/24564MB
+2026-07-31 15:15:51 [INFO]   [All-Grid Reformer (Base)] Epoch  74/100 | Train: 0.10419 | Val: 0.10821 | elapsed 874.5s | GPU 23/24564MB
+2026-07-31 15:16:03 [INFO]   [All-Grid Reformer (Base)] Epoch  75/100 | Train: 0.10409 | Val: 0.10862 | elapsed 886.3s | GPU 23/24564MB
+2026-07-31 15:16:15 [INFO]   [All-Grid Reformer (Base)] Epoch  76/100 | Train: 0.10400 | Val: 0.10852 | elapsed 898.1s | GPU 23/24564MB
+2026-07-31 15:16:27 [INFO]   [All-Grid Reformer (Base)] Epoch  77/100 | Train: 0.10382 | Val: 0.10822 | elapsed 909.9s | GPU 23/24564MB
+2026-07-31 15:16:27 [INFO]   [Early Stop] All-Grid Reformer (Base) epoch 77
+2026-07-31 15:16:30 [INFO]   TEST MAE=52.7106  wMAPE=3.90%  Time=909.9s
+2026-07-31 15:16:30 [INFO] 
+============================================================
+  All-Grid Reformer (Large)
+============================================================
+2026-07-31 15:16:30 [INFO]   Params: 183.2K
+2026-07-31 15:17:07 [INFO]   [All-Grid Reformer (Large)] Epoch   1/100 | Train: 0.15412 | Val: 0.12255 <- best | elapsed 37.3s | GPU 42/24564MB
+2026-07-31 15:17:44 [INFO]   [All-Grid Reformer (Large)] Epoch   2/100 | Train: 0.12221 | Val: 0.12068 <- best | elapsed 74.3s | GPU 42/24564MB
+2026-07-31 15:18:21 [INFO]   [All-Grid Reformer (Large)] Epoch   3/100 | Train: 0.11866 | Val: 0.12468 | elapsed 111.4s | GPU 42/24564MB
+2026-07-31 15:18:58 [INFO]   [All-Grid Reformer (Large)] Epoch   4/100 | Train: 0.11540 | Val: 0.11251 <- best | elapsed 148.5s | GPU 42/24564MB
+2026-07-31 15:19:35 [INFO]   [All-Grid Reformer (Large)] Epoch   5/100 | Train: 0.11353 | Val: 0.11209 <- best | elapsed 185.5s | GPU 42/24564MB
+2026-07-31 15:20:12 [INFO]   [All-Grid Reformer (Large)] Epoch   6/100 | Train: 0.11267 | Val: 0.11363 | elapsed 222.6s | GPU 42/24564MB
+2026-07-31 15:20:49 [INFO]   [All-Grid Reformer (Large)] Epoch   7/100 | Train: 0.11107 | Val: 0.11106 <- best | elapsed 259.7s | GPU 42/24564MB
+2026-07-31 15:21:26 [INFO]   [All-Grid Reformer (Large)] Epoch   8/100 | Train: 0.11064 | Val: 0.11587 | elapsed 296.7s | GPU 42/24564MB
+2026-07-31 15:22:03 [INFO]   [All-Grid Reformer (Large)] Epoch   9/100 | Train: 0.10959 | Val: 0.11010 <- best | elapsed 333.7s | GPU 42/24564MB
+2026-07-31 15:22:40 [INFO]   [All-Grid Reformer (Large)] Epoch  10/100 | Train: 0.10883 | Val: 0.11119 | elapsed 370.7s | GPU 42/24564MB
+2026-07-31 15:23:17 [INFO]   [All-Grid Reformer (Large)] Epoch  11/100 | Train: 0.10847 | Val: 0.11415 | elapsed 407.6s | GPU 42/24564MB
+2026-07-31 15:23:54 [INFO]   [All-Grid Reformer (Large)] Epoch  12/100 | Train: 0.10788 | Val: 0.11862 | elapsed 444.6s | GPU 42/24564MB
+2026-07-31 15:24:31 [INFO]   [All-Grid Reformer (Large)] Epoch  13/100 | Train: 0.10717 | Val: 0.11076 | elapsed 481.6s | GPU 42/24564MB
+2026-07-31 15:25:08 [INFO]   [All-Grid Reformer (Large)] Epoch  14/100 | Train: 0.10727 | Val: 0.11136 | elapsed 518.5s | GPU 42/24564MB
+2026-07-31 15:25:45 [INFO]   [All-Grid Reformer (Large)] Epoch  15/100 | Train: 0.10722 | Val: 0.10889 <- best | elapsed 555.5s | GPU 42/24564MB
+2026-07-31 15:26:22 [INFO]   [All-Grid Reformer (Large)] Epoch  16/100 | Train: 0.10712 | Val: 0.10954 | elapsed 592.6s | GPU 42/24564MB
+2026-07-31 15:26:59 [INFO]   [All-Grid Reformer (Large)] Epoch  17/100 | Train: 0.10625 | Val: 0.11095 | elapsed 629.7s | GPU 42/24564MB
+2026-07-31 15:27:36 [INFO]   [All-Grid Reformer (Large)] Epoch  18/100 | Train: 0.10552 | Val: 0.10891 | elapsed 666.8s | GPU 42/24564MB
+2026-07-31 15:28:14 [INFO]   [All-Grid Reformer (Large)] Epoch  19/100 | Train: 0.10549 | Val: 0.10774 <- best | elapsed 703.9s | GPU 42/24564MB
+2026-07-31 15:28:51 [INFO]   [All-Grid Reformer (Large)] Epoch  20/100 | Train: 0.10502 | Val: 0.11093 | elapsed 740.9s | GPU 42/24564MB
+2026-07-31 15:29:28 [INFO]   [All-Grid Reformer (Large)] Epoch  21/100 | Train: 0.10494 | Val: 0.11206 | elapsed 777.9s | GPU 42/24564MB
+2026-07-31 15:30:04 [INFO]   [All-Grid Reformer (Large)] Epoch  22/100 | Train: 0.10468 | Val: 0.10990 | elapsed 814.8s | GPU 42/24564MB
+2026-07-31 15:30:42 [INFO]   [All-Grid Reformer (Large)] Epoch  23/100 | Train: 0.10495 | Val: 0.10643 <- best | elapsed 851.9s | GPU 42/24564MB
+2026-07-31 15:31:19 [INFO]   [All-Grid Reformer (Large)] Epoch  24/100 | Train: 0.10445 | Val: 0.11260 | elapsed 889.0s | GPU 42/24564MB
+2026-07-31 15:31:56 [INFO]   [All-Grid Reformer (Large)] Epoch  25/100 | Train: 0.10410 | Val: 0.10725 | elapsed 926.1s | GPU 42/24564MB
+2026-07-31 15:32:33 [INFO]   [All-Grid Reformer (Large)] Epoch  26/100 | Train: 0.10416 | Val: 0.10767 | elapsed 963.3s | GPU 42/24564MB
+2026-07-31 15:33:10 [INFO]   [All-Grid Reformer (Large)] Epoch  27/100 | Train: 0.10395 | Val: 0.10825 | elapsed 1000.4s | GPU 42/24564MB
+2026-07-31 15:33:47 [INFO]   [All-Grid Reformer (Large)] Epoch  28/100 | Train: 0.10358 | Val: 0.10848 | elapsed 1037.5s | GPU 42/24564MB
+2026-07-31 15:34:24 [INFO]   [All-Grid Reformer (Large)] Epoch  29/100 | Train: 0.10369 | Val: 0.10881 | elapsed 1074.7s | GPU 42/24564MB
+2026-07-31 15:35:01 [INFO]   [All-Grid Reformer (Large)] Epoch  30/100 | Train: 0.10346 | Val: 0.10766 | elapsed 1111.8s | GPU 42/24564MB
+2026-07-31 15:35:39 [INFO]   [All-Grid Reformer (Large)] Epoch  31/100 | Train: 0.10330 | Val: 0.10882 | elapsed 1148.9s | GPU 42/24564MB
+2026-07-31 15:36:16 [INFO]   [All-Grid Reformer (Large)] Epoch  32/100 | Train: 0.10302 | Val: 0.10796 | elapsed 1186.0s | GPU 42/24564MB
+2026-07-31 15:36:53 [INFO]   [All-Grid Reformer (Large)] Epoch  33/100 | Train: 0.10275 | Val: 0.10780 | elapsed 1223.1s | GPU 42/24564MB
+2026-07-31 15:36:53 [INFO]   [Early Stop] All-Grid Reformer (Large) epoch 33
+2026-07-31 15:36:57 [INFO]   TEST MAE=51.8044  wMAPE=3.83%  Time=1223.1s
+2026-07-31 15:37:01 [INFO]   [Adapt] Zero-Shot MAE on B+C = 53.4067
+2026-07-31 15:37:01 [INFO]   [Adapt] Retraining on adapted data ...
+2026-07-31 15:37:38 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   1/100 | Train: 0.15702 | Val: 0.13005 <- best | elapsed 37.2s | GPU 42/24564MB
+2026-07-31 15:38:15 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   2/100 | Train: 0.12933 | Val: 0.12607 <- best | elapsed 74.3s | GPU 42/24564MB
+2026-07-31 15:38:52 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   3/100 | Train: 0.12521 | Val: 0.12801 | elapsed 111.4s | GPU 42/24564MB
+2026-07-31 15:39:29 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   4/100 | Train: 0.12212 | Val: 0.12667 | elapsed 148.4s | GPU 42/24564MB
+2026-07-31 15:40:07 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   5/100 | Train: 0.12119 | Val: 0.12356 <- best | elapsed 185.5s | GPU 42/24564MB
+2026-07-31 15:40:44 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   6/100 | Train: 0.11925 | Val: 0.12120 <- best | elapsed 222.5s | GPU 42/24564MB
+2026-07-31 15:41:21 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   7/100 | Train: 0.11819 | Val: 0.11976 <- best | elapsed 259.6s | GPU 42/24564MB
+2026-07-31 15:41:58 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   8/100 | Train: 0.11767 | Val: 0.12992 | elapsed 296.7s | GPU 42/24564MB
+2026-07-31 15:42:35 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch   9/100 | Train: 0.11836 | Val: 0.11930 <- best | elapsed 333.7s | GPU 42/24564MB
+2026-07-31 15:43:12 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  10/100 | Train: 0.11579 | Val: 0.12407 | elapsed 370.6s | GPU 42/24564MB
+2026-07-31 15:43:49 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  11/100 | Train: 0.11586 | Val: 0.12039 | elapsed 407.5s | GPU 42/24564MB
+2026-07-31 15:44:25 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  12/100 | Train: 0.11545 | Val: 0.12265 | elapsed 444.3s | GPU 42/24564MB
+2026-07-31 15:45:02 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  13/100 | Train: 0.11562 | Val: 0.12633 | elapsed 481.2s | GPU 42/24564MB
+2026-07-31 15:45:39 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  14/100 | Train: 0.11497 | Val: 0.11814 <- best | elapsed 518.0s | GPU 42/24564MB
+2026-07-31 15:46:16 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  15/100 | Train: 0.11402 | Val: 0.11720 <- best | elapsed 555.0s | GPU 42/24564MB
+2026-07-31 15:46:53 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  16/100 | Train: 0.11351 | Val: 0.11915 | elapsed 592.1s | GPU 42/24564MB
+2026-07-31 15:47:30 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  17/100 | Train: 0.11299 | Val: 0.11835 | elapsed 629.2s | GPU 42/24564MB
+2026-07-31 15:48:07 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  18/100 | Train: 0.11335 | Val: 0.11893 | elapsed 666.3s | GPU 42/24564MB
+2026-07-31 15:48:44 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  19/100 | Train: 0.11358 | Val: 0.12404 | elapsed 703.4s | GPU 42/24564MB
+2026-07-31 15:49:21 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  20/100 | Train: 0.11302 | Val: 0.12146 | elapsed 740.4s | GPU 42/24564MB
+2026-07-31 15:49:58 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  21/100 | Train: 0.11308 | Val: 0.11668 <- best | elapsed 777.5s | GPU 42/24564MB
+2026-07-31 15:50:36 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  22/100 | Train: 0.11234 | Val: 0.11823 | elapsed 814.5s | GPU 42/24564MB
+2026-07-31 15:51:13 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  23/100 | Train: 0.11192 | Val: 0.11705 | elapsed 851.6s | GPU 42/24564MB
+2026-07-31 15:51:50 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  24/100 | Train: 0.11154 | Val: 0.11545 <- best | elapsed 888.6s | GPU 42/24564MB
+2026-07-31 15:52:27 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  25/100 | Train: 0.11133 | Val: 0.11635 | elapsed 925.6s | GPU 42/24564MB
+2026-07-31 15:53:04 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  26/100 | Train: 0.11131 | Val: 0.11699 | elapsed 962.5s | GPU 42/24564MB
+2026-07-31 15:53:40 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  27/100 | Train: 0.11087 | Val: 0.11605 | elapsed 999.4s | GPU 42/24564MB
+2026-07-31 15:54:17 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  28/100 | Train: 0.11114 | Val: 0.12207 | elapsed 1036.4s | GPU 42/24564MB
+2026-07-31 15:54:54 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  29/100 | Train: 0.11125 | Val: 0.11756 | elapsed 1073.3s | GPU 42/24564MB
+2026-07-31 15:55:31 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  30/100 | Train: 0.11077 | Val: 0.11668 | elapsed 1110.3s | GPU 42/24564MB
+2026-07-31 15:56:08 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  31/100 | Train: 0.11108 | Val: 0.11717 | elapsed 1147.3s | GPU 42/24564MB
+2026-07-31 15:56:45 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  32/100 | Train: 0.11059 | Val: 0.11693 | elapsed 1184.2s | GPU 42/24564MB
+2026-07-31 15:57:22 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  33/100 | Train: 0.11049 | Val: 0.11821 | elapsed 1221.1s | GPU 42/24564MB
+2026-07-31 15:57:59 [INFO]   [All-Grid Reformer (Large) Retrain] Epoch  34/100 | Train: 0.10999 | Val: 0.11915 | elapsed 1258.1s | GPU 42/24564MB
+2026-07-31 15:57:59 [INFO]   [Early Stop] All-Grid Reformer (Large) Retrain epoch 34
+2026-07-31 15:58:03 [INFO]   [Adapt] Retrain MAE on B+C = 56.1908
+2026-07-31 15:58:03 [INFO] === baseline_reformer complete ===

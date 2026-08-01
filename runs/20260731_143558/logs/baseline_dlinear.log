@@ -1,0 +1,128 @@
+2026-07-31 14:49:47 [INFO] === baseline_dlinear  run_dir=C:\Users\user\Desktop\ansyu_li\tree_former\runs\20260731_143558 ===
+2026-07-31 14:49:47 [INFO] Device: cuda
+2026-07-31 14:49:47 [INFO] 
+============================================================
+  All-Grid DLinear (Small)
+============================================================
+2026-07-31 14:49:47 [INFO]   Params: 0.0K
+2026-07-31 14:49:48 [INFO]   [All-Grid DLinear (Small)] Epoch   1/100 | Train: 0.42299 | Val: 0.25199 <- best | elapsed 0.5s | GPU 17/24564MB
+2026-07-31 14:49:49 [INFO]   [All-Grid DLinear (Small)] Epoch   2/100 | Train: 0.18926 | Val: 0.17708 <- best | elapsed 0.9s | GPU 17/24564MB
+2026-07-31 14:49:49 [INFO]   [All-Grid DLinear (Small)] Epoch   3/100 | Train: 0.14723 | Val: 0.14570 <- best | elapsed 1.3s | GPU 17/24564MB
+2026-07-31 14:49:49 [INFO]   [All-Grid DLinear (Small)] Epoch   4/100 | Train: 0.12828 | Val: 0.13096 <- best | elapsed 1.7s | GPU 17/24564MB
+2026-07-31 14:49:50 [INFO]   [All-Grid DLinear (Small)] Epoch   5/100 | Train: 0.11908 | Val: 0.12429 <- best | elapsed 2.1s | GPU 17/24564MB
+2026-07-31 14:49:50 [INFO]   [All-Grid DLinear (Small)] Epoch   6/100 | Train: 0.11477 | Val: 0.12065 <- best | elapsed 2.5s | GPU 17/24564MB
+2026-07-31 14:49:51 [INFO]   [All-Grid DLinear (Small)] Epoch   7/100 | Train: 0.11297 | Val: 0.11908 <- best | elapsed 3.0s | GPU 17/24564MB
+2026-07-31 14:49:51 [INFO]   [All-Grid DLinear (Small)] Epoch   8/100 | Train: 0.11227 | Val: 0.11889 <- best | elapsed 3.4s | GPU 17/24564MB
+2026-07-31 14:49:52 [INFO]   [All-Grid DLinear (Small)] Epoch   9/100 | Train: 0.11203 | Val: 0.11804 <- best | elapsed 3.8s | GPU 17/24564MB
+2026-07-31 14:49:52 [INFO]   [All-Grid DLinear (Small)] Epoch  10/100 | Train: 0.11194 | Val: 0.11827 | elapsed 4.2s | GPU 17/24564MB
+2026-07-31 14:49:52 [INFO]   [All-Grid DLinear (Small)] Epoch  11/100 | Train: 0.11192 | Val: 0.11884 | elapsed 4.7s | GPU 17/24564MB
+2026-07-31 14:49:53 [INFO]   [All-Grid DLinear (Small)] Epoch  12/100 | Train: 0.11195 | Val: 0.11821 | elapsed 5.1s | GPU 17/24564MB
+2026-07-31 14:49:53 [INFO]   [All-Grid DLinear (Small)] Epoch  13/100 | Train: 0.11195 | Val: 0.11793 <- best | elapsed 5.6s | GPU 17/24564MB
+2026-07-31 14:49:54 [INFO]   [All-Grid DLinear (Small)] Epoch  14/100 | Train: 0.11197 | Val: 0.11806 | elapsed 6.0s | GPU 17/24564MB
+2026-07-31 14:49:54 [INFO]   [All-Grid DLinear (Small)] Epoch  15/100 | Train: 0.11191 | Val: 0.11797 | elapsed 6.5s | GPU 17/24564MB
+2026-07-31 14:49:55 [INFO]   [All-Grid DLinear (Small)] Epoch  16/100 | Train: 0.11191 | Val: 0.11784 <- best | elapsed 6.9s | GPU 17/24564MB
+2026-07-31 14:49:55 [INFO]   [All-Grid DLinear (Small)] Epoch  17/100 | Train: 0.11195 | Val: 0.11800 | elapsed 7.4s | GPU 17/24564MB
+2026-07-31 14:49:56 [INFO]   [All-Grid DLinear (Small)] Epoch  18/100 | Train: 0.11194 | Val: 0.11853 | elapsed 7.8s | GPU 17/24564MB
+2026-07-31 14:49:56 [INFO]   [All-Grid DLinear (Small)] Epoch  19/100 | Train: 0.11193 | Val: 0.11821 | elapsed 8.3s | GPU 17/24564MB
+2026-07-31 14:49:56 [INFO]   [All-Grid DLinear (Small)] Epoch  20/100 | Train: 0.11196 | Val: 0.11815 | elapsed 8.7s | GPU 17/24564MB
+2026-07-31 14:49:57 [INFO]   [All-Grid DLinear (Small)] Epoch  21/100 | Train: 0.11198 | Val: 0.11783 <- best | elapsed 9.2s | GPU 17/24564MB
+2026-07-31 14:49:57 [INFO]   [All-Grid DLinear (Small)] Epoch  22/100 | Train: 0.11193 | Val: 0.11816 | elapsed 9.6s | GPU 17/24564MB
+2026-07-31 14:49:58 [INFO]   [All-Grid DLinear (Small)] Epoch  23/100 | Train: 0.11196 | Val: 0.11875 | elapsed 10.1s | GPU 17/24564MB
+2026-07-31 14:49:58 [INFO]   [All-Grid DLinear (Small)] Epoch  24/100 | Train: 0.11196 | Val: 0.11864 | elapsed 10.5s | GPU 17/24564MB
+2026-07-31 14:49:59 [INFO]   [All-Grid DLinear (Small)] Epoch  25/100 | Train: 0.11194 | Val: 0.11908 | elapsed 11.0s | GPU 17/24564MB
+2026-07-31 14:49:59 [INFO]   [All-Grid DLinear (Small)] Epoch  26/100 | Train: 0.11197 | Val: 0.11815 | elapsed 11.4s | GPU 17/24564MB
+2026-07-31 14:50:00 [INFO]   [All-Grid DLinear (Small)] Epoch  27/100 | Train: 0.11197 | Val: 0.11893 | elapsed 11.9s | GPU 17/24564MB
+2026-07-31 14:50:00 [INFO]   [All-Grid DLinear (Small)] Epoch  28/100 | Train: 0.11195 | Val: 0.11868 | elapsed 12.3s | GPU 17/24564MB
+2026-07-31 14:50:00 [INFO]   [All-Grid DLinear (Small)] Epoch  29/100 | Train: 0.11196 | Val: 0.11792 | elapsed 12.8s | GPU 17/24564MB
+2026-07-31 14:50:01 [INFO]   [All-Grid DLinear (Small)] Epoch  30/100 | Train: 0.11191 | Val: 0.11829 | elapsed 13.3s | GPU 17/24564MB
+2026-07-31 14:50:01 [INFO]   [All-Grid DLinear (Small)] Epoch  31/100 | Train: 0.11196 | Val: 0.11836 | elapsed 13.7s | GPU 17/24564MB
+2026-07-31 14:50:01 [INFO]   [Early Stop] All-Grid DLinear (Small) epoch 31
+2026-07-31 14:50:04 [INFO]   TEST MAE=59.6337  wMAPE=4.41%  Time=13.7s
+2026-07-31 14:50:04 [INFO] 
+============================================================
+  All-Grid DLinear (Base)
+============================================================
+2026-07-31 14:50:04 [INFO]   Params: 0.0K
+2026-07-31 14:50:05 [INFO]   [All-Grid DLinear (Base)] Epoch   1/100 | Train: 0.50485 | Val: 0.25096 <- best | elapsed 0.6s | GPU 17/24564MB
+2026-07-31 14:50:05 [INFO]   [All-Grid DLinear (Base)] Epoch   2/100 | Train: 0.18706 | Val: 0.17313 <- best | elapsed 1.0s | GPU 17/24564MB
+2026-07-31 14:50:06 [INFO]   [All-Grid DLinear (Base)] Epoch   3/100 | Train: 0.14466 | Val: 0.14390 <- best | elapsed 1.5s | GPU 17/24564MB
+2026-07-31 14:50:06 [INFO]   [All-Grid DLinear (Base)] Epoch   4/100 | Train: 0.12666 | Val: 0.12965 <- best | elapsed 1.9s | GPU 17/24564MB
+2026-07-31 14:50:07 [INFO]   [All-Grid DLinear (Base)] Epoch   5/100 | Train: 0.11814 | Val: 0.12324 <- best | elapsed 2.4s | GPU 17/24564MB
+2026-07-31 14:50:07 [INFO]   [All-Grid DLinear (Base)] Epoch   6/100 | Train: 0.11430 | Val: 0.11985 <- best | elapsed 2.8s | GPU 17/24564MB
+2026-07-31 14:50:07 [INFO]   [All-Grid DLinear (Base)] Epoch   7/100 | Train: 0.11271 | Val: 0.11928 <- best | elapsed 3.3s | GPU 17/24564MB
+2026-07-31 14:50:08 [INFO]   [All-Grid DLinear (Base)] Epoch   8/100 | Train: 0.11214 | Val: 0.11825 <- best | elapsed 3.7s | GPU 17/24564MB
+2026-07-31 14:50:08 [INFO]   [All-Grid DLinear (Base)] Epoch   9/100 | Train: 0.11198 | Val: 0.11859 | elapsed 4.2s | GPU 17/24564MB
+2026-07-31 14:50:09 [INFO]   [All-Grid DLinear (Base)] Epoch  10/100 | Train: 0.11190 | Val: 0.11823 <- best | elapsed 4.6s | GPU 17/24564MB
+2026-07-31 14:50:09 [INFO]   [All-Grid DLinear (Base)] Epoch  11/100 | Train: 0.11193 | Val: 0.11818 <- best | elapsed 5.0s | GPU 17/24564MB
+2026-07-31 14:50:10 [INFO]   [All-Grid DLinear (Base)] Epoch  12/100 | Train: 0.11191 | Val: 0.11796 <- best | elapsed 5.5s | GPU 17/24564MB
+2026-07-31 14:50:10 [INFO]   [All-Grid DLinear (Base)] Epoch  13/100 | Train: 0.11194 | Val: 0.11812 | elapsed 6.0s | GPU 17/24564MB
+2026-07-31 14:50:11 [INFO]   [All-Grid DLinear (Base)] Epoch  14/100 | Train: 0.11191 | Val: 0.11788 <- best | elapsed 6.4s | GPU 17/24564MB
+2026-07-31 14:50:11 [INFO]   [All-Grid DLinear (Base)] Epoch  15/100 | Train: 0.11192 | Val: 0.11798 | elapsed 6.9s | GPU 17/24564MB
+2026-07-31 14:50:12 [INFO]   [All-Grid DLinear (Base)] Epoch  16/100 | Train: 0.11193 | Val: 0.11807 | elapsed 7.3s | GPU 17/24564MB
+2026-07-31 14:50:12 [INFO]   [All-Grid DLinear (Base)] Epoch  17/100 | Train: 0.11196 | Val: 0.11874 | elapsed 7.8s | GPU 17/24564MB
+2026-07-31 14:50:12 [INFO]   [All-Grid DLinear (Base)] Epoch  18/100 | Train: 0.11197 | Val: 0.11806 | elapsed 8.3s | GPU 17/24564MB
+2026-07-31 14:50:13 [INFO]   [All-Grid DLinear (Base)] Epoch  19/100 | Train: 0.11193 | Val: 0.11831 | elapsed 8.7s | GPU 17/24564MB
+2026-07-31 14:50:13 [INFO]   [All-Grid DLinear (Base)] Epoch  20/100 | Train: 0.11194 | Val: 0.11793 | elapsed 9.2s | GPU 17/24564MB
+2026-07-31 14:50:14 [INFO]   [All-Grid DLinear (Base)] Epoch  21/100 | Train: 0.11196 | Val: 0.11801 | elapsed 9.6s | GPU 17/24564MB
+2026-07-31 14:50:14 [INFO]   [All-Grid DLinear (Base)] Epoch  22/100 | Train: 0.11196 | Val: 0.11792 | elapsed 10.1s | GPU 17/24564MB
+2026-07-31 14:50:15 [INFO]   [All-Grid DLinear (Base)] Epoch  23/100 | Train: 0.11196 | Val: 0.11826 | elapsed 10.6s | GPU 17/24564MB
+2026-07-31 14:50:15 [INFO]   [All-Grid DLinear (Base)] Epoch  24/100 | Train: 0.11193 | Val: 0.11815 | elapsed 11.0s | GPU 17/24564MB
+2026-07-31 14:50:15 [INFO]   [Early Stop] All-Grid DLinear (Base) epoch 24
+2026-07-31 14:50:18 [INFO]   TEST MAE=59.3968  wMAPE=4.39%  Time=11.0s
+2026-07-31 14:50:18 [INFO] 
+============================================================
+  All-Grid DLinear (Large)
+============================================================
+2026-07-31 14:50:18 [INFO]   Params: 0.0K
+2026-07-31 14:50:19 [INFO]   [All-Grid DLinear (Large)] Epoch   1/100 | Train: 0.50605 | Val: 0.24844 <- best | elapsed 0.6s | GPU 17/24564MB
+2026-07-31 14:50:19 [INFO]   [All-Grid DLinear (Large)] Epoch   2/100 | Train: 0.18631 | Val: 0.17151 <- best | elapsed 1.1s | GPU 17/24564MB
+2026-07-31 14:50:19 [INFO]   [All-Grid DLinear (Large)] Epoch   3/100 | Train: 0.14407 | Val: 0.14302 <- best | elapsed 1.5s | GPU 17/24564MB
+2026-07-31 14:50:20 [INFO]   [All-Grid DLinear (Large)] Epoch   4/100 | Train: 0.12624 | Val: 0.12867 <- best | elapsed 2.0s | GPU 17/24564MB
+2026-07-31 14:50:20 [INFO]   [All-Grid DLinear (Large)] Epoch   5/100 | Train: 0.11793 | Val: 0.12336 <- best | elapsed 2.5s | GPU 17/24564MB
+2026-07-31 14:50:21 [INFO]   [All-Grid DLinear (Large)] Epoch   6/100 | Train: 0.11417 | Val: 0.12029 <- best | elapsed 3.0s | GPU 17/24564MB
+2026-07-31 14:50:21 [INFO]   [All-Grid DLinear (Large)] Epoch   7/100 | Train: 0.11267 | Val: 0.11879 <- best | elapsed 3.4s | GPU 17/24564MB
+2026-07-31 14:50:22 [INFO]   [All-Grid DLinear (Large)] Epoch   8/100 | Train: 0.11213 | Val: 0.11884 | elapsed 3.9s | GPU 17/24564MB
+2026-07-31 14:50:22 [INFO]   [All-Grid DLinear (Large)] Epoch   9/100 | Train: 0.11197 | Val: 0.11800 <- best | elapsed 4.4s | GPU 17/24564MB
+2026-07-31 14:50:23 [INFO]   [All-Grid DLinear (Large)] Epoch  10/100 | Train: 0.11194 | Val: 0.11848 | elapsed 4.8s | GPU 17/24564MB
+2026-07-31 14:50:23 [INFO]   [All-Grid DLinear (Large)] Epoch  11/100 | Train: 0.11193 | Val: 0.11831 | elapsed 5.3s | GPU 17/24564MB
+2026-07-31 14:50:24 [INFO]   [All-Grid DLinear (Large)] Epoch  12/100 | Train: 0.11192 | Val: 0.11852 | elapsed 5.8s | GPU 17/24564MB
+2026-07-31 14:50:24 [INFO]   [All-Grid DLinear (Large)] Epoch  13/100 | Train: 0.11192 | Val: 0.11901 | elapsed 6.2s | GPU 17/24564MB
+2026-07-31 14:50:25 [INFO]   [All-Grid DLinear (Large)] Epoch  14/100 | Train: 0.11192 | Val: 0.11806 | elapsed 6.6s | GPU 17/24564MB
+2026-07-31 14:50:25 [INFO]   [All-Grid DLinear (Large)] Epoch  15/100 | Train: 0.11192 | Val: 0.11832 | elapsed 7.1s | GPU 17/24564MB
+2026-07-31 14:50:25 [INFO]   [All-Grid DLinear (Large)] Epoch  16/100 | Train: 0.11193 | Val: 0.11857 | elapsed 7.5s | GPU 17/24564MB
+2026-07-31 14:50:26 [INFO]   [All-Grid DLinear (Large)] Epoch  17/100 | Train: 0.11197 | Val: 0.11825 | elapsed 8.0s | GPU 17/24564MB
+2026-07-31 14:50:26 [INFO]   [All-Grid DLinear (Large)] Epoch  18/100 | Train: 0.11198 | Val: 0.11905 | elapsed 8.4s | GPU 17/24564MB
+2026-07-31 14:50:27 [INFO]   [All-Grid DLinear (Large)] Epoch  19/100 | Train: 0.11192 | Val: 0.11811 | elapsed 8.8s | GPU 17/24564MB
+2026-07-31 14:50:27 [INFO]   [Early Stop] All-Grid DLinear (Large) epoch 19
+2026-07-31 14:50:29 [INFO]   TEST MAE=59.9354  wMAPE=4.43%  Time=8.8s
+2026-07-31 14:50:32 [INFO]   [Adapt] Zero-Shot MAE on B+C = 61.8441
+2026-07-31 14:50:32 [INFO]   [Adapt] Retraining on adapted data ...
+2026-07-31 14:50:33 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   1/100 | Train: 0.42342 | Val: 0.26863 <- best | elapsed 0.6s | GPU 17/24564MB
+2026-07-31 14:50:33 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   2/100 | Train: 0.19911 | Val: 0.19004 <- best | elapsed 1.0s | GPU 17/24564MB
+2026-07-31 14:50:33 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   3/100 | Train: 0.15608 | Val: 0.15858 <- best | elapsed 1.5s | GPU 17/24564MB
+2026-07-31 14:50:34 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   4/100 | Train: 0.13706 | Val: 0.14334 <- best | elapsed 1.9s | GPU 17/24564MB
+2026-07-31 14:50:34 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   5/100 | Train: 0.12817 | Val: 0.13573 <- best | elapsed 2.4s | GPU 17/24564MB
+2026-07-31 14:50:35 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   6/100 | Train: 0.12421 | Val: 0.13281 <- best | elapsed 2.8s | GPU 17/24564MB
+2026-07-31 14:50:35 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   7/100 | Train: 0.12260 | Val: 0.13123 <- best | elapsed 3.3s | GPU 17/24564MB
+2026-07-31 14:50:36 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   8/100 | Train: 0.12202 | Val: 0.13100 <- best | elapsed 3.7s | GPU 17/24564MB
+2026-07-31 14:50:36 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch   9/100 | Train: 0.12184 | Val: 0.13061 <- best | elapsed 4.2s | GPU 17/24564MB
+2026-07-31 14:50:37 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  10/100 | Train: 0.12184 | Val: 0.13012 <- best | elapsed 4.6s | GPU 17/24564MB
+2026-07-31 14:50:37 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  11/100 | Train: 0.12181 | Val: 0.13033 | elapsed 5.1s | GPU 17/24564MB
+2026-07-31 14:50:38 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  12/100 | Train: 0.12178 | Val: 0.13045 | elapsed 5.6s | GPU 17/24564MB
+2026-07-31 14:50:38 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  13/100 | Train: 0.12178 | Val: 0.13145 | elapsed 6.0s | GPU 17/24564MB
+2026-07-31 14:50:38 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  14/100 | Train: 0.12185 | Val: 0.12986 <- best | elapsed 6.5s | GPU 17/24564MB
+2026-07-31 14:50:39 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  15/100 | Train: 0.12184 | Val: 0.13003 | elapsed 7.0s | GPU 17/24564MB
+2026-07-31 14:50:39 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  16/100 | Train: 0.12181 | Val: 0.12970 <- best | elapsed 7.4s | GPU 17/24564MB
+2026-07-31 14:50:40 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  17/100 | Train: 0.12186 | Val: 0.12974 | elapsed 7.9s | GPU 17/24564MB
+2026-07-31 14:50:40 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  18/100 | Train: 0.12180 | Val: 0.13013 | elapsed 8.4s | GPU 17/24564MB
+2026-07-31 14:50:41 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  19/100 | Train: 0.12182 | Val: 0.13044 | elapsed 8.8s | GPU 17/24564MB
+2026-07-31 14:50:41 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  20/100 | Train: 0.12182 | Val: 0.13042 | elapsed 9.3s | GPU 17/24564MB
+2026-07-31 14:50:42 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  21/100 | Train: 0.12188 | Val: 0.13027 | elapsed 9.8s | GPU 17/24564MB
+2026-07-31 14:50:42 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  22/100 | Train: 0.12181 | Val: 0.13073 | elapsed 10.2s | GPU 17/24564MB
+2026-07-31 14:50:43 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  23/100 | Train: 0.12189 | Val: 0.13023 | elapsed 10.7s | GPU 17/24564MB
+2026-07-31 14:50:43 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  24/100 | Train: 0.12184 | Val: 0.13009 | elapsed 11.1s | GPU 17/24564MB
+2026-07-31 14:50:44 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  25/100 | Train: 0.12182 | Val: 0.12994 | elapsed 11.5s | GPU 17/24564MB
+2026-07-31 14:50:44 [INFO]   [All-Grid DLinear (Large) Retrain] Epoch  26/100 | Train: 0.12182 | Val: 0.13023 | elapsed 12.0s | GPU 17/24564MB
+2026-07-31 14:50:44 [INFO]   [Early Stop] All-Grid DLinear (Large) Retrain epoch 26
+2026-07-31 14:50:46 [INFO]   [Adapt] Retrain MAE on B+C = 64.2130
+2026-07-31 14:50:46 [INFO] === baseline_dlinear complete ===

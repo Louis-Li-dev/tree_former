@@ -17,7 +17,7 @@ Baselines
     AllGridReformer — Reformer (ICLR 2020, LSH attention); internal RevIN
 """
 
-from .hmstv2 import TimeEmbedding, HierarchicalBlock, HMSTv2, RevIN
+from .hmstv2 import TimeEmbedding, HierarchicalBlock, HMSTv2, RTreeformer, RevIN
 from .baselines import (
     EachGridLSTM,
     AllGridLSTM,
@@ -29,7 +29,7 @@ from .baselines import (
 
 __all__ = [
     # proposed
-    "TimeEmbedding", "HierarchicalBlock", "HMSTv2",
+    "TimeEmbedding", "HierarchicalBlock", "HMSTv2", "RTreeformer",
     # baselines
     "RevIN", "EachGridLSTM", "AllGridLSTM",
     "AllGridDLinear", "AllGridPatchTST",
