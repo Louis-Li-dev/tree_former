@@ -31,9 +31,9 @@ except ModuleNotFoundError:
         get_run_dir, setup_logger, gpu_cleanup,
         save_result, result_exists, load_run_data, eval_on_loader,
     )
-from hmst.model   import AllGridPatchTST
-from hmst.train   import CHTDataset, run_training
-from hmst.utils   import MODEL_SIZES, TRAIN_CFG, LOOKBACK, BATCH_SIZE, calculate_metrics
+from rtreeformer.model   import AllGridPatchTST
+from rtreeformer.train   import CHTDataset, run_training
+from rtreeformer.utils   import MODEL_SIZES, TRAIN_CFG, LOOKBACK, BATCH_SIZE, calculate_metrics
 
 SCRIPT = "baseline_patchtst"
 SIZES  = ("base", "large")

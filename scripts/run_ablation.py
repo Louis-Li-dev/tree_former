@@ -1,7 +1,7 @@
 """
 scripts/run_ablation.py
 =======================
-Ablation study: train six HMST-v2 variants (all LARGE size).
+Ablation study: train six R-Treeformer variants (all LARGE size).
 
 Variants:
   Full               - complete model
@@ -37,9 +37,9 @@ except ModuleNotFoundError:
         get_run_dir, setup_logger, gpu_cleanup,
         save_result, result_exists, load_run_data,
     )
-from hmst.model   import HMSTv2
-from hmst.train   import CHTDataset, run_training
-from hmst.utils   import LARGE, TRAIN_CFG, LOOKBACK, BATCH_SIZE, NUM_GRIDS, calculate_metrics
+from rtreeformer.model   import RTreeformer
+from rtreeformer.train   import CHTDataset, run_training
+from rtreeformer.utils   import LARGE, TRAIN_CFG, LOOKBACK, BATCH_SIZE, NUM_GRIDS, calculate_metrics
 
 SCRIPT = "ablation"
 
@@ -108,7 +108,7 @@ def run(variants=ALL_VARIANTS, force=False):
 
         logger.info(f"\n{'='*50}\n  Ablation: {var_name}\n{'='*50}")
         kwargs = VARIANT_KWARGS[var_name]
-        model  = HMSTv2(
+        model  = RTreeformer(
             num_grids=N, lookback=LOOKBACK,
             d_model=LARGE["d_model"], d_k=LARGE["d_k"],
             num_layers=LARGE["num_layers"], dropout=0.1,

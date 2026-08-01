@@ -40,7 +40,7 @@ try:
 except ModuleNotFoundError:
     from _common import get_run_dir, setup_logger, load_result, KNOWN_PARAMS
 
-from hmst.utils import calculate_metrics
+from rtreeformer.utils import calculate_metrics
 
 SCRIPT = "results"
 
@@ -61,8 +61,8 @@ BENCHMARK_KEYS = {
     "All-Grid PatchTST (Large)":   "baseline_patchtst_large",
     "All-Grid Reformer (Base)":    "baseline_reformer_base",
     "All-Grid Reformer (Large)":   "baseline_reformer_large",
-    "R-Treeformer (Base)":         ["hmstv2_base", "baseline_hmstv2_base"],
-    "R-Treeformer (Large)":        ["hmstv2_large", "baseline_hmstv2_large"],
+    "R-Treeformer (Base)":         ["rtreeformer_base", "hmstv2_base", "baseline_hmstv2_base"],
+    "R-Treeformer (Large)":        ["rtreeformer_large", "hmstv2_large", "baseline_hmstv2_large"],
 }
 
 ABLATION_KEYS = {
@@ -75,8 +75,8 @@ ABLATION_KEYS = {
 }
 
 ADAPT_KEYS = {
-    "R-Treeformer Zero-Shot":       ["adapt_zs_hmstv2", "adapt_zs_hmstv2_large"],
-    "R-Treeformer Fine-Tune":       "adapt_ft_hmstv2",
+    "R-Treeformer Zero-Shot":       ["adapt_zs_rtreeformer_large", "adapt_zs_hmstv2", "adapt_zs_hmstv2_large"],
+    "R-Treeformer Fine-Tune":       ["adapt_ft_rtreeformer", "adapt_ft_hmstv2"],
     "Each-Grid LSTM Zero-Shot":     ["adapt_zs_each_grid_lstm", "adapt_zs_each_grid_lstm_large"],
     "Each-Grid LSTM Retrain":       "adapt_retrain_each_grid_lstm",
     "All-Grid LSTM Zero-Shot":      ["adapt_zs_all_grid_lstm", "adapt_zs_all_grid_lstm_large"],

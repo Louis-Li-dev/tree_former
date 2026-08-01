@@ -1,4 +1,4 @@
-﻿"""
+"""
 scripts/run_preprocess.py
 =========================
 Step 1 of the pipeline: load raw data, clean, select grids, build the
@@ -54,7 +54,7 @@ try:
 except ModuleNotFoundError:
     from _common import get_or_create_run_dir, setup_logger, RUNS_DIR
 
-from hmst.utils import (
+from rtreeformer.utils import (
     NUM_GRIDS, LOOKBACK, BATCH_SIZE, K_ROOTS,
     build_forest_masks,
 )
@@ -510,8 +510,8 @@ def main(fresh: bool = False) -> None:
     logger.info("Building per-region R-Tree hierarchies ...")
     forest_levels = build_rtree(sel_coords, root_labels, logger)
 
-    # 4. Build HMST attention masks
-    logger.info("Building HMST attention masks ...")
+    # 4. Build R-Treeformer attention masks
+    logger.info("Building R-Treeformer attention masks ...")
     hmst_masks = build_forest_masks(
         num_grids=NUM_GRIDS,
         K_roots=K_ROOTS,
